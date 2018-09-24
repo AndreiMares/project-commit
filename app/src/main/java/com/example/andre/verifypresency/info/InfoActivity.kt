@@ -1,19 +1,18 @@
-package com.example.andre.verifypresency.Profile
+package com.example.andre.verifypresency.info
 
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
 
-class ProfileActivity : BaseActivity() {
+class InfoActivity : BaseActivity() {
 
-    private val PROFILE_NUM = 2
+    private val INFO_NUM = 3
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_profile)
+        setContentView(R.layout.activity_base)
 
-//        super.configureBottomNav(this.PROFILE_NUM)
-
+        super.configureBottomNav(this.INFO_NUM)
     }
 
 }

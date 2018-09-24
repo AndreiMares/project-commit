@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.Main
+package com.example.andre.verifypresency.main
 
 import android.os.Bundle
 import com.example.andre.verifypresency.R

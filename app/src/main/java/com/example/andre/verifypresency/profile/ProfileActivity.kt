@@ -1,18 +1,19 @@
-package com.example.andre.verifypresency.Search
+package com.example.andre.verifypresency.profile
 
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
 
-class SearchActivity : BaseActivity() {
+class ProfileActivity : BaseActivity() {
 
-    private val SEARCH_NUM = 1
+    private val PROFILE_NUM = 2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_base)
+        setContentView(R.layout.activity_profile)
 
-        super.configureBottomNav(this.SEARCH_NUM)
+//        super.configureBottomNav(this.PROFILE_NUM)
+
     }
 
 }

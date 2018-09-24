@@ -2,13 +2,11 @@ package com.example.andre.verifypresency.util
 
 import android.content.Context
 import android.content.Intent
-import android.support.v4.view.ViewPager
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.Info.InfoActivity
-import com.example.andre.verifypresency.Main.MainActivity
-import com.example.andre.verifypresency.Main.SectionPagerAdapter
-import com.example.andre.verifypresency.Profile.ProfileActivity
-import com.example.andre.verifypresency.Search.SearchActivity
+import com.example.andre.verifypresency.info.InfoActivity
+import com.example.andre.verifypresency.main.MainActivity
+import com.example.andre.verifypresency.profile.ProfileActivity
+import com.example.andre.verifypresency.search.SearchActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
 
 fun BottomNavigationViewEx.setupBottomNavigationView() {
