@@ -20,5 +20,4 @@ class EventFragment : Fragment() {
         return view
     }
 
-
 }

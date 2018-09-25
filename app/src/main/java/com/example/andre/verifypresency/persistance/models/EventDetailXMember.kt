@@ -1,11 +1,28 @@
 package com.example.andre.verifypresency.persistance.models
 
-class EventDetailXMember: Entity(){
+import android.arch.persistence.room.*
+import org.jetbrains.annotations.NotNull
 
-    var EventDetailXMemberId: Long = 0
-    var EventDetailId: Long = 0
-    var MemberId: Long = 0
+@Entity(tableName = "EventDetailXMember",
+        foreignKeys = arrayOf(
+                ForeignKey(entity = EventDetail::class,
+                        parentColumns = arrayOf("EventDetailId"),
+                        childColumns = arrayOf("EventDetailId")),
+                ForeignKey(entity = Member::class,
+                        parentColumns = arrayOf("MemberId"),
+                        childColumns = arrayOf("MemberId"))))
 
+data class EventDetailXMember(@PrimaryKey(autoGenerate = true)
+                              @NotNull
+                              @ColumnInfo(name = "EventDetailXMemberId")
+                              var EventDetailXMemberId: Long,
+                              @NotNull
+                              @ColumnInfo(name = "EventDetailId")
+                              var EventDetailId: Long,
+                              @NotNull
+                              @ColumnInfo(name = "MemberId")
+                              var MemberId: Long) : BaseEntity() {
 
-
+    @Ignore
+    constructor() : this(0, 0, 0)
 }

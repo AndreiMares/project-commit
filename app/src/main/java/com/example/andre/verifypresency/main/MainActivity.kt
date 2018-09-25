@@ -3,6 +3,7 @@ package com.example.andre.verifypresency.main
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
+import com.example.andre.verifypresency.persistance.AppDatabase
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*
 
@@ -18,10 +19,9 @@ class MainActivity : BaseActivity() {
 
         this.setupViewPager()
 
-        //TODO - implementare sqliteDB cu ROOM + MVVM Kotlin
-        //TODO - urmatoarele tabele : Dictionary, DictionaryDetail -> am nevoie de asta pentru salvarea tipurilor de evenimente;
-        //TODO - Pentru evenimente; event, eventDetail, eventDetailXMember
-        //TODO - Pentru membri: Member
+        //testing
+        val db = AppDatabase.getInstance(this)
+
     }
 
     private fun setupViewPager(){

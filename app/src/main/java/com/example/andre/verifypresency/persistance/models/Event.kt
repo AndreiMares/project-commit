@@ -1,12 +1,22 @@
 package com.example.andre.verifypresency.persistance.models
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 import java.util.*
 
-class Event: Entity() {
+@Entity(tableName = "Event")
+data class Event(@PrimaryKey(autoGenerate = true)
+            @ColumnInfo(name = "EventId")
+            @NotNull
+            var EventId: Long,
+            @ColumnInfo(name = "ScheduleTime")
+            var ScheduleTime: Date?) : BaseEntity()
 
-    var EventId: Long = 0
-    lateinit var ScheduleTime: Date
-    var EventDetailId: Long = 0
-
+{
+    @Ignore
+    constructor():this(0,null)
 
 }

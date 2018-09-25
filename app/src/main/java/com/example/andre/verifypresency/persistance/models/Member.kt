@@ -1,12 +1,30 @@
 package com.example.andre.verifypresency.persistance.models
 
-class Member:Entity() {
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.Ignore
+import android.arch.persistence.room.PrimaryKey
+import org.jetbrains.annotations.NotNull
 
-
-    var MemberId: Long = 0
-    lateinit var FirstName: String
-    lateinit var LastName: String
-    lateinit var Email: String
-    lateinit var PhoneNumber: String
+@Entity(tableName = "Member")
+data class Member(@PrimaryKey(autoGenerate = true)
+                  @ColumnInfo(name = "MemberId")
+                  @NotNull
+                  var MemberId: Long,
+                  @ColumnInfo(name = "FirstName")
+                  @NotNull
+                  var FirstName: String,
+                  @ColumnInfo(name = "LastName")
+                  @NotNull
+                  var LastName: String,
+                  @ColumnInfo(name = "Email")
+                  @NotNull
+                  var Email: String,
+                  @ColumnInfo(name = "PhoneNumber")
+                  @NotNull
+                  var PhoneNumber: String) : BaseEntity()
+{
+    @Ignore
+    constructor():this(0, "","","","")
 
 }

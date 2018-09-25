@@ -12,7 +12,7 @@ class ProfileActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile)
 
-//        super.configureBottomNav(this.PROFILE_NUM)
+        super.configureBottomNav(this.PROFILE_NUM)
 
     }
 

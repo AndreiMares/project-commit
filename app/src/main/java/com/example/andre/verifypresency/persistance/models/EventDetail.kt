@@ -1,13 +1,39 @@
 package com.example.andre.verifypresency.persistance.models
 
-class EventDetail: Entity() {
+import android.arch.persistence.room.*
+import org.jetbrains.annotations.NotNull
 
-    var EventDetailId: Long = 0
-    lateinit var Title: String
-    lateinit var Location: String
-    lateinit var OrganizationName: String
-    var DictionaryDetailId: Long = 0
+@Entity(tableName = "EventDetail",
+        foreignKeys = arrayOf(
+                ForeignKey(entity = Event::class,
+                         parentColumns = arrayOf("EventId"),
+                         childColumns = arrayOf("EventId")),
+                ForeignKey(entity = DictionaryDetail::class,
+                         parentColumns = arrayOf("DictionaryDetailId"),
+                         childColumns = arrayOf("DictionaryDetailId"))))
 
+data class EventDetail(@PrimaryKey(autoGenerate = true)
+                       @ColumnInfo(name = "EventDetailId")
+                       @NotNull
+                       var EventDetailId: Long,
+                       @ColumnInfo(name = "Title")
+                       @NotNull
+                       var Title: String,
+                       @ColumnInfo(name = "Location")
+                       @NotNull
+                       var Location: String,
+                       @ColumnInfo(name = "OrganizationName")
+                       @NotNull
+                       var OrganizationName: String,
+                       @ColumnInfo(name = "DictionaryDetailId")
+                       @NotNull
+                       var DictionaryDetailId: Long,
+                       @ColumnInfo(name = "EventId")
+                       @NotNull
+                       var EventId: Long) : BaseEntity()
+{
 
+    @Ignore
+    constructor():this(0, "", "","", 0,0)
 
 }
