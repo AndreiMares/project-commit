@@ -5,7 +5,6 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
 import com.example.andre.verifypresency.persistance.models.Dictionary
-import io.reactivex.Flowable
 
 @Dao
 interface DictionaryDao {
@@ -16,7 +15,7 @@ interface DictionaryDao {
      * @return the dictionary from the table with a specific id.
      */
     @Query("SELECT * FROM Dictionary WHERE DictionaryId = :id")
-    fun getDictionaryById(id: String): Flowable<Dictionary>
+    fun getDictionaryById(id: String): Dictionary
 
     /**
      * Insert a dictionary in the database. If the dictionary already exists, replace it.
