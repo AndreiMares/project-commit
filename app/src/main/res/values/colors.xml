@@ -6,6 +6,8 @@
     <color name="windowBackground">#FFFFFF</color>
     <color name="navigationBarColor">#000000</color>
     <color name="colorAccent">#c8e8ff</color>
+    <color name="backgroundColor">#96DED2</color>
+
 
 
     <color name="greyOverlay">#80565050</color>

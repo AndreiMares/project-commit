@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.persistance.models
+package com.example.andre.verifypresency.persistance.local.models
 
 import android.arch.persistence.room.ColumnInfo
 import android.arch.persistence.room.Entity
