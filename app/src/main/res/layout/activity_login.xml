@@ -27,7 +27,8 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true">
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin">
 
             <EditText
                 android:id="@+id/activity_login_et_email"
@@ -35,20 +36,17 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:hint="@string/login_email"
-                android:textColor="@color/lightBlue"/>
+                android:textSize="@dimen/text_input"/>
 
             <EditText
                 android:id="@+id/activity_login_et_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/login_password"
+                android:textSize="@dimen/text_input"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"/>
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
             <Button
                 android:id="@+id/activity_login_btn_sign"
@@ -56,8 +54,6 @@
                 android:layout_height="wrap_content"
                 android:text="@string/login_signIn"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin"
                 android:background="@color/light_blue_600"/>
 
         </LinearLayout>
