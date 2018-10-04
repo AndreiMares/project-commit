@@ -64,4 +64,6 @@ fun BottomNavigationViewEx.setupCheckedMenuItem(index: Int) {
 
 }
 
+//fun String.isEmpty(value: String): Boolean = value.
+
 

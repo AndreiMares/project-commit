@@ -73,6 +73,7 @@
             android:layout_centerHorizontal="true">
 
             <TextView
+                android:id="@+id/activity_login_tv_register"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_register"
@@ -82,6 +83,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/activity_login_tv_forgotPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_forgot_pass"
@@ -91,6 +93,7 @@
                 android:textStyle="bold"/>
 
             <TextView
+                android:id="@+id/activity_login_tv_resendEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/login_resend_verification_email"
