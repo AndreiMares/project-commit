@@ -39,5 +39,4 @@ class MainActivity : BaseActivity() {
         layout_top_tl_tabs.getTabAt(1)?.setIcon(R.drawable.ic_group_ppl)
 
     }
-
 }
