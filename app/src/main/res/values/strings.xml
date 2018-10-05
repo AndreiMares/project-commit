@@ -2,4 +2,18 @@
     <string name="app_name">VerifyPresency</string>
 
     <string name="john_doe">John Doe</string>
+
+
+    <!--Login activity strings-->
+    <string name="login_email">Email</string>
+    <string name="login_password">Password</string>
+    <string name="login_signIn">Sign In</string>
+    <string name="login_register">Register</string>
+    <string name="login_forgot_pass">Forgot Password</string>
+    <string name="login_resend_verification_email">Resend Verification Email</string>
+
+    <!--Register activity strings-->
+    <string name="register_confirm_password">Confirm Password</string>
+    <string name="register_txt">Register</string>
+
 </resources>

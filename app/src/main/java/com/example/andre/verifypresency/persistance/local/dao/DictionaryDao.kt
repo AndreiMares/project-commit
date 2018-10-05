@@ -1,10 +1,10 @@
-package com.example.andre.verifypresency.persistance.dao
+package com.example.andre.verifypresency.persistance.local.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy
 import android.arch.persistence.room.Query
-import com.example.andre.verifypresency.persistance.models.Dictionary
+import com.example.andre.verifypresency.persistance.local.models.Dictionary
 
 @Dao
 interface DictionaryDao {

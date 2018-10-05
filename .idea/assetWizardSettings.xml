@@ -16,26 +16,13 @@
                             <entry key="actionbar">
                               <value>
                                 <PersistentState>
-                                  <option name="children">
-                                    <map>
-                                      <entry key="clipartAsset">
-                                        <value>
-                                          <PersistentState>
-                                            <option name="values">
-                                              <map>
-                                                <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_date_range_black_24dp.xml" />
-                                              </map>
-                                            </option>
-                                          </PersistentState>
-                                        </value>
-                                      </entry>
-                                    </map>
-                                  </option>
                                   <option name="values">
                                     <map>
-                                      <entry key="outputName" value="ic_events" />
+                                      <entry key="assetType" value="IMAGE" />
+                                      <entry key="imageAsset" value="C:\Users\andreimar\Desktop\Twitter_bird_logo_2012.svg.png" />
+                                      <entry key="outputName" value="ic_login" />
                                       <entry key="theme" value="CUSTOM" />
-                                      <entry key="themeColor" value="060606" />
+                                      <entry key="themeColor" value="0a5c5b" />
                                     </map>
                                   </option>
                                 </PersistentState>

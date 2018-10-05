@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "818811973338",
+    "firebase_url": "https://verify-presency.firebaseio.com",
+    "project_id": "verify-presency",
+    "storage_bucket": "verify-presency.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818811973338:android:a88f26f3628d6def",
+        "android_client_info": {
+          "package_name": "com.example.andre.verifypresency"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818811973338-p02hdkm0693dah9g3jhe2h7f46gjsuff.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDn4X_8imGKdZghfTpZ_Zmia0JAz6RdoS0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
