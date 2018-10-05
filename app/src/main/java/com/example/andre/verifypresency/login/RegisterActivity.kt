@@ -1,13 +1,12 @@
 package com.example.andre.verifypresency.login
 
+import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -27,37 +26,65 @@ class RegisterActivity : BaseActivity() {
         when (this.validateFields()) {
             true -> this.registerNewEmail(activity_register_et_email.text.toString()
                     , activity_register_et_password.text.toString())
-//            false -> Toast.makeText(this@RegisterActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
         }
-
 
     }
 
+    /**
+     * Registers a new account into FireBase
+     */
     private fun registerNewEmail(email: String, password: String) {
 
         super.startProgressBar()
 
-        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { v ->
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
 
-            if (v.isComplete) {
-
-                val id = FirebaseAuth.getInstance().currentUser?.uid
+            if (task.isSuccessful) {
 
                 FirebaseAuth.getInstance().signOut()
+
+                Toast.makeText(this@RegisterActivity, "User successfully created", Toast.LENGTH_LONG).show()
+
+                this.redirectToLoginScreen()
+
             } else {
-                Toast.makeText(this@RegisterActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
-            }
 
-            if(v.isCanceled){
+                val errorCode = (task.exception as FirebaseAuthException).errorCode
 
-                val
+                when(errorCode){
+                    "ERROR_INVALID_EMAIL" ->{
+                        activity_register_et_email.error = "The email address is badly formatted."
+                        activity_register_et_email.requestFocus()
+                    }
+
+                    "ERROR_EMAIL_ALREADY_IN_USE" ->{
+                        activity_register_et_email.error = "The email address is already in use by another account."
+                        activity_register_et_email.requestFocus()
+                    }
+
+                    "ERROR_CREDENTIAL_ALREADY_IN_USE" ->{
+                        activity_register_et_email.error = "This credential is already associated with a different user account. "
+                        activity_register_et_email.requestFocus()
+                    }
+
+                    "ERROR_WEAK_PASSWORD" -> {
+                        activity_register_et_password.error = "The password is invalid it must 6 characters at least"
+                        activity_register_et_password.requestFocus()
+                    }
+
+                    else -> Toast.makeText(this@RegisterActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
+                }
             }
 
             super.hideProgressBar()
         }
 
+
     }
 
+    /**
+     * Returns true if both email and password fields are valid, otherwise returns false
+     */
     private fun validateFields(): Boolean {
 
         if (!activity_register_et_email.text.isEmpty()
@@ -77,6 +104,17 @@ class RegisterActivity : BaseActivity() {
             Toast.makeText(this@RegisterActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
             return false
         }
+
+    }
+
+    /**
+     * Redirects user to Login Screen
+     */
+    private fun redirectToLoginScreen(){
+
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
 
     }
 }
