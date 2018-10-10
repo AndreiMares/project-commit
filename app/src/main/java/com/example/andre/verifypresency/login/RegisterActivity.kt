@@ -49,37 +49,36 @@ class RegisterActivity : BaseActivity() {
 
             } else {
 
-                val errorCode = (task.exception as FirebaseAuthException).errorCode
+                if (task.exception is FirebaseAuthException){
+                    val errorCode = (task.exception as FirebaseAuthException).errorCode
 
-                when(errorCode){
-                    "ERROR_INVALID_EMAIL" ->{
-                        activity_register_et_email.error = "The email address is badly formatted."
-                        activity_register_et_email.requestFocus()
+                    when (errorCode) {
+                        "ERROR_INVALID_EMAIL" -> {
+                            activity_register_et_email.error = "The email address is badly formatted."
+                            activity_register_et_email.requestFocus()
+                        }
+
+                        "ERROR_EMAIL_ALREADY_IN_USE" -> {
+                            activity_register_et_email.error = "The email address is already in use by another account."
+                            activity_register_et_email.requestFocus()
+                        }
+
+                        "ERROR_CREDENTIAL_ALREADY_IN_USE" -> {
+                            activity_register_et_email.error = "This credential is already associated with a different user account. "
+                            activity_register_et_email.requestFocus()
+                        }
+
+                        "ERROR_WEAK_PASSWORD" -> {
+                            activity_register_et_password.error = "The password is invalid it must 6 characters at least"
+                            activity_register_et_password.requestFocus()
+                        }
+
+                        else -> Toast.makeText(this@RegisterActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
                     }
-
-                    "ERROR_EMAIL_ALREADY_IN_USE" ->{
-                        activity_register_et_email.error = "The email address is already in use by another account."
-                        activity_register_et_email.requestFocus()
-                    }
-
-                    "ERROR_CREDENTIAL_ALREADY_IN_USE" ->{
-                        activity_register_et_email.error = "This credential is already associated with a different user account. "
-                        activity_register_et_email.requestFocus()
-                    }
-
-                    "ERROR_WEAK_PASSWORD" -> {
-                        activity_register_et_password.error = "The password is invalid it must 6 characters at least"
-                        activity_register_et_password.requestFocus()
-                    }
-
-                    else -> Toast.makeText(this@RegisterActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
                 }
             }
-
             super.hideProgressBar()
         }
-
-
     }
 
     /**
@@ -110,7 +109,7 @@ class RegisterActivity : BaseActivity() {
     /**
      * Redirects user to Login Screen
      */
-    private fun redirectToLoginScreen(){
+    private fun redirectToLoginScreen() {
 
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
