@@ -41,15 +41,15 @@ class RegisterActivity : BaseActivity() {
 
             if (task.isSuccessful) {
 
-                FirebaseAuth.getInstance().signOut()
+                this.sendVerificationEmail()
 
-                Toast.makeText(this@RegisterActivity, "User successfully created", Toast.LENGTH_LONG).show()
+                FirebaseAuth.getInstance().signOut()
 
                 this.redirectToLoginScreen()
 
             } else {
 
-                if (task.exception is FirebaseAuthException){
+                if (task.exception is FirebaseAuthException) {
                     val errorCode = (task.exception as FirebaseAuthException).errorCode
 
                     when (errorCode) {
@@ -104,6 +104,23 @@ class RegisterActivity : BaseActivity() {
             return false
         }
 
+    }
+
+    /**
+     * Sending a verification email to newly registered user
+     */
+    private fun sendVerificationEmail() {
+        val user = FirebaseAuth.getInstance().currentUser
+
+        user?.sendEmailVerification()?.addOnCompleteListener { task ->
+
+            if (task.isSuccessful)
+
+                Toast.makeText(this@RegisterActivity, "An email has been sent for validation", Toast.LENGTH_LONG).show()
+            else
+                Toast.makeText(this@RegisterActivity, "Failed to send validation email", Toast.LENGTH_LONG).show()
+
+        }
     }
 
     /**

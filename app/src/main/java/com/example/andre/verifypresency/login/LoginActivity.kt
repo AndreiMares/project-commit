@@ -51,10 +51,10 @@ class LoginActivity : BaseActivity() {
 
             val user = firebaseAuth.currentUser
 
-            if (user != null)
-                Toast.makeText(this@LoginActivity, "Signed in", Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText(this@LoginActivity, "Sign out", Toast.LENGTH_SHORT).show()
+//            if (user != null)
+//                Toast.makeText(this@LoginActivity, "Signed in", Toast.LENGTH_SHORT).show()
+//            else
+//                Toast.makeText(this@LoginActivity, "Sign out", Toast.LENGTH_SHORT).show()
 
 
         }
