@@ -23,7 +23,10 @@ class RegisterActivity : BaseActivity() {
 
     private fun registerClicked() {
 
-        when (this.validateFields()) {
+        when (this.validateFields(activity_register_et_email.text.toString()
+                , activity_register_et_password.text.toString()
+                , activity_register_et_confirmation.text.toString())) {
+
             true -> this.registerNewEmail(activity_register_et_email.text.toString()
                     , activity_register_et_password.text.toString())
         }
@@ -84,18 +87,18 @@ class RegisterActivity : BaseActivity() {
     /**
      * Returns true if both email and password fields are valid, otherwise returns false
      */
-    private fun validateFields(): Boolean {
+    private fun validateFields(email: String, password: String, confirmPassword: String): Boolean {
 
-        if (!activity_register_et_email.text.isEmpty()
-                && !activity_register_et_password.text.isEmpty()
-                && !activity_register_et_confirmation.text.isEmpty()) {
+        if (!email.isEmpty()
+                && !password.isEmpty()
+                && !confirmPassword.isEmpty()) {
 
-            if (activity_register_et_password.text.toString().equals(activity_register_et_confirmation.text.toString(), false)) {
+            if (password.equals(confirmPassword, false)) {
 
                 return true
 
             } else {
-                Toast.makeText(this@RegisterActivity, "Passwords do not Match", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RegisterActivity, "Passwords do not match", Toast.LENGTH_SHORT).show()
                 return false
             }
 
@@ -104,23 +107,6 @@ class RegisterActivity : BaseActivity() {
             return false
         }
 
-    }
-
-    /**
-     * Sending a verification email to newly registered user
-     */
-    private fun sendVerificationEmail() {
-        val user = FirebaseAuth.getInstance().currentUser
-
-        user?.sendEmailVerification()?.addOnCompleteListener { task ->
-
-            if (task.isSuccessful)
-
-                Toast.makeText(this@RegisterActivity, "An email has been sent for validation", Toast.LENGTH_LONG).show()
-            else
-                Toast.makeText(this@RegisterActivity, "Failed to send validation email", Toast.LENGTH_LONG).show()
-
-        }
     }
 
     /**
