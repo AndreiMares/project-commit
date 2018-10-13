@@ -7,6 +7,7 @@ import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.FirebaseUser
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -40,6 +41,8 @@ class RegisterActivity : BaseActivity() {
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
+
+                this.sendVerificationEmail()
 
                 FirebaseAuth.getInstance().signOut()
 
@@ -79,6 +82,18 @@ class RegisterActivity : BaseActivity() {
             }
             super.hideProgressBar()
         }
+    }
+
+    private fun sendVerificationEmail(){
+        val user = FirebaseAuth.getInstance().currentUser;
+
+        user?.sendEmailVerification()?.addOnCompleteListener{task ->
+
+
+
+
+        }
+
     }
 
     /**
