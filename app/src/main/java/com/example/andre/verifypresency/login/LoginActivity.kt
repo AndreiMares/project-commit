@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.activity_login.*
 
@@ -23,7 +24,15 @@ class LoginActivity : BaseActivity() {
 
         activity_login_tv_forgotPass.setOnClickListener { }
 
-        activity_login_btn_sign.setOnClickListener { this.login() }
+        activity_login_tv_resendEmail.setOnClickListener {
+            this.resendVerificationEmail(activity_login_et_email.text.toString()
+                    , activity_login_et_password.text.toString())
+        }
+
+        activity_login_btn_sign.setOnClickListener {
+            this.login(activity_login_et_email.text.toString()
+                    , activity_login_et_password.text.toString())
+        }
 
     }
 
@@ -39,37 +48,16 @@ class LoginActivity : BaseActivity() {
             FirebaseAuth.getInstance().removeAuthStateListener(this.mAuthListener!!)
     }
 
-    private fun navigateRegisterActivity() {
+    private fun login(email: String, password: String) {
 
-        val intent = Intent(this, RegisterActivity::class.java)
-        startActivity(intent)
-
-    }
-
-    private fun setupFireBaseAuth() {
-        this.mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
-
-            val user = firebaseAuth.currentUser
-
-            if (user != null)
-                Toast.makeText(this@LoginActivity, "Signed in", Toast.LENGTH_SHORT).show()
-            else
-                Toast.makeText(this@LoginActivity, "Sign out", Toast.LENGTH_SHORT).show()
-
-
-        }
-    }
-
-    private fun login() {
-
-        if (!activity_login_et_email.text.isEmpty()
-                && !activity_login_et_password.text.isEmpty()) {
-
+        if (!email.isEmpty()
+                && !password.isEmpty()) {
 
             FirebaseAuth.getInstance().signInWithEmailAndPassword(activity_login_et_email.text.toString(), activity_login_et_password.text.toString())
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
 
+                            Toast.makeText(this@LoginActivity, "Sign In", Toast.LENGTH_SHORT).show()
                         } else {
 
                         }
@@ -78,8 +66,61 @@ class LoginActivity : BaseActivity() {
                         hideProgressBar()
                     }
 
-        }
+        } else
+            Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
 
+    }
+
+    private fun setupFireBaseAuth() {
+        this.mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
+
+            val user = firebaseAuth.currentUser
+
+            if (user != null) {
+
+                if (user.isEmailVerified) {
+
+                } else {
+                    Toast.makeText(this@LoginActivity, "Check your email inbox for a verification link ", Toast.LENGTH_SHORT).show()
+                    FirebaseAuth.getInstance().signOut()
+                }
+            } else {
+
+            }
+        }
+    }
+
+    /**
+     * Used for resending a verification email based on existing credentials
+     */
+    private fun resendVerificationEmail(email: String, password: String) {
+
+        val authCredential = EmailAuthProvider.getCredential(email, password)
+
+        FirebaseAuth.getInstance().signInWithCredential(authCredential)
+                .addOnCompleteListener {
+
+                    if (it.isSuccessful) {
+                        super.sendVerificationEmail()
+                        FirebaseAuth.getInstance().signOut()
+                    }
+
+
+                }.addOnFailureListener { Toast.makeText(this@LoginActivity, "Invalid credentials\n Reset your password and try again", Toast.LENGTH_SHORT).show() }
+
+        FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
+
+
+        }
+    }
+
+    /**
+     * Navigating to RegisterActivity
+     */
+    private fun navigateRegisterActivity() {
+
+        val intent = Intent(this, RegisterActivity::class.java)
+        startActivity(intent)
 
     }
 
