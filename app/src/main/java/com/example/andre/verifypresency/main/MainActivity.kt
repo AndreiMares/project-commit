@@ -15,12 +15,13 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
 
+
         super.configureBottomNav(this.MAIN_NUM)
 
         this.setupViewPager()
 
-        //testing
-        val db = AppDatabase.getInstance(this)
+     /*   //testing
+        val db = AppDatabase.getInstance(this)*/
 
     }
 
@@ -39,4 +40,6 @@ class MainActivity : BaseActivity() {
         layout_top_tl_tabs.getTabAt(1)?.setIcon(R.drawable.ic_group_ppl)
 
     }
+
 }
+

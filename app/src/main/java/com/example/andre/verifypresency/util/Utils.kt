@@ -26,6 +26,8 @@ fun BottomNavigationViewEx.enableNavigation(context: Context) {
 
             R.id.ic_house -> {
                 val intent = Intent(context, MainActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
                 false
             }
@@ -33,18 +35,24 @@ fun BottomNavigationViewEx.enableNavigation(context: Context) {
 
             R.id.ic_search -> {
                 val intent = Intent(context, SearchActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
                 false
             }
 
             R.id.ic_person -> {
                 val intent = Intent(context, ProfileActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
                 false
             }
 
             R.id.ic_info -> {
                 val intent = Intent(context, InfoActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
+                intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 context.startActivity(intent)
                 false
             }

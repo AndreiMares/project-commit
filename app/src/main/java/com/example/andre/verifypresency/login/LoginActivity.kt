@@ -5,8 +5,10 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.main.MainActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
@@ -30,6 +32,7 @@ class LoginActivity : BaseActivity() {
         }
 
         activity_login_btn_sign.setOnClickListener {
+            super.startProgressBar()
             this.login(activity_login_et_email.text.toString()
                     , activity_login_et_password.text.toString())
         }
@@ -57,11 +60,36 @@ class LoginActivity : BaseActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
 
-                            Toast.makeText(this@LoginActivity, "Sign In", Toast.LENGTH_SHORT).show()
+//                            Toast.makeText(this@LoginActivity, "Sign In", Toast.LENGTH_SHORT).show()
                         } else {
+                            if (it.exception is FirebaseAuthException) {
+                                val errorCode = (it.exception as FirebaseAuthException).errorCode
 
+                                when (errorCode) {
+                                    "ERROR_INVALID_EMAIL" -> {
+                                        activity_login_et_email.error = "The email address is badly formatted."
+                                        activity_login_et_email.requestFocus()
+                                    }
+
+                                    "ERROR_EMAIL_ALREADY_IN_USE" -> {
+                                        activity_login_et_email.error = "The email address is already in use by another account."
+                                        activity_login_et_email.requestFocus()
+                                    }
+
+                                    "ERROR_CREDENTIAL_ALREADY_IN_USE" -> {
+                                        activity_login_et_email.error = "This credential is already associated with a different user account. "
+                                        activity_login_et_email.requestFocus()
+                                    }
+
+                                    "ERROR_WEAK_PASSWORD" -> {
+                                        activity_login_et_password.error = "The password is invalid it must 6 characters at least"
+                                        activity_login_et_password.requestFocus()
+                                    }
+
+                                    else -> Toast.makeText(this@LoginActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
+                                }
+                            }
                         }
-
 
                         hideProgressBar()
                     }
@@ -80,38 +108,44 @@ class LoginActivity : BaseActivity() {
 
                 if (user.isEmailVerified) {
 
+                    this.navigateToMainActivity()
+
                 } else {
                     Toast.makeText(this@LoginActivity, "Check your email inbox for a verification link ", Toast.LENGTH_SHORT).show()
                     FirebaseAuth.getInstance().signOut()
                 }
-            } else {
-
             }
         }
     }
 
-    /**
+     /**
      * Used for resending a verification email based on existing credentials
      */
     private fun resendVerificationEmail(email: String, password: String) {
 
-        val authCredential = EmailAuthProvider.getCredential(email, password)
+         if (!email.isEmpty()
+                 && !password.isEmpty()) {
 
-        FirebaseAuth.getInstance().signInWithCredential(authCredential)
-                .addOnCompleteListener {
+             val authCredential = EmailAuthProvider.getCredential(email, password)
 
-                    if (it.isSuccessful) {
-                        super.sendVerificationEmail()
-                        FirebaseAuth.getInstance().signOut()
-                    }
+             FirebaseAuth.getInstance().signInWithCredential(authCredential)
+                     .addOnCompleteListener {
 
-
-                }.addOnFailureListener { Toast.makeText(this@LoginActivity, "Invalid credentials\n Reset your password and try again", Toast.LENGTH_SHORT).show() }
-
-        FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
+                         if (it.isSuccessful) {
+                             super.sendVerificationEmail()
+                             FirebaseAuth.getInstance().signOut()
+                         }
 
 
-        }
+                     }.addOnFailureListener { Toast.makeText(this@LoginActivity, "Invalid credentials\n Reset your password and try again", Toast.LENGTH_SHORT).show() }
+
+             FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
+
+
+             }
+
+         }else
+             Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
     }
 
     /**
@@ -122,6 +156,12 @@ class LoginActivity : BaseActivity() {
         val intent = Intent(this, RegisterActivity::class.java)
         startActivity(intent)
 
+    }
+
+    private fun navigateToMainActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+        finish()
     }
 
 }
