@@ -41,14 +41,14 @@ class LoginActivity : BaseActivity() {
 
     override fun onStart() {
         super.onStart()
-        FirebaseAuth.getInstance().addAuthStateListener(this.mAuthListener!!)
+//        FirebaseAuth.getInstance().addAuthStateListener(this.mAuthListener!!)
     }
 
     override fun onStop() {
         super.onStop()
 
-        if (this.mAuthListener != null)
-            FirebaseAuth.getInstance().removeAuthStateListener(this.mAuthListener!!)
+//        if (this.mAuthListener != null)
+//            FirebaseAuth.getInstance().removeAuthStateListener(this.mAuthListener!!)
     }
 
     private fun login(email: String, password: String) {
@@ -60,34 +60,25 @@ class LoginActivity : BaseActivity() {
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
 
-//                            Toast.makeText(this@LoginActivity, "Sign In", Toast.LENGTH_SHORT).show()
+                            val user = FirebaseAuth.getInstance().currentUser
+
+                            if (user != null) {
+
+                                if (user.isEmailVerified) {
+
+                                    this.navigateToMainActivity()
+
+                                } else {
+                                    Toast.makeText(this@LoginActivity, "Check your email inbox for a verification link ", Toast.LENGTH_SHORT).show()
+                                    FirebaseAuth.getInstance().signOut()
+                                }
+                            }
+
+
                         } else {
                             if (it.exception is FirebaseAuthException) {
-                                val errorCode = (it.exception as FirebaseAuthException).errorCode
 
-                                when (errorCode) {
-                                    "ERROR_INVALID_EMAIL" -> {
-                                        activity_login_et_email.error = "The email address is badly formatted."
-                                        activity_login_et_email.requestFocus()
-                                    }
-
-                                    "ERROR_EMAIL_ALREADY_IN_USE" -> {
-                                        activity_login_et_email.error = "The email address is already in use by another account."
-                                        activity_login_et_email.requestFocus()
-                                    }
-
-                                    "ERROR_CREDENTIAL_ALREADY_IN_USE" -> {
-                                        activity_login_et_email.error = "This credential is already associated with a different user account. "
-                                        activity_login_et_email.requestFocus()
-                                    }
-
-                                    "ERROR_WEAK_PASSWORD" -> {
-                                        activity_login_et_password.error = "The password is invalid it must 6 characters at least"
-                                        activity_login_et_password.requestFocus()
-                                    }
-
-                                    else -> Toast.makeText(this@LoginActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
-                                }
+                                this.setupViewValidation(it.exception as FirebaseAuthException)
                             }
                         }
 
@@ -116,6 +107,31 @@ class LoginActivity : BaseActivity() {
                 }
             }
         }
+    }
+
+    private fun setupViewValidation(exception: FirebaseAuthException){
+
+        val errorCode = exception.errorCode
+
+        when (errorCode) {
+            "ERROR_INVALID_EMAIL" -> {
+                activity_login_et_email.error = "The email address is badly formatted."
+                activity_login_et_email.requestFocus()
+            }
+
+            "ERROR_WRONG_PASSWORD" -> {
+                activity_login_et_password.error = "The password is invalid or the user does not have a password."
+                activity_login_et_password.requestFocus()
+            }
+
+            "ERROR_USER_NOT_FOUND" -> {
+                activity_login_et_email.error = "There is no user record corresponding to this identifier. The user may have been deleted."
+                activity_login_et_email.requestFocus()
+            }
+
+            else -> Toast.makeText(this@LoginActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
+        }
+
     }
 
      /**

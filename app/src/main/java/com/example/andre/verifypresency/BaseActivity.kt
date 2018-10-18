@@ -88,5 +88,4 @@ open class BaseActivity : AppCompatActivity() {
 
     //endregion
 
-
 }

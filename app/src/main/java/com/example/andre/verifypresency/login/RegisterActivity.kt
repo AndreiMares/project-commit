@@ -23,14 +23,17 @@ class RegisterActivity : BaseActivity() {
 
     private fun registerClicked() {
 
+        super.startProgressBar()
+
         when (this.validateFields(activity_register_et_email.text.toString()
                 , activity_register_et_password.text.toString()
                 , activity_register_et_confirmation.text.toString())) {
 
             true -> this.registerNewEmail(activity_register_et_email.text.toString()
                     , activity_register_et_password.text.toString())
-        }
 
+            false -> super.hideProgressBar()
+        }
     }
 
     /**
@@ -38,7 +41,7 @@ class RegisterActivity : BaseActivity() {
      */
     private fun registerNewEmail(email: String, password: String) {
 
-        super.startProgressBar()
+
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
 

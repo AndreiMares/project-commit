@@ -59,6 +59,9 @@
 
         </LinearLayout>
 
+        <include
+            layout="@layout/layout_progressbar"/>
+
     </RelativeLayout>
 
     <RelativeLayout
