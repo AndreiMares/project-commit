@@ -9,9 +9,7 @@ import android.support.v4.app.FragmentPagerAdapter
  */
 class SectionPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
 
-
     private val mFragmentList = mutableListOf<Fragment>()
-
 
     override fun getItem(position: Int): Fragment {
 

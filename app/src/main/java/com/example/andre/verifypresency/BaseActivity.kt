@@ -1,9 +1,13 @@
 package com.example.andre.verifypresency
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.andre.verifypresency.login.LoginActivity
+import com.example.andre.verifypresency.login.RegisterActivity
 import com.example.andre.verifypresency.util.enableNavigation
 import com.example.andre.verifypresency.util.setupBottomNavigationView
 import com.example.andre.verifypresency.util.setupCheckedMenuItem
@@ -13,6 +17,8 @@ import kotlinx.android.synthetic.main.layout_progressbar.*
 
 open class BaseActivity : AppCompatActivity() {
 
+    private val  TAG = "BaseActivity"
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -20,6 +26,33 @@ open class BaseActivity : AppCompatActivity() {
 
 
     }
+
+    override fun onResume() {
+        super.onResume()
+
+        if(this is  LoginActivity || this is RegisterActivity){
+            //do nothing
+        } else{
+            this.checkAuthState()
+        }
+    }
+
+    private fun checkAuthState(){
+        Log.d(TAG, "checkAuthState: checking authentication state.")
+
+        val user = FirebaseAuth.getInstance().currentUser
+
+        if(user == null){
+
+            val intent = Intent(this, LoginActivity::class.java)
+            intent.flags =  Intent.FLAG_ACTIVITY_NEW_TASK
+            intent.flags =  Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
+            finish()
+        }
+    }
+
+    //region Protected Functions
 
     protected fun configureBottomNav(index: Int) {
         bottomNavView_bar.setupBottomNavigationView()
@@ -30,7 +63,6 @@ open class BaseActivity : AppCompatActivity() {
     protected fun startProgressBar() {
         progressBar?.visibility = View.VISIBLE
     }
-
 
     protected fun hideProgressBar() {
         if(progressBar?.visibility == View.VISIBLE)
@@ -53,4 +85,8 @@ open class BaseActivity : AppCompatActivity() {
 
         }
     }
+
+    //endregion
+
+
 }
