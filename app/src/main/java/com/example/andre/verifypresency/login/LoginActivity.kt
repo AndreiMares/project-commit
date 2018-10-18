@@ -110,7 +110,6 @@ class LoginActivity : BaseActivity() {
 
         FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
 
-
         }
     }
 
