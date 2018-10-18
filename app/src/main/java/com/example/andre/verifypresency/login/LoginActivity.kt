@@ -22,20 +22,7 @@ class LoginActivity : BaseActivity() {
 
         setContentView(R.layout.activity_login)
 
-        activity_login_tv_register.setOnClickListener { this.navigateRegisterActivity() }
-
-        activity_login_tv_forgotPass.setOnClickListener { }
-
-        activity_login_tv_resendEmail.setOnClickListener {
-            this.resendVerificationEmail(activity_login_et_email.text.toString()
-                    , activity_login_et_password.text.toString())
-        }
-
-        activity_login_btn_sign.setOnClickListener {
-            super.startProgressBar()
-            this.login(activity_login_et_email.text.toString()
-                    , activity_login_et_password.text.toString())
-        }
+        this.setUpListeners()
 
     }
 
@@ -51,12 +38,34 @@ class LoginActivity : BaseActivity() {
 //            FirebaseAuth.getInstance().removeAuthStateListener(this.mAuthListener!!)
     }
 
+    //region Private Functions
+
+    private fun setUpListeners(){
+
+        activity_login_iv_image.setOnClickListener { this.fillWithEmailAndPassword() }
+
+        activity_login_tv_register.setOnClickListener { this.navigateRegisterActivity() }
+
+        activity_login_tv_forgotPass.setOnClickListener { }
+
+        activity_login_tv_resendEmail.setOnClickListener {
+            this.resendVerificationEmail(activity_login_et_email.text.toString()
+                    , activity_login_et_password.text.toString())
+        }
+
+        activity_login_btn_sign.setOnClickListener {
+            super.startProgressBar()
+            this.login(activity_login_et_email.text.toString()
+                    , activity_login_et_password.text.toString())
+        }
+    }
+
     private fun login(email: String, password: String) {
 
         if (!email.isEmpty()
                 && !password.isEmpty()) {
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(activity_login_et_email.text.toString(), activity_login_et_password.text.toString())
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
 
@@ -90,6 +99,9 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    /**
+     * Not used anymore
+     */
     private fun setupFireBaseAuth() {
         this.mAuthListener = FirebaseAuth.AuthStateListener { firebaseAuth ->
 
@@ -109,6 +121,9 @@ class LoginActivity : BaseActivity() {
         }
     }
 
+    /**
+     * Sets error values to email and password view
+     */
     private fun setupViewValidation(exception: FirebaseAuthException){
 
         val errorCode = exception.errorCode
@@ -134,38 +149,38 @@ class LoginActivity : BaseActivity() {
 
     }
 
-     /**
+    /**
      * Used for resending a verification email based on existing credentials
      */
     private fun resendVerificationEmail(email: String, password: String) {
 
-         if (!email.isEmpty()
-                 && !password.isEmpty()) {
+        if (!email.isEmpty()
+                && !password.isEmpty()) {
 
-             val authCredential = EmailAuthProvider.getCredential(email, password)
+            val authCredential = EmailAuthProvider.getCredential(email, password)
 
-             FirebaseAuth.getInstance().signInWithCredential(authCredential)
-                     .addOnCompleteListener {
+            FirebaseAuth.getInstance().signInWithCredential(authCredential)
+                    .addOnCompleteListener {
 
-                         if (it.isSuccessful) {
-                             super.sendVerificationEmail()
-                             FirebaseAuth.getInstance().signOut()
-                         }
-
-
-                     }.addOnFailureListener { Toast.makeText(this@LoginActivity, "Invalid credentials\n Reset your password and try again", Toast.LENGTH_SHORT).show() }
-
-             FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
+                        if (it.isSuccessful) {
+                            super.sendVerificationEmail()
+                            FirebaseAuth.getInstance().signOut()
+                        }
 
 
-             }
+                    }.addOnFailureListener { Toast.makeText(this@LoginActivity, "Invalid credentials\n Reset your password and try again", Toast.LENGTH_SHORT).show() }
 
-         }else
-             Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
+            FirebaseAuth.getInstance().signInWithCredential(authCredential).addOnCompleteListener { task ->
+
+
+            }
+
+        }else
+            Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
     }
 
     /**
-     * Navigating to RegisterActivity
+     * Navigate to RegisterActivity
      */
     private fun navigateRegisterActivity() {
 
@@ -174,10 +189,21 @@ class LoginActivity : BaseActivity() {
 
     }
 
+    /**
+     * Navigate to MainActivity
+     */
     private fun navigateToMainActivity() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
         finish()
     }
+
+    private fun fillWithEmailAndPassword(){
+        activity_login_et_email.setText("andrei.mares06@gmail.com")
+        activity_login_et_password.setText("21andreimares")
+
+    }
+
+    //endregion
 
 }

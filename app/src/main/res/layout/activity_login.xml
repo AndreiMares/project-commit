@@ -11,6 +11,7 @@
         android:layout_weight="0.33">
 
         <ImageView
+            android:id="@+id/activity_login_iv_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_login"

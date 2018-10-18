@@ -15,7 +15,6 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
 
-
         super.configureBottomNav(this.MAIN_NUM)
 
         this.setupViewPager()

@@ -7,6 +7,7 @@ import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
+import com.google.firebase.auth.UserProfileChangeRequest
 import kotlinx.android.synthetic.main.activity_register.*
 
 class RegisterActivity : BaseActivity() {
@@ -40,8 +41,6 @@ class RegisterActivity : BaseActivity() {
      * Registers a new account into FireBase
      */
     private fun registerNewEmail(email: String, password: String) {
-
-
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
 
@@ -122,4 +121,5 @@ class RegisterActivity : BaseActivity() {
         finish()
 
     }
+
 }
