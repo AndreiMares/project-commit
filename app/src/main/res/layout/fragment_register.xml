@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/fragment_register_et_firstName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/register_firstName"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <EditText
+                android:id="@+id/fragment_register_et_lastName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/register_lastName"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <EditText
+                android:id="@+id/fragment_register_et_orgName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/register_orgName"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <EditText
+                android:id="@+id/fragment_register_et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/register_email"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+            <EditText
+                android:id="@+id/fragment_register_et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/register_password"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:inputType="textPassword"/>
+
+            <EditText
+                android:id="@+id/fragment_register_et_confirmation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:hint="@string/register_confirm_password"
+                android:textSize="@dimen/text_input"
+                android:singleLine="true"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <Button
+        android:id="@+id/fragment_register_btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/register_txt"
+        android:background="@color/light_blue_600"
+        android:layout_alignParentBottom="true"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone">
+
+        <include
+            layout="@layout/layout_progressbar"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

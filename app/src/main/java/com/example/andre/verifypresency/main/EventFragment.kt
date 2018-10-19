@@ -14,10 +14,12 @@ class EventFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_event, container, false)
 
-
-
-
         return view
+    }
+
+
+    companion object {
+        fun newInstance() = EventFragment
     }
 
 }

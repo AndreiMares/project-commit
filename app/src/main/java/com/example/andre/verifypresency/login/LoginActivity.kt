@@ -6,6 +6,7 @@ import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.main.MainActivity
+import com.example.andre.verifypresency.register.RegisterActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException

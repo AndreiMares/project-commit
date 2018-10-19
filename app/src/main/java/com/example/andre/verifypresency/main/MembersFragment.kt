@@ -25,4 +25,10 @@ class MembersFragment : Fragment() {
 
 
 
+    companion object {
+        fun newInstance() = MembersFragment
+    }
+
+
+
 }

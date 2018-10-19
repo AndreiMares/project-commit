@@ -26,17 +26,29 @@ class MainActivity : BaseActivity() {
 
     private fun setupViewPager(){
         val adapter = SectionPagerAdapter(supportFragmentManager)
+        container.currentItem
         adapter.addFragment(EventFragment())
         adapter.addFragment(MembersFragment())
 
         //initialized viewPager with an adapter
         container.adapter = adapter
 
+
+
         //initialized tabLayout with the required viewPager
         layout_top_tl_tabs.setupWithViewPager(container)
 
         layout_top_tl_tabs.getTabAt(0)?.setIcon(R.drawable.ic_events)
         layout_top_tl_tabs.getTabAt(1)?.setIcon(R.drawable.ic_group_ppl)
+
+
+
+
+    }
+
+
+
+    private fun findOrCreateMembersFragment(){
 
     }
 
