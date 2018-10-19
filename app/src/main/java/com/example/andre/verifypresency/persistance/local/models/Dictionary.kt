@@ -15,7 +15,6 @@ class Dictionary( @PrimaryKey(autoGenerate = true)
                   @NotNull
                   var Name: String): BaseEntity()
 {
-    @Ignore
     constructor():this(0, "")
 
 }
