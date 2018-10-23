@@ -1,9 +1,11 @@
 package com.example.andre.verifypresency.register.model
 
-data class RegisterErrorFields(var firstName: Int
-                               ,var lastName: Int
-                               ,var orgName: Int
-                               ,var email: Int
-                               ,var password: Int
-                               ,var confirmPassword: Int) {
+class RegisterErrorFields {
+
+    var firstName: Int? = null
+    var lastName: Int? = null
+    var orgName: Int? = null
+    var email: Int? = null
+    var password: Int? = null
+    var confirmPassword: Int? = null
 }
