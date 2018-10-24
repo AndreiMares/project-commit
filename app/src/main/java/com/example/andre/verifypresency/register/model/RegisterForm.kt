@@ -1,5 +1,7 @@
 package com.example.andre.verifypresency.register.model
 
-class RegisterForm{
+import android.databinding.BaseObservable
+
+class RegisterForm: BaseObservable(){
 
 }
