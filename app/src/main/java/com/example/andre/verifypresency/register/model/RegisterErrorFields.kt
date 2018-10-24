@@ -1,6 +1,8 @@
 package com.example.andre.verifypresency.register.model
 
+
 class RegisterErrorFields {
+
 
     var firstName: Int? = null
     var lastName: Int? = null

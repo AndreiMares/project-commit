@@ -25,6 +25,10 @@
 
     <!--Error strings-->
     <string name="ERROR_WEAK_PASSWORD">The password is invalid it must 6 characters at least</string>
+    <string name="ERROR_EMPTY_FIELD">This field must not be empty</string>
+    <string name="ERROR_TO_SHORT_FIELD">This field must contain at least 5 characters. Ex: a@b.c</string>
+    <string name="ERROR_BAD_FORMAT">Format is invalid</string>
+    <string name="ERROR_MATCHING">Passwords do not match</string>
 
 
 </resources>

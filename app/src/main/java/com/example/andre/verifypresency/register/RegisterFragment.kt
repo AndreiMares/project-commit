@@ -45,6 +45,19 @@ class RegisterFragment: BaseFragment() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+
+        this.registerViewModel.navigateToActivity.observeForever{value ->
+
+            if(value == true){
+                this.redirectToLoginScreen()
+            }else{
+                Toast.makeText(context, "Nu merge", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
     private fun registerClicked() {
 
         super.startProgressBar()
@@ -144,7 +157,6 @@ class RegisterFragment: BaseFragment() {
         activity?.finish()
 
     }
-
 
     companion object {
         fun newInstance() = RegisterFragment()
