@@ -6,19 +6,65 @@ import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 
+/**
+ * ViewModel used for registration layout.
+ */
 class RegisterViewModel : ViewModel() {
 
+    //region Variables
+
+    /**
+     * Validation form variable specified for fragment_registration.xml layout.
+     */
     lateinit var registerForm: RegisterForm
+
+    /**
+     * OnFocusChangeListener specified for "First Name" View.
+     */
     lateinit var onFocusFirstName: View.OnFocusChangeListener
+
+    /**
+     * OnFocusChangeListener specified for "Last Name" View.
+     */
     lateinit var onFocusLastName: View.OnFocusChangeListener
+
+    /**
+     * OnFocusChangeListener specified for "Organization Name" View.
+     */
     lateinit var onFocusOrgName: View.OnFocusChangeListener
+
+    /**
+     * OnFocusChangeListener specified for "Email" View.
+     */
     lateinit var onFocusEmail: View.OnFocusChangeListener
+
+    /**
+     * OnFocusChangeListener specified for "Password" View.
+     */
     lateinit var onFocusPassword: View.OnFocusChangeListener
+
+    /**
+     * OnFocusChangeListener specified for "Confirm Password" View.
+     */
     lateinit var onFocusConfirm: View.OnFocusChangeListener
 
-    val dataLoading = ObservableBoolean(true)
-    val navigateToActivity = MutableLiveData<Boolean>()
+    /**
+     * Variable used to show/hide Progress Bar.
+     */
+    val dataLoading: ObservableBoolean = ObservableBoolean(true)
 
+    /**
+     * Variable used to validate registration: true/false.
+     */
+    val successfullyRegistration: MutableLiveData<Boolean> = MutableLiveData()
+
+    //endregion
+
+    //region Public Functions
+
+    /**
+     * Initialize onFocusChangeListeners and RegisterForm.
+     */
     fun initialize() {
 
         this.registerForm = RegisterForm()
@@ -27,30 +73,37 @@ class RegisterViewModel : ViewModel() {
 
     }
 
-    fun onButtonClick(){
-        if(registerForm.valid){
+    /**
+     * Register Button click handler.
+     */
+    fun onButtonClick() {
+        if (registerForm.valid) {
 
             dataLoading.set(false)
 
 
-            navigateToActivity.value = true
+            successfullyRegistration.value = true
 //            TimeUnit.SECONDS.sleep(3)
 //
 //            dataLoading.set(true)
         }
     }
 
-    private fun initOnFocusListeners(){
+    //endregion
+
+    //region Private Functions
+
+    private fun initOnFocusListeners() {
 
         onFocusFirstName = View.OnFocusChangeListener { v, hasFocus ->
 
             val et = v as EditText
 
-            if (et.length() == 0 && !hasFocus){
+            if (et.length() == 0 && !hasFocus) {
                 this.registerForm.firstNameValid(true)
             }
 
-            if (et.length() > 0 && !hasFocus){
+            if (et.length() > 0 && !hasFocus) {
                 this.registerForm.firstNameValid(false)
             }
 
@@ -60,11 +113,11 @@ class RegisterViewModel : ViewModel() {
 
             val et = v as EditText
 
-            if (et.length() == 0 && !hasFocus){
+            if (et.length() == 0 && !hasFocus) {
                 this.registerForm.lastNameValid(true)
             }
 
-            if (et.length() > 0 && !hasFocus){
+            if (et.length() > 0 && !hasFocus) {
                 this.registerForm.lastNameValid(false)
             }
 
@@ -75,7 +128,7 @@ class RegisterViewModel : ViewModel() {
 
             val et = v as EditText
 
-            if (et.length() == 0 && !hasFocus){
+            if (et.length() == 0 && !hasFocus) {
                 this.registerForm.orgNameValid(true)
             }
 
@@ -123,5 +176,7 @@ class RegisterViewModel : ViewModel() {
 
         }
     }
+
+    //endregion
 
 }

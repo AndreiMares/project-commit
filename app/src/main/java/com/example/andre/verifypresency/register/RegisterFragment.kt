@@ -1,10 +1,9 @@
 package com.example.andre.verifypresency.register
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.os.BaseBundle
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -18,7 +17,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.android.synthetic.main.fragment_register.*
 
-class RegisterFragment: BaseFragment() {
+class RegisterFragment : BaseFragment() {
 
     private lateinit var viewDataBinding: FragmentRegisterBinding
 
@@ -48,14 +47,15 @@ class RegisterFragment: BaseFragment() {
     override fun onStart() {
         super.onStart()
 
-        this.registerViewModel.navigateToActivity.observeForever{value ->
-
-            if(value == true){
+        val intentObserver = Observer<Boolean> { value ->
+            if (value == true) {
                 this.redirectToLoginScreen()
-            }else{
+            } else {
                 Toast.makeText(context, "Nu merge", Toast.LENGTH_SHORT).show()
             }
         }
+
+        this.registerViewModel.successfullyRegistration.observe(this, intentObserver)
     }
 
     private fun registerClicked() {
