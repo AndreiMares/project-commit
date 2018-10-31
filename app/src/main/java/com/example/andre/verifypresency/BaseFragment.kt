@@ -8,8 +8,6 @@ import kotlinx.android.synthetic.main.layout_progressbar.*
 
 open class BaseFragment: Fragment() {
 
-
-
     protected fun startProgressBar() {
         progressBar?.visibility = View.VISIBLE
     }

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="model"
+            type="com.example.andre.verifypresency.login.model.LoginViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33">
+
+            <ImageView
+                android:id="@+id/fragment_login_iv_image"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_login"
+                android:layout_centerInParent="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin">
+
+                <EditText
+                    android:id="@+id/fragment_login_et_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:hint="@string/login_email"
+                    android:textSize="@dimen/text_input"/>
+
+                <EditText
+                    android:id="@+id/fragment_login_et_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_password"
+                    android:textSize="@dimen/text_input"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:inputType="textPassword"/>
+
+
+
+            </LinearLayout>
+
+            <include
+                layout="@layout/layout_progressbar"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.33">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"
+                android:layout_marginEnd="@dimen/activity_horizontal_margin">
+
+                <Button
+                    android:id="@+id/fragment_login_btn_sign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_signIn"
+                    android:textColor="@color/whiteTxtColor"
+                    android:textAllCaps="false"
+                    android:layout_gravity="center_horizontal"
+                    android:background="@color/light_blue_600"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+
+                <Button
+                    android:id="@+id/fragment_login_tv_register"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/login_register"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginBottom="@dimen/activity_vertical_margin"
+                    android:textColor="@color/lightBlue"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"
+                    android:onClick="@{() -> model.onRegisterButtonClick()}"
+                    android:background="@color/transparent"/>
+
+                <!--<TextView-->
+                    <!--android:id="@+id/fragment_login_tv_register"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/login_register"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                    <!--android:textColor="@color/lightBlue"-->
+                    <!--android:textStyle="bold"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/fragment_login_tv_forgotPass"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/login_forgot_pass"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                    <!--android:textColor="@color/lightBlue"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:visibility="gone"/>-->
+
+                <!--<TextView-->
+                    <!--android:id="@+id/fragment_login_tv_resendEmail"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:text="@string/login_resend_verification_email"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:textColor="@color/lightBlue"-->
+                    <!--android:textStyle="bold"-->
+                    <!--android:visibility="gone"/>-->
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</layout>

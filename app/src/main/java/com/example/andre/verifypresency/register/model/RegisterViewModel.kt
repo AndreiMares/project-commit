@@ -1,10 +1,10 @@
 package com.example.andre.verifypresency.register.model
 
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
+import com.example.andre.verifypresency.listener.RegisterNavigationListener
 
 /**
  * ViewModel used for registration layout.
@@ -54,9 +54,9 @@ class RegisterViewModel : ViewModel() {
     val dataLoading: ObservableBoolean = ObservableBoolean(true)
 
     /**
-     * Variable used to validate registration: true/false.
+     * Variable used to go back to Login Activity: true/false.
      */
-    val successfullyRegistration: MutableLiveData<Boolean> = MutableLiveData()
+    private lateinit var mRegisterNavigationListener: RegisterNavigationListener
 
     //endregion
 
@@ -65,7 +65,9 @@ class RegisterViewModel : ViewModel() {
     /**
      * Initialize onFocusChangeListeners and RegisterForm.
      */
-    fun initialize() {
+    fun initialize(listener: RegisterNavigationListener) {
+
+        this.mRegisterNavigationListener = listener
 
         this.registerForm = RegisterForm()
 
@@ -81,11 +83,7 @@ class RegisterViewModel : ViewModel() {
 
             dataLoading.set(false)
 
-
-            successfullyRegistration.value = true
-//            TimeUnit.SECONDS.sleep(3)
-//
-//            dataLoading.set(true)
+            this.mRegisterNavigationListener.onRegisterClicked()
         }
     }
 

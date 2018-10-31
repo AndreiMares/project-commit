@@ -5,110 +5,127 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/activity_login_fl_fragment"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/activity_login_iv_image"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_login"
-            android:layout_centerInParent="true"/>
-    </RelativeLayout>
+    </FrameLayout>
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33">
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.3">-->
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_marginEnd="@dimen/activity_horizontal_margin">
+        <!--<ImageView-->
+            <!--android:id="@+id/activity_login_iv_image"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:src="@drawable/ic_login"-->
+            <!--android:layout_centerInParent="true"/>-->
+    <!--</RelativeLayout>-->
 
-            <EditText
-                android:id="@+id/activity_login_et_email"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:hint="@string/login_email"
-                android:textSize="@dimen/text_input"
-                />
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.7">-->
 
-            <EditText
-                android:id="@+id/activity_login_et_password"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/login_password"
-                android:textSize="@dimen/text_input"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:inputType="textPassword"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_marginStart="@dimen/activity_horizontal_margin"-->
+            <!--android:layout_marginEnd="@dimen/activity_horizontal_margin">-->
 
-            <Button
-                android:id="@+id/activity_login_btn_sign"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="@string/login_signIn"
-                android:layout_gravity="center_horizontal"
-                android:background="@color/light_blue_600"/>
+            <!--<EditText-->
+                <!--android:id="@+id/activity_login_et_email"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                <!--android:hint="@string/login_email"-->
+                <!--android:textSize="@dimen/text_input"-->
+                <!--/>-->
 
-        </LinearLayout>
+            <!--<EditText-->
+                <!--android:id="@+id/activity_login_et_password"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:hint="@string/login_password"-->
+                <!--android:textSize="@dimen/text_input"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                <!--android:inputType="textPassword"/>-->
 
-        <include
-            layout="@layout/layout_progressbar"/>
+            <!--<Button-->
+                <!--android:id="@+id/activity_login_btn_sign"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/login_signIn"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:background="@color/light_blue_600"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:textColor="@color/whiteTxtColor"/>-->
 
-    </RelativeLayout>
+            <!--<Button-->
+                <!--android:id="@+id/activity_login_tv_register"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/login_register"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                <!--android:textColor="@color/lightBlue"-->
+                <!--android:textAllCaps="false"-->
+                <!--android:background="@color/transparent"-->
+                <!--android:textStyle="bold"/>-->
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.33">
+        <!--</LinearLayout>-->
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_centerInParent="true"
-            android:layout_centerHorizontal="true">
+        <!--<include-->
+            <!--layout="@layout/layout_progressbar"/>-->
 
-            <TextView
-                android:id="@+id/activity_login_tv_register"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_register"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:textColor="@color/lightBlue"
-                android:textStyle="bold"/>
+    <!--</RelativeLayout>-->
 
-            <TextView
-                android:id="@+id/activity_login_tv_forgotPass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_forgot_pass"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="@dimen/activity_vertical_margin"
-                android:textColor="@color/lightBlue"
-                android:textStyle="bold"/>
+    <!--<RelativeLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="0dp"-->
+        <!--android:layout_weight="0.33"-->
+        <!--vi>-->
 
-            <TextView
-                android:id="@+id/activity_login_tv_resendEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/login_resend_verification_email"
-                android:layout_gravity="center_horizontal"
-                android:textColor="@color/lightBlue"
-                android:textStyle="bold"/>
+        <!--<LinearLayout-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="vertical"-->
+            <!--android:layout_centerInParent="true"-->
+            <!--android:layout_centerHorizontal="true">-->
 
-        </LinearLayout>
+            <!---->
 
-    </RelativeLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/activity_login_tv_forgotPass"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/login_forgot_pass"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
+                <!--android:textColor="@color/lightBlue"-->
+                <!--android:textStyle="bold"-->
+                <!--android:visibility="gone"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/activity_login_tv_resendEmail"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="@string/login_resend_verification_email"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:textColor="@color/lightBlue"-->
+                <!--android:textStyle="bold"-->
+                <!--android:visibility="gone"/>-->
+
+        <!--</LinearLayout>-->
+
+    <!--</RelativeLayout>-->
 
 </LinearLayout>
