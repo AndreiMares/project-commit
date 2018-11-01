@@ -10,7 +10,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.register.model.RegisterViewModel" />
+            type="com.example.andre.verifypresency.register.RegisterViewModel" />
     </data>
 
     <RelativeLayout

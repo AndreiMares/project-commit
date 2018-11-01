@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.login.model.LoginViewModel" />
+            type="com.example.andre.verifypresency.login.LoginViewModel" />
     </data>
 
     <LinearLayout
@@ -27,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_login"
                 android:layout_centerInParent="true"/>
+
         </RelativeLayout>
 
         <RelativeLayout
@@ -42,26 +43,44 @@
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
                 android:layout_marginEnd="@dimen/activity_horizontal_margin">
 
-                <EditText
-                    android:id="@+id/fragment_login_et_email"
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:hint="@string/login_email"
-                    android:textSize="@dimen/text_input"/>
+                    bind:errorInput="@{model.loginForm.emailError}">
 
-                <EditText
-                    android:id="@+id/fragment_login_et_password"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/fragment_login_et_email"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:hint="@string/login_email"
+                        android:singleLine="true"
+                        android:text="@={model.loginForm.loginField.email}"
+                        android:textSize="@dimen/text_input"
+                        bind:onFocus="@{model.onFocusEmail}" />
+
+
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="@string/login_password"
-                    android:textSize="@dimen/text_input"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:inputType="textPassword"/>
+                    bind:errorInput="@{model.loginForm.passwordError}">
+
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/fragment_login_et_password"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:hint="@string/login_password"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:text="@={model.loginForm.loginField.password}"
+                        android:textSize="@dimen/text_input"
+                        bind:onFocus="@{model.onFocusPassword}" />
 
 
+                </android.support.design.widget.TextInputLayout>
 
             </LinearLayout>
 
@@ -91,6 +110,8 @@
                     android:textAllCaps="false"
                     android:layout_gravity="center_horizontal"
                     android:background="@color/light_blue_600"
+                    android:enabled="@{model.loginForm.valid}"
+                    android:onClick="@{()->model.onSignInButtonClick()}"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
                 <Button

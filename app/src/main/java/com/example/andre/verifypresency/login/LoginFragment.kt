@@ -10,7 +10,7 @@ import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.listener.LoginNavigationListener
 import com.example.andre.verifypresency.databinding.FragmentLoginBinding
-import com.example.andre.verifypresency.login.model.LoginViewModel
+import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
 
 class LoginFragment : BaseFragment(), LoginNavigationListener {
@@ -33,16 +33,14 @@ class LoginFragment : BaseFragment(), LoginNavigationListener {
         this.mLoginViewModel = (activity as LoginActivity).obtainViewModel()
 
         this.mLoginViewModel.initialize(this)
-//
-//        this.registerViewModel.initialize()
-//
+
         this.mViewBinding.model = this.mLoginViewModel
 
     }
 
 
     override fun onSignInClicked() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        this.navigateToMainActivity()
     }
 
     override fun onSignUpClicked() {
@@ -58,6 +56,15 @@ class LoginFragment : BaseFragment(), LoginNavigationListener {
         val intent = Intent(context, RegisterActivity::class.java)
         startActivity(intent)
 
+    }
+
+    /**
+     * Navigate to MainActivity
+     */
+    private fun navigateToMainActivity() {
+        val intent = Intent(context, MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
 
     companion object {

@@ -1,17 +1,18 @@
-package com.example.andre.verifypresency.register.model
+package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
+import com.example.andre.verifypresency.register.model.RegisterForm
 
 /**
  * ViewModel used for registration layout.
  */
 class RegisterViewModel : ViewModel() {
 
-    //region Variables
+    //region Public Fields
 
     /**
      * Validation form variable specified for fragment_registration.xml layout.
@@ -52,6 +53,10 @@ class RegisterViewModel : ViewModel() {
      * Variable used to show/hide Progress Bar.
      */
     val dataLoading: ObservableBoolean = ObservableBoolean(true)
+
+    //endregion
+
+    //region Private Fields
 
     /**
      * Variable used to go back to Login Activity: true/false.

@@ -6,11 +6,9 @@ import android.view.MenuItem
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.login.LoginActivity
-import com.example.andre.verifypresency.register.model.RegisterViewModel
 import com.example.andre.verifypresency.util.obtainViewModel
 import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.example.andre.verifypresency.util.setupActionBar
-import kotlinx.android.synthetic.main.snippet_top_registerbar.*
 
 class RegisterActivity : BaseActivity() {
 

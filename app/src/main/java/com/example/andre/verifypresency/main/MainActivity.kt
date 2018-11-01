@@ -33,8 +33,6 @@ class MainActivity : BaseActivity() {
         //initialized viewPager with an adapter
         container.adapter = adapter
 
-
-
         //initialized tabLayout with the required viewPager
         layout_top_tl_tabs.setupWithViewPager(container)
 
@@ -45,8 +43,6 @@ class MainActivity : BaseActivity() {
 
 
     }
-
-
 
     private fun findOrCreateMembersFragment(){
 
