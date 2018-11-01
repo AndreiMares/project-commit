@@ -38,7 +38,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:hint="@string/login_email"
-                android:textSize="@dimen/text_input"/>
+                android:textSize="@dimen/text_input"
+                />
 
             <EditText
                 android:id="@+id/activity_login_et_password"

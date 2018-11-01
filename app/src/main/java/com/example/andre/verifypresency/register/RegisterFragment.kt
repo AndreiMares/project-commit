@@ -1,6 +1,7 @@
 package com.example.andre.verifypresency.register
 
 import android.content.Intent
+import android.databinding.DataBindingUtil
 import android.os.BaseBundle
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -10,18 +11,25 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
 import com.example.andre.verifypresency.login.LoginActivity
+import com.example.andre.verifypresency.register.model.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.android.synthetic.main.fragment_register.*
 
 class RegisterFragment: BaseFragment() {
 
+    private lateinit var viewDataBinding: FragmentRegisterBinding
+
+    private lateinit var registerViewModel: RegisterViewModel
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        val view = inflater.inflate(R.layout.fragment_register, container, false)
+        this.viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container,
+                false)
 
-        return view
+        return this.viewDataBinding.root
 
 
     }
@@ -29,7 +37,25 @@ class RegisterFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        fragment_register_btn_register.setOnClickListener { this.registerClicked() }
+        this.registerViewModel = (activity as RegisterActivity).obtainViewModel()
+
+        this.registerViewModel.initialize()
+
+        this.viewDataBinding.model = this.registerViewModel
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        this.registerViewModel.navigateToActivity.observeForever{value ->
+
+            if(value == true){
+                this.redirectToLoginScreen()
+            }else{
+                Toast.makeText(context, "Nu merge", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     private fun registerClicked() {
@@ -97,7 +123,7 @@ class RegisterFragment: BaseFragment() {
     }
 
     /**
-     * Returns true if both email and password fields are valid, otherwise returns false
+     * Returns true if both email and password registerField are valid, otherwise returns false
      */
     private fun validateFields(email: String, password: String, confirmPassword: String): Boolean {
 
@@ -115,7 +141,7 @@ class RegisterFragment: BaseFragment() {
             }
 
         } else {
-            Toast.makeText(context, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "You must fill out all the registerField", Toast.LENGTH_SHORT).show()
             return false
         }
 
@@ -131,7 +157,6 @@ class RegisterFragment: BaseFragment() {
         activity?.finish()
 
     }
-
 
     companion object {
         fun newInstance() = RegisterFragment()

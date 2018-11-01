@@ -96,7 +96,7 @@ class LoginActivity : BaseActivity() {
                     }
 
         } else
-            Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@LoginActivity, "You must fill out all the registerField", Toast.LENGTH_SHORT).show()
 
     }
 
@@ -177,7 +177,7 @@ class LoginActivity : BaseActivity() {
             }
 
         }else
-            Toast.makeText(this@LoginActivity, "You must fill out all the fields", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@LoginActivity, "You must fill out all the registerField", Toast.LENGTH_SHORT).show()
     }
 
     /**
