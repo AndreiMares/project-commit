@@ -1,10 +1,9 @@
 package com.example.andre.verifypresency.register
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
-import android.os.BaseBundle
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,24 +11,34 @@ import android.widget.Toast
 import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
+import com.example.andre.verifypresency.listener.RegisterNavigationListener
 import com.example.andre.verifypresency.login.LoginActivity
 import com.example.andre.verifypresency.register.model.RegisterViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
 import kotlinx.android.synthetic.main.fragment_register.*
 
-class RegisterFragment: BaseFragment() {
+/**
+ *
+ */
+class RegisterFragment : BaseFragment(), RegisterNavigationListener {
 
-    private lateinit var viewDataBinding: FragmentRegisterBinding
 
-    private lateinit var registerViewModel: RegisterViewModel
+    //region Variables
+
+    private lateinit var mViewDataBinding: FragmentRegisterBinding
+    private lateinit var mRegisterViewModel: RegisterViewModel
+
+    //endregion
+
+    //region Override
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container,
+        this.mViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container,
                 false)
 
-        return this.viewDataBinding.root
+        return this.mViewDataBinding.root
 
 
     }
@@ -37,26 +46,20 @@ class RegisterFragment: BaseFragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        this.registerViewModel = (activity as RegisterActivity).obtainViewModel()
+        this.mRegisterViewModel = (activity as RegisterActivity).obtainViewModel()
 
-        this.registerViewModel.initialize()
+        this.mRegisterViewModel.initialize(this)
 
-        this.viewDataBinding.model = this.registerViewModel
+        this.mViewDataBinding.model = this.mRegisterViewModel
 
     }
 
-    override fun onStart() {
-        super.onStart()
+    override fun onRegisterClicked() {
 
-        this.registerViewModel.navigateToActivity.observeForever{value ->
-
-            if(value == true){
-                this.redirectToLoginScreen()
-            }else{
-                Toast.makeText(context, "Nu merge", Toast.LENGTH_SHORT).show()
-            }
-        }
+        (activity as RegisterActivity).redirectToLoginScreen()
     }
+
+    //endregion
 
     private fun registerClicked() {
 
@@ -86,7 +89,7 @@ class RegisterFragment: BaseFragment() {
 
                 FirebaseAuth.getInstance().signOut()
 
-                this.redirectToLoginScreen()
+//                this.redirectToLoginScreen()
 
             } else {
 
@@ -147,16 +150,7 @@ class RegisterFragment: BaseFragment() {
 
     }
 
-    /**
-     * Redirects user to Login Screen
-     */
-    private fun redirectToLoginScreen() {
 
-        val intent = Intent(context, LoginActivity::class.java)
-        startActivity(intent)
-        activity?.finish()
-
-    }
 
     companion object {
         fun newInstance() = RegisterFragment()

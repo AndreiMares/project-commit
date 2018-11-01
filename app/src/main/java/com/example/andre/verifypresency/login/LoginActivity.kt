@@ -5,8 +5,11 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.login.model.LoginViewModel
 import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
+import com.example.andre.verifypresency.util.obtainViewModel
+import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
@@ -19,9 +22,11 @@ class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        this.setupFireBaseAuth()
+//        this.setupFireBaseAuth()
 
         setContentView(R.layout.activity_login)
+
+        this.findOrCreateEventsFragment()
 
         this.setUpListeners()
 
@@ -39,26 +44,36 @@ class LoginActivity : BaseActivity() {
 //            FirebaseAuth.getInstance().removeAuthStateListener(this.mAuthListener!!)
     }
 
+    private fun findOrCreateEventsFragment() =
+            supportFragmentManager.findFragmentById(R.id.activity_login_fl_fragment)
+                    ?: LoginFragment.newInstance().also {
+                        replaceFragmentInActivity(it, R.id.activity_login_fl_fragment)
+                    }
+
+
+    fun obtainViewModel(): LoginViewModel = obtainViewModel(LoginViewModel::class.java)
+
+
     //region Private Functions
 
-    private fun setUpListeners(){
+    private fun setUpListeners() {
 
-        activity_login_iv_image.setOnClickListener { this.fillWithEmailAndPassword() }
-
-        activity_login_tv_register.setOnClickListener { this.navigateRegisterActivity() }
-
-        activity_login_tv_forgotPass.setOnClickListener { }
-
-        activity_login_tv_resendEmail.setOnClickListener {
-            this.resendVerificationEmail(activity_login_et_email.text.toString()
-                    , activity_login_et_password.text.toString())
-        }
-
-        activity_login_btn_sign.setOnClickListener {
-            super.startProgressBar()
-            this.login(activity_login_et_email.text.toString()
-                    , activity_login_et_password.text.toString())
-        }
+//        activity_login_iv_image.setOnClickListener { this.fillWithEmailAndPassword() }
+//
+//        activity_login_tv_register.setOnClickListener { this.navigateRegisterActivity() }
+//
+//        activity_login_tv_forgotPass.setOnClickListener { }
+//
+//        activity_login_tv_resendEmail.setOnClickListener {
+//            this.resendVerificationEmail(activity_login_et_email.text.toString()
+//                    , activity_login_et_password.text.toString())
+//        }
+//
+//        activity_login_btn_sign.setOnClickListener {
+//            super.startProgressBar()
+//            this.login(activity_login_et_email.text.toString()
+//                    , activity_login_et_password.text.toString())
+//        }
     }
 
     private fun login(email: String, password: String) {
@@ -125,28 +140,28 @@ class LoginActivity : BaseActivity() {
     /**
      * Sets error values to email and password view
      */
-    private fun setupViewValidation(exception: FirebaseAuthException){
+    private fun setupViewValidation(exception: FirebaseAuthException) {
 
         val errorCode = exception.errorCode
 
-        when (errorCode) {
-            "ERROR_INVALID_EMAIL" -> {
-                activity_login_et_email.error = "The email address is badly formatted."
-                activity_login_et_email.requestFocus()
-            }
-
-            "ERROR_WRONG_PASSWORD" -> {
-                activity_login_et_password.error = "The password is invalid or the user does not have a password."
-                activity_login_et_password.requestFocus()
-            }
-
-            "ERROR_USER_NOT_FOUND" -> {
-                activity_login_et_email.error = "There is no user record corresponding to this identifier. The user may have been deleted."
-                activity_login_et_email.requestFocus()
-            }
-
-            else -> Toast.makeText(this@LoginActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
-        }
+//        when (errorCode) {
+//            "ERROR_INVALID_EMAIL" -> {
+//                activity_login_et_email.error = "The email address is badly formatted."
+//                activity_login_et_email.requestFocus()
+//            }
+//
+//            "ERROR_WRONG_PASSWORD" -> {
+//                activity_login_et_password.error = "The password is invalid or the user does not have a password."
+//                activity_login_et_password.requestFocus()
+//            }
+//
+//            "ERROR_USER_NOT_FOUND" -> {
+//                activity_login_et_email.error = "There is no user record corresponding to this identifier. The user may have been deleted."
+//                activity_login_et_email.requestFocus()
+//            }
+//
+//            else -> Toast.makeText(this@LoginActivity, "Unable to Register", Toast.LENGTH_SHORT).show()
+//        }
 
     }
 
@@ -176,7 +191,7 @@ class LoginActivity : BaseActivity() {
 
             }
 
-        }else
+        } else
             Toast.makeText(this@LoginActivity, "You must fill out all the registerField", Toast.LENGTH_SHORT).show()
     }
 
@@ -199,9 +214,9 @@ class LoginActivity : BaseActivity() {
         finish()
     }
 
-    private fun fillWithEmailAndPassword(){
-        activity_login_et_email.setText("andrei.mares06@gmail.com")
-        activity_login_et_password.setText("21andreimares")
+    private fun fillWithEmailAndPassword() {
+//        activity_login_et_email.setText("andrei.mares06@gmail.com")
+//        activity_login_et_password.setText("21andreimares")
 
     }
 

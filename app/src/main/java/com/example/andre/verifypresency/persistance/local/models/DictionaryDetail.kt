@@ -24,7 +24,7 @@ data class DictionaryDetail(
         @NotNull
         var Valid: Byte) : BaseEntity() {
 
-        @Ignore
-        constructor() : this(0, "", 0, 0)
+    @Ignore
+    constructor() : this(0, "", 0, 0)
 
 }

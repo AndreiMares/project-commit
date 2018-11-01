@@ -40,19 +40,16 @@
         <activity android:name=".profile.ProfileActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>
+
         <activity android:name=".info.InfoActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"></activity>
 
-
-
         <activity
             android:name=".register.RegisterActivity"
-            android:parentActivityName=".login.LoginActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>
-
 
     </application>
 
