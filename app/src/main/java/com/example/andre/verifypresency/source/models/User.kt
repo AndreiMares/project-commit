@@ -1,9 +1,9 @@
-package com.example.andre.verifypresency.register.model
+package com.example.andre.verifypresency.source.models
 
 /**
  * Class which encapsulates user inputs.
  */
-class RegisterFields {
+class User {
 
     /**
      * Contains user input text specified for "First Name" View

@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
 import com.example.andre.verifypresency.register.model.RegisterForm
+import com.example.andre.verifypresency.source.remote.user.UserRepository
 
 /**
  * ViewModel used for registration layout.
@@ -63,6 +64,8 @@ class RegisterViewModel : ViewModel() {
      */
     private lateinit var mRegisterNavigationListener: RegisterNavigationListener
 
+    private val tasksRepository: UserRepository? = null
+
     //endregion
 
     //region Public Functions
@@ -87,6 +90,8 @@ class RegisterViewModel : ViewModel() {
         if (registerForm.valid) {
 
             dataLoading.set(false)
+
+            this.createUser()
 
             this.mRegisterNavigationListener.onRegisterClicked()
         }
@@ -178,6 +183,10 @@ class RegisterViewModel : ViewModel() {
                 this.registerForm.confirmPasswordValid(true)
 
         }
+    }
+
+    private fun createUser() {
+
     }
 
     //endregion

@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.persistance
+package com.example.andre.verifypresency.util
 
 import android.arch.persistence.room.TypeConverter
 import java.util.*
