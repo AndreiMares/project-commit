@@ -9,7 +9,12 @@ ext {
 
     //db
     room_version = '1.1.1'
+
+    //firebase
     firebase_version = '16.0.5'
+
+    //firestore
+    firestore_version = '17.1.2'
 
     //rxjava
     rxjava_version = '2.1.3'

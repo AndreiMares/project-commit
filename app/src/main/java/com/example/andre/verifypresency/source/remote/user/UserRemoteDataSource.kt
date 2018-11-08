@@ -2,16 +2,20 @@ package com.example.andre.verifypresency.source.remote.user
 
 import com.example.andre.verifypresency.source.models.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import kotlin.collections.HashMap
 
 class UserRemoteDataSource {
 
-    fun saveUser(user: User, callBack: UserDataSource.SaveUserCallback) {
+    fun createUser(user: User, callBack: UserDataSource.SaveUserCallback) {
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.email!!, user.password!!).addOnCompleteListener { task ->
 
             if (task.isSuccessful) {
 
-                this.sendVerificationEmail(callBack)
+                this.saveUser(user, callBack)
+
+//                this.sendVerificationEmail(callBack)
 
                 FirebaseAuth.getInstance().signOut()
 
@@ -36,5 +40,29 @@ class UserRemoteDataSource {
 
         }
     }
+
+    private fun saveUser(user: User, callBack: UserDataSource.SaveUserCallback) {
+
+        val userDetail = HashMap<String, Any>()
+
+        FirebaseAuth.getInstance().currentUser?.let { userDetail.put("UserId", it.uid) }
+        user.firstName?.let { userDetail.put("FirstName", it) }
+        user.lastName?.let { userDetail.put("LastName", it) }
+        user.orgName?.let { userDetail.put("OrganizationName", it) }
+        user.email?.let { userDetail.put("Email", it) }
+
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("UserDetail").document().set(userDetail)
+                .addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        this.sendVerificationEmail(callBack)
+                    } else {
+                        task.exception?.message?.let { callBack.onSaveFailed(it) }
+
+                    }
+                }
+    }
+
 
 }

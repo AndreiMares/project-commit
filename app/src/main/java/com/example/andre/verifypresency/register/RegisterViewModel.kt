@@ -102,7 +102,7 @@ class RegisterViewModel(private val userRepository: UserRepository)
             dataLoading.set(true)
             enableView.set(false)
 
-            this.userRepository.saveUser(this.registerForm.registerField, object : UserDataSource.SaveUserCallback {
+            this.userRepository.createUser(this.registerForm.registerField, object : UserDataSource.SaveUserCallback {
 
                 override fun onUserSaved(message: String) {
                     dataLoading.set(false)

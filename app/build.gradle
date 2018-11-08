@@ -18,6 +18,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -58,6 +59,8 @@ dependencies {
 
     //Firebase
     implementation "com.google.firebase:firebase-auth:$rootProject.firebase_version"
+    implementation "com.google.firebase:firebase-firestore:$rootProject.firestore_version"
+
 
     //ViewModel, LiveData
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle_version"

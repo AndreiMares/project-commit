@@ -5,9 +5,9 @@ import com.example.andre.verifypresency.source.models.User
 class UserRepository(
         private val usersRemoteDateSource: UserRemoteDataSource) {
 
-    fun saveUser(user: User, callBack: UserDataSource.SaveUserCallback) {
+    fun createUser(user: User, callBack: UserDataSource.SaveUserCallback) {
 
-        this.usersRemoteDateSource.saveUser(user, object : UserDataSource.SaveUserCallback {
+        this.usersRemoteDateSource.createUser(user, object : UserDataSource.SaveUserCallback {
 
             override fun onUserSaved(message: String) {
 
