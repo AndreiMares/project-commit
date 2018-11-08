@@ -16,7 +16,8 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="@dimen/activity_horizontal_margin">
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        >
 
         <ScrollView
             android:layout_width="match_parent"
@@ -43,7 +44,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.firstName}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusFirstName}" />
+                        bind:onFocus="@{model.onFocusFirstName}"
+                        android:enabled="@{model.enableView}"/>
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -62,7 +64,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.lastName}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusLastName}" />
+                        bind:onFocus="@{model.onFocusLastName}"
+                        android:enabled="@{model.enableView}"/>
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -81,7 +84,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.orgName}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusOrgName}" />
+                        bind:onFocus="@{model.onFocusOrgName}"
+                        android:enabled="@{model.enableView}"/>
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -101,7 +105,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.email}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusEmail}" />
+                        bind:onFocus="@{model.onFocusEmail}"
+                        android:enabled="@{model.enableView}"/>
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -121,7 +126,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.password}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusPassword}" />
+                        bind:onFocus="@{model.onFocusPassword}"
+                        android:enabled="@{model.enableView}"/>
 
 
                 </android.support.design.widget.TextInputLayout>
@@ -141,7 +147,8 @@
                         android:singleLine="true"
                         android:text="@={model.registerForm.registerField.confirmPassword}"
                         android:textSize="@dimen/text_input"
-                        bind:onFocus="@{model.onFocusConfirm}" />
+                        bind:onFocus="@{model.onFocusConfirm}"
+                        android:enabled="@{model.enableView}"/>
 
                 </android.support.design.widget.TextInputLayout>
 
@@ -165,7 +172,7 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{model.dataLoading ? View.GONE : View.VISIBLE  }">
+            android:visibility="@{model.dataLoading ? View.VISIBLE : View.INVISIBLE  }">
 
             <include layout="@layout/layout_progressbar" />
 

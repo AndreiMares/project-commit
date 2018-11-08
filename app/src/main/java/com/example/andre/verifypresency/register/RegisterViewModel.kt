@@ -1,17 +1,22 @@
 package com.example.andre.verifypresency.register
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
 import com.example.andre.verifypresency.register.model.RegisterForm
+import com.example.andre.verifypresency.source.models.User
+import com.example.andre.verifypresency.source.remote.user.UserDataSource
 import com.example.andre.verifypresency.source.remote.user.UserRepository
 
 /**
  * ViewModel used for registration layout.
  */
-class RegisterViewModel : ViewModel() {
+class RegisterViewModel(private val userRepository: UserRepository)
+    : ViewModel() {
 
     //region Public Fields
 
@@ -53,7 +58,12 @@ class RegisterViewModel : ViewModel() {
     /**
      * Variable used to show/hide Progress Bar.
      */
-    val dataLoading: ObservableBoolean = ObservableBoolean(true)
+    val dataLoading: ObservableBoolean = ObservableBoolean(false)
+
+    /**
+     * Variable used to enable/disable EditText while progressBar is active.
+     */
+    val enableView: ObservableBoolean = ObservableBoolean(true)
 
     //endregion
 
@@ -64,7 +74,7 @@ class RegisterViewModel : ViewModel() {
      */
     private lateinit var mRegisterNavigationListener: RegisterNavigationListener
 
-    private val tasksRepository: UserRepository? = null
+    private var mMessage = MutableLiveData<String>()
 
     //endregion
 
@@ -89,13 +99,31 @@ class RegisterViewModel : ViewModel() {
     fun onButtonClick() {
         if (registerForm.valid) {
 
-            dataLoading.set(false)
+            dataLoading.set(true)
+            enableView.set(false)
 
-            this.createUser()
+            this.userRepository.saveUser(this.registerForm.registerField, object : UserDataSource.SaveUserCallback {
 
-            this.mRegisterNavigationListener.onRegisterClicked()
+                override fun onUserSaved(message: String) {
+                    dataLoading.set(false)
+                    enableView.set(true)
+
+                    mMessage.value = message
+
+                    mRegisterNavigationListener.onRegisterClicked()
+                }
+
+                override fun onSaveFailed(message: String) {
+                    dataLoading.set(false)
+                    enableView.set(true)
+                    mMessage.value = message
+
+                }
+            })
         }
     }
+
+    fun getMessage(): LiveData<String> = this.mMessage
 
     //endregion
 
@@ -183,10 +211,6 @@ class RegisterViewModel : ViewModel() {
                 this.registerForm.confirmPasswordValid(true)
 
         }
-    }
-
-    private fun createUser() {
-
     }
 
     //endregion

@@ -3,30 +3,33 @@ package com.example.andre.verifypresency.source.remote.user
 import com.example.andre.verifypresency.source.models.User
 
 class UserRepository(
-        val usersRemoteDateSource: UserDataSource) : UserDataSource {
+        private val usersRemoteDateSource: UserRemoteDataSource) {
 
-    override fun getUsers(callback: UserDataSource.LoadUserCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    fun saveUser(user: User, callBack: UserDataSource.SaveUserCallback) {
 
-    override fun getUser(userId: String, callback: UserDataSource.LoadUserCallback) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+        this.usersRemoteDateSource.saveUser(user, object : UserDataSource.SaveUserCallback {
 
-    override fun saveUser(user: User, callback: UserDataSource.SaveUserCallback) {
+            override fun onUserSaved(message: String) {
 
-        usersRemoteDateSource.saveUser(user, object : UserDataSource.SaveUserCallback {
-            override fun onUserSaved(users: User) {
-
+                callBack.onUserSaved(message)
             }
 
-            override fun onSaveFailed() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            override fun onSaveFailed(message: String) {
+
+                callBack.onSaveFailed(message)
             }
 
         })
-
     }
 
+    companion object {
+        @Volatile
+        private var INSTANCE: UserRepository? = null
 
+        fun getInstance(usersRemoteDateSource: UserRemoteDataSource): UserRepository =
+                INSTANCE ?: synchronized(this) {
+                    INSTANCE ?: UserRepository(usersRemoteDateSource).also { INSTANCE = it }
+                }
+
+    }
 }

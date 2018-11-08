@@ -20,9 +20,9 @@ interface UserDataSource {
 
     interface SaveUserCallback {
 
-        fun onUserSaved(users: User)
+        fun onUserSaved(message: String)
 
-        fun onSaveFailed()
+        fun onSaveFailed(message: String)
     }
 
     fun getUsers(callback: LoadUserCallback)

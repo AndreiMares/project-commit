@@ -22,14 +22,12 @@ package com.example.andre.verifypresency.util
 import android.app.Activity
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
-//import android.arch.lifecycle.ViewModelProviders
 import android.support.annotation.IdRes
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentTransaction
-import android.support.v7.app.ActionBar
 import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.Toolbar
+import com.example.andre.verifypresency.ViewModelFactory
 
 //import com.example.android.architecture.blueprints.todoapp.ViewModelFactory
 
@@ -66,8 +64,8 @@ fun AppCompatActivity.setupActionBar(@IdRes toolbarId: Int) {
 
 }
 
-fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>) =
-        ViewModelProviders.of(this).get(viewModelClass)
+fun <T : ViewModel> AppCompatActivity.obtainViewModel(viewModelClass: Class<T>): T =
+        ViewModelProviders.of(this, ViewModelFactory.getInstance()).get(viewModelClass)
 
 /**
  * Runs a FragmentTransaction, then calls commit().
