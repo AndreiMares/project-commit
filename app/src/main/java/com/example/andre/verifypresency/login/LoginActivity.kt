@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.login.model.LoginViewModel
 import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
 import com.example.andre.verifypresency.util.obtainViewModel
@@ -13,7 +12,6 @@ import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseAuthException
-import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
 

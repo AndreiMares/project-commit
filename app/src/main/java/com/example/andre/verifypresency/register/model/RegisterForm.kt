@@ -4,6 +4,7 @@ import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.example.andre.verifypresency.BR
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.source.models.User
 
 /**
  * RegisterForm represent a validation layer for every view from fragment_register.xml layout.
@@ -16,7 +17,7 @@ class RegisterForm : BaseObservable() {
     /**
      * Variable which encapsulates data from user
      */
-    var registerField: RegisterFields = RegisterFields()
+    var registerField: User = User()
 
     //endregion
 

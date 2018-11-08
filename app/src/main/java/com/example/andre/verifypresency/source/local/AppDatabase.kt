@@ -1,18 +1,18 @@
-package com.example.andre.verifypresency.persistance.local
+package com.example.andre.verifypresency.source.local
 
 import android.arch.persistence.room.Database
 import android.arch.persistence.room.Room
 import android.arch.persistence.room.RoomDatabase
 import android.arch.persistence.room.TypeConverters
 import android.content.Context
-import com.example.andre.verifypresency.persistance.DateConverter
-import com.example.andre.verifypresency.persistance.local.dao.*
-import com.example.andre.verifypresency.persistance.local.models.*
+import com.example.andre.verifypresency.util.DateConverter
+import com.example.andre.verifypresency.source.local.dao.*
+import com.example.andre.verifypresency.source.models.*
 
 @Database(entities = arrayOf(Dictionary::class, DictionaryDetail::class, Event::class, EventDetail::class
         , EventDetailXMember::class, Member::class), version = 1)
 @TypeConverters(DateConverter::class)
-abstract class AppDatabase: RoomDatabase() {
+abstract class AppDatabase : RoomDatabase() {
 
     abstract fun dictionaryDao(): DictionaryDao
     abstract fun dictionaryDetailDao(): DictionaryDetailDao
@@ -24,7 +24,8 @@ abstract class AppDatabase: RoomDatabase() {
 
     companion object {
 
-        @Volatile private var INSTANCE: AppDatabase? = null
+        @Volatile
+        private var INSTANCE: AppDatabase? = null
 
         fun getInstance(context: Context): AppDatabase =
                 INSTANCE ?: synchronized(this) {

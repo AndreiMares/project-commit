@@ -30,11 +30,11 @@ open class BaseActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
 
-        if(this is  LoginActivity || this is RegisterActivity){
-            //do nothing
-        } else{
-            this.checkAuthState()
-        }
+//        if(this is  LoginActivity || this is RegisterActivity){
+//            //do nothing
+//        } else{
+//            this.checkAuthState()
+//        }
     }
 
     private fun checkAuthState(){

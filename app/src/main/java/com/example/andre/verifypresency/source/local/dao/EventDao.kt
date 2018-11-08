@@ -1,8 +1,8 @@
-package com.example.andre.verifypresency.persistance.local.dao
+package com.example.andre.verifypresency.source.local.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
-import com.example.andre.verifypresency.persistance.local.models.Event
+import com.example.andre.verifypresency.source.models.Event
 
 @Dao
 interface EventDao {

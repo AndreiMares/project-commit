@@ -1,17 +1,19 @@
-package com.example.andre.verifypresency.register.model
+package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
+import com.example.andre.verifypresency.register.model.RegisterForm
+import com.example.andre.verifypresency.source.remote.user.UserRepository
 
 /**
  * ViewModel used for registration layout.
  */
 class RegisterViewModel : ViewModel() {
 
-    //region Variables
+    //region Public Fields
 
     /**
      * Validation form variable specified for fragment_registration.xml layout.
@@ -53,10 +55,16 @@ class RegisterViewModel : ViewModel() {
      */
     val dataLoading: ObservableBoolean = ObservableBoolean(true)
 
+    //endregion
+
+    //region Private Fields
+
     /**
      * Variable used to go back to Login Activity: true/false.
      */
     private lateinit var mRegisterNavigationListener: RegisterNavigationListener
+
+    private val tasksRepository: UserRepository? = null
 
     //endregion
 
@@ -82,6 +90,8 @@ class RegisterViewModel : ViewModel() {
         if (registerForm.valid) {
 
             dataLoading.set(false)
+
+            this.createUser()
 
             this.mRegisterNavigationListener.onRegisterClicked()
         }
@@ -173,6 +183,10 @@ class RegisterViewModel : ViewModel() {
                 this.registerForm.confirmPasswordValid(true)
 
         }
+    }
+
+    private fun createUser() {
+
     }
 
     //endregion
