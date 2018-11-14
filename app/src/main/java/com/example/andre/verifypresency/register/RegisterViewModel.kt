@@ -8,14 +8,13 @@ import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
 import com.example.andre.verifypresency.register.model.RegisterForm
-import com.example.andre.verifypresency.source.models.User
-import com.example.andre.verifypresency.source.remote.user.UserDataSource
-import com.example.andre.verifypresency.source.remote.user.UserRepository
+import com.example.andre.verifypresency.source.remote.register.RegisterDataSource
+import com.example.andre.verifypresency.source.remote.register.RegisterRepository
 
 /**
  * ViewModel used for registration layout.
  */
-class RegisterViewModel(private val userRepository: UserRepository)
+class RegisterViewModel(private val registerRepository: RegisterRepository)
     : ViewModel() {
 
     //region Public Fields
@@ -102,7 +101,7 @@ class RegisterViewModel(private val userRepository: UserRepository)
             dataLoading.set(true)
             enableView.set(false)
 
-            this.userRepository.createUser(this.registerForm.registerField, object : UserDataSource.SaveUserCallback {
+            this.registerRepository.createUser(this.registerForm.registerField, object : RegisterDataSource.SaveUserCallback {
 
                 override fun onUserSaved(message: String) {
                     dataLoading.set(false)

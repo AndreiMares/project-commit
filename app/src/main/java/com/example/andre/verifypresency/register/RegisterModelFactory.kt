@@ -1,13 +1,11 @@
-package com.example.andre.verifypresency
+package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.example.andre.verifypresency.login.LoginViewModel
-import com.example.andre.verifypresency.register.RegisterViewModel
 import com.example.andre.verifypresency.source.remote.register.RegisterRepository
 import com.example.andre.verifypresency.util.InjectorUtils
 
-class ViewModelFactory(private val registerRepository: RegisterRepository)
+class RegisterModelFactory(private val registerRepository: RegisterRepository)
     : ViewModelProvider.NewInstanceFactory() {
 
     @Suppress("UNCHECKED_CAST")
@@ -26,11 +24,11 @@ class ViewModelFactory(private val registerRepository: RegisterRepository)
     companion object {
 
         @Volatile
-        private var INSTANCE: ViewModelFactory? = null
+        private var INSTANCE: RegisterModelFactory? = null
 
-        fun getInstance(): ViewModelFactory =
-                INSTANCE ?: synchronized(ViewModelFactory::class.java) {
-                    INSTANCE ?: ViewModelFactory(
+        fun getInstance(): RegisterModelFactory =
+                INSTANCE ?: synchronized(RegisterModelFactory::class.java) {
+                    INSTANCE ?: RegisterModelFactory(
                             InjectorUtils.provideRegisterRepository())
                             .also { INSTANCE = it }
                 }

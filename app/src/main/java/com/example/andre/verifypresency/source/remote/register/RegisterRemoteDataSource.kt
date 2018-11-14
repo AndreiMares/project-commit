@@ -1,15 +1,13 @@
-package com.example.andre.verifypresency.source.remote.user
+package com.example.andre.verifypresency.source.remote.register
 
 import com.example.andre.verifypresency.source.models.User
-import com.google.android.gms.tasks.Task
-import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.HashMap
 
-class UserRemoteDataSource {
+class RegisterRemoteDataSource {
 
-    fun createUser(user: User, callBack: UserDataSource.SaveUserCallback) {
+    fun createUser(user: User, callBack: RegisterDataSource.SaveUserCallback) {
 
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(user.email!!, user.password!!).addOnCompleteListener { task ->
 
@@ -25,7 +23,7 @@ class UserRemoteDataSource {
         }
     }
 
-    private fun sendVerificationEmail(callBack: UserDataSource.SaveUserCallback) {
+    private fun sendVerificationEmail(callBack: RegisterDataSource.SaveUserCallback) {
         val user = FirebaseAuth.getInstance().currentUser
 
         user?.sendEmailVerification()?.addOnCompleteListener { task ->
@@ -39,7 +37,7 @@ class UserRemoteDataSource {
         }
     }
 
-    private fun saveUser(user: User, callBack: UserDataSource.SaveUserCallback) {
+    private fun saveUser(user: User, callBack: RegisterDataSource.SaveUserCallback) {
 
         val userDetail = HashMap<String, Any>()
 

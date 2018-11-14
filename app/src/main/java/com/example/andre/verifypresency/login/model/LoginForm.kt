@@ -5,7 +5,7 @@ import android.databinding.Bindable
 import com.example.andre.verifypresency.BR
 import com.example.andre.verifypresency.R
 
-class LoginForm: BaseObservable() {
+class LoginForm : BaseObservable() {
 
     //region Public Fields
 
@@ -92,7 +92,7 @@ class LoginForm: BaseObservable() {
      */
     val valid: Boolean
         @Bindable get() {
-            var valid =  this.emailValid(false)
+            var valid = this.emailValid(false)
             valid = this.passwordValid(false) && valid
 
             notifyPropertyChanged(BR.emailError)

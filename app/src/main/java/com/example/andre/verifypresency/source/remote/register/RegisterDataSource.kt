@@ -1,8 +1,8 @@
-package com.example.andre.verifypresency.source.remote.user
+package com.example.andre.verifypresency.source.remote.register
 
 import com.example.andre.verifypresency.source.models.User
 
-interface UserDataSource {
+interface RegisterDataSource {
 
     interface LoadUsersCallback {
 

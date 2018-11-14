@@ -1,10 +1,14 @@
 package com.example.andre.verifypresency.source.remote
 
-import com.example.andre.verifypresency.source.remote.user.UserRemoteDataSource
+import com.example.andre.verifypresency.source.remote.login.LoginRemoteDataSource
+import com.example.andre.verifypresency.source.remote.register.RegisterRemoteDataSource
 
 class RemoteDataBase private constructor() {
 
-    var userRemoteDataSource: UserRemoteDataSource = UserRemoteDataSource()
+    var registerRemoteDataSource: RegisterRemoteDataSource = RegisterRemoteDataSource()
+        private set
+
+    var loginRemoteDataSource: LoginRemoteDataSource = LoginRemoteDataSource()
         private set
 
     companion object {

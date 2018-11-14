@@ -1,12 +1,18 @@
 package com.example.andre.verifypresency.login
 
+import android.arch.lifecycle.LiveData
+import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.LoginNavigationListener
 import com.example.andre.verifypresency.login.model.LoginForm
+import com.example.andre.verifypresency.source.remote.login.LoginDataSource
+import com.example.andre.verifypresency.source.remote.login.LoginRepository
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel(private val mLoginRepository: LoginRepository)
+    : ViewModel() {
 
     //region Public Fields
 
@@ -25,11 +31,18 @@ class LoginViewModel : ViewModel() {
      */
     lateinit var onFocusPassword: View.OnFocusChangeListener
 
+    /**
+     * Variable used to show/hide Progress Bar.
+     */
+    val dataLoading: ObservableBoolean = ObservableBoolean(false)
+
     //endregion
 
     //region Private Fields
 
     private lateinit var mLoginNavigationListener: LoginNavigationListener
+
+    private var mMessage = MutableLiveData<String>()
 
     //endregion
 
@@ -54,7 +67,8 @@ class LoginViewModel : ViewModel() {
      */
     fun onRegisterButtonClick() {
 
-        this.mLoginNavigationListener.onSignUpClicked()
+        if (!this.dataLoading.get())
+            this.mLoginNavigationListener.onSignUpClicked()
     }
 
     /**
@@ -63,11 +77,30 @@ class LoginViewModel : ViewModel() {
     fun onSignInButtonClick() {
         if (this.loginForm.valid) {
 
-//            dataLoading.set(false)
+            dataLoading.set(true)
 
-            this.mLoginNavigationListener.onSignInClicked()
+            this.mLoginRepository.login(this.loginForm.loginField, object : LoginDataSource.LoginCallback {
+
+                override fun onLoginSuccess() {
+
+                    dataLoading.set(false)
+
+                    mLoginNavigationListener.onSignInClicked()
+                }
+
+                override fun onLoginFailed(message: String) {
+                    dataLoading.set(false)
+
+                    mMessage.value = message
+                }
+
+            })
+
+
         }
     }
+
+    fun getMessage(): LiveData<String> = this.mMessage
 
     //endregion
 
@@ -101,7 +134,7 @@ class LoginViewModel : ViewModel() {
 
         }
 
-        
+
     }
 
     //endregion

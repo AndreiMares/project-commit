@@ -1,12 +1,15 @@
 package com.example.andre.verifypresency.register
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.view.MenuItem
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.ViewModelFactory
 import com.example.andre.verifypresency.login.LoginActivity
-import com.example.andre.verifypresency.util.obtainViewModel
 import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.example.andre.verifypresency.util.setupActionBar
 
@@ -57,7 +60,7 @@ class RegisterActivity : BaseActivity() {
     /**
      * Obtaining specific ViewModel
      */
-    fun obtainViewModel(): RegisterViewModel = obtainViewModel(RegisterViewModel::class.java)
+    fun obtainViewModel(): RegisterViewModel = this.obtainViewModel(RegisterViewModel::class.java)
 
     //endregion
 
@@ -68,6 +71,9 @@ class RegisterActivity : BaseActivity() {
                     ?: RegisterFragment.newInstance().also {
                         replaceFragmentInActivity(it, R.id.activity_register_fl_fragment)
                     }
+
+    private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
+            ViewModelProviders.of(this, RegisterModelFactory.getInstance()).get(viewModelClass)
 
     //endregion
 

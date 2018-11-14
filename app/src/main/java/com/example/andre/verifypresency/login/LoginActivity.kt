@@ -1,5 +1,7 @@
 package com.example.andre.verifypresency.login
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
@@ -7,7 +9,7 @@ import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
-import com.example.andre.verifypresency.util.obtainViewModel
+import com.example.andre.verifypresency.register.RegisterModelFactory
 import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
@@ -49,10 +51,14 @@ class LoginActivity : BaseActivity() {
                     }
 
 
-    fun obtainViewModel(): LoginViewModel = obtainViewModel(LoginViewModel::class.java)
+    fun obtainViewModel(): LoginViewModel = this.obtainViewModel(LoginViewModel::class.java)
+
 
 
     //region Private Functions
+
+    private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
+            ViewModelProviders.of(this, LoginModelFactory.getInstance()).get(viewModelClass)
 
     private fun setUpListeners() {
 

@@ -1,11 +1,13 @@
 package com.example.andre.verifypresency.login
 
+import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.listener.LoginNavigationListener
@@ -36,6 +38,14 @@ class LoginFragment : BaseFragment(), LoginNavigationListener {
 
         this.mViewBinding.model = this.mLoginViewModel
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        this.mLoginViewModel.getMessage().observe(this, Observer {
+
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+        })
     }
 
 
