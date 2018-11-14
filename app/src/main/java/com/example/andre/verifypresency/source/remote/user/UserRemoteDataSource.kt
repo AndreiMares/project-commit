@@ -1,6 +1,8 @@
 package com.example.andre.verifypresency.source.remote.user
 
 import com.example.andre.verifypresency.source.models.User
+import com.google.android.gms.tasks.Task
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.HashMap
@@ -15,10 +17,6 @@ class UserRemoteDataSource {
 
                 this.saveUser(user, callBack)
 
-//                this.sendVerificationEmail(callBack)
-
-                FirebaseAuth.getInstance().signOut()
-
             } else {
 
                 task.exception?.message?.let { callBack.onSaveFailed(it) }
@@ -32,10 +30,10 @@ class UserRemoteDataSource {
 
         user?.sendEmailVerification()?.addOnCompleteListener { task ->
 
-            if (task.isSuccessful)
-
+            if (task.isSuccessful) {
+                FirebaseAuth.getInstance().signOut()
                 callBack.onUserSaved("An email has been sent for validation")
-            else
+            } else
                 callBack.onSaveFailed("Failed to send validation email")
 
         }
@@ -55,14 +53,14 @@ class UserRemoteDataSource {
 
         db.collection("UserDetail").document().set(userDetail)
                 .addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
+                    if (task.isComplete && task.isSuccessful) {
                         this.sendVerificationEmail(callBack)
                     } else {
                         task.exception?.message?.let { callBack.onSaveFailed(it) }
 
                     }
                 }
-    }
 
+    }
 
 }
