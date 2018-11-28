@@ -61,8 +61,11 @@ dependencies {
     implementation "com.google.firebase:firebase-auth:$rootProject.firebase_version"
     implementation "com.google.firebase:firebase-firestore:$rootProject.firestore_version"
 
-
     //ViewModel, LiveData
     implementation "android.arch.lifecycle:extensions:$rootProject.lifecycle_version"
+
+    //ButterKnife
+    implementation 'com.jakewharton:butterknife:9.0.0-rc2'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc2'
 
 }

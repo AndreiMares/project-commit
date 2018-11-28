@@ -1,8 +1,14 @@
 package com.example.andre.verifypresency.main
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
+import com.example.andre.verifypresency.register.RegisterFragment
+import com.example.andre.verifypresency.register.RegisterModelFactory
+import com.example.andre.verifypresency.register.RegisterViewModel
+import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*
 
@@ -38,14 +44,11 @@ class MainActivity : BaseActivity() {
         layout_top_tl_tabs.getTabAt(0)?.setIcon(R.drawable.ic_events)
         layout_top_tl_tabs.getTabAt(1)?.setIcon(R.drawable.ic_group_ppl)
 
-
-
-
     }
 
-    private fun findOrCreateMembersFragment(){
+    fun obtainEventViewModel(): EventViewModel = this.obtainEventViewModel(EventViewModel::class.java)
 
-    }
-
+    private fun <T : ViewModel> obtainEventViewModel(viewModelClass: Class<T>): T =
+            ViewModelProviders.of(this, RegisterModelFactory.getInstance()).get(viewModelClass)
 }
 

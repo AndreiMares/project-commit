@@ -7,16 +7,25 @@ import android.arch.persistence.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 import java.util.*
 
-@Entity(tableName = "Event")
-data class Event(@PrimaryKey(autoGenerate = true)
-            @ColumnInfo(name = "EventId")
-            @NotNull
-            var EventId: Long,
-            @ColumnInfo(name = "ScheduleTime")
-            var ScheduleTime: Date?) : BaseEntity()
+//@Entity(tableName = "Event")
+//data class Event(@PrimaryKey(autoGenerate = true)
+//                 @ColumnInfo(name = "EventId")
+//                 @NotNull
+//                 var EventId: Long,
+//                 @ColumnInfo(name = "ScheduleTime")
+//                 var ScheduleTime: Date?) : BaseEntity() {
+//    @Ignore
+//    constructor() : this(0, null)
+//
+//}
 
-{
-    @Ignore
-    constructor():this(0,null)
+class Event {
 
+    lateinit var scheduleTime: Date
+
+    lateinit var title: String
+
+    lateinit var location: String
+
+    lateinit var eventType: String
 }
