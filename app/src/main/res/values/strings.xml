@@ -2,7 +2,7 @@
     <string name="app_name">VeePy</string>
 
     <string name="john_doe">John Doe</string>
-
+    <string name="empty_list">No items in the list</string>
 
     <!--Login activity strings-->
     <string name="login_email">Email</string>
@@ -22,17 +22,21 @@
     <string name="register_confirm_password">Confirm Password</string>
     <string name="register_txt">Register</string>
 
-    <!--Main activity strings-->
-    <string name="activity_event_name">Name</string>
-    <string name="activity_event_location">Location</string>
-    <string name="activity_event_eventType">Event type</string>
-    <string name="activity_event_schedule">Schedule</string>
-    <string name="activity_event_members">Members</string>
-    <string name="empty_list">No items in the list</string>
-
     <!--EventDetail activity strings-->
+    <string name="activity_event_detail_name">Name</string>
+    <string name="activity_event_detail_location">Location</string>
+    <string name="activity_event_detail_eventType">Event type</string>
+    <string name="activity_event_detail_schedule">Schedule</string>
+    <string name="activity_event_detail_members">Members</string>
     <string name="activity_event_detail_create">Create event</string>
     <string name="activity_event_detail">Event detail</string>
+
+    <!--MemberDetail activity strings-->
+    <string name="activity_member_detail_create">Create member</string>
+    <string name="activity_member_detail">Member detail</string>
+    <string name="activity_member_detail_name">Name</string>
+    <string name="activity_member_detail_email">Email</string>
+    <string name="activity_member_detail_phone">Phone</string>
 
     <!--Error strings-->
     <string name="ERROR_WEAK_PASSWORD">The password is invalid it must 6 characters at least</string>

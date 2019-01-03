@@ -9,7 +9,7 @@ class EventDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_event)
+        setContentView(R.layout.activity_event_detail)
 
         //sets the custom toolbar
         setSupportActionBar(snippet_top_detailbar_tb_header)

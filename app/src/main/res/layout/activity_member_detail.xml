@@ -8,7 +8,7 @@
         <import type="android.view.View" />
         <variable
             name="model"
-            type="com.example.andre.verifypresency.viewmodel.RegisterViewModel" />
+            type="com.example.andre.verifypresency.viewmodel.MemberDetailViewModel" />
     </data>
 
     <RelativeLayout
@@ -17,7 +17,7 @@
 
         <!-- Top toolbar-->
         <RelativeLayout
-            android:id="@+id/activity_event_rl_top"
+            android:id="@+id/activity_member_detail_rl_top"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -31,7 +31,7 @@
             android:orientation="vertical"
             android:paddingStart="@dimen/activity_horizontal_padding"
             android:paddingEnd="@dimen/activity_horizontal_padding"
-            android:layout_below="@+id/activity_event_rl_top"
+            android:layout_below="@+id/activity_member_detail_rl_top"
             android:layout_marginTop="@dimen/activity_vertical_margin">
 
             <android.support.design.widget.TextInputLayout
@@ -40,13 +40,13 @@
                 bind:errorInput="@{model.registerForm.firstNameError}">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/activity_event_et_name"
+                    android:id="@+id/activity_member_detail_et_name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/activity_vertical_margin"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:enabled="@{model.enableView}"
-                    android:hint="@string/activity_event_name"
+                    android:hint="@string/activity_member_detail_name"
                     android:singleLine="true"
                     android:text="@={model.registerForm.registerField.firstName}"
                     android:textSize="@dimen/text_input"
@@ -60,12 +60,12 @@
                 bind:errorInput="@{model.registerForm.firstNameError}">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/activity_event_et_location"
+                    android:id="@+id/activity_member_detail_et_email"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:enabled="@{model.enableView}"
-                    android:hint="@string/activity_event_location"
+                    android:hint="@string/activity_member_detail_email"
                     android:singleLine="true"
                     android:text="@={model.registerForm.registerField.firstName}"
                     android:textSize="@dimen/text_input"
@@ -79,50 +79,12 @@
                 bind:errorInput="@{model.registerForm.firstNameError}">
 
                 <android.support.design.widget.TextInputEditText
-                    android:id="@+id/activity_event_et_eventType"
+                    android:id="@+id/activity_member_detail_et_phone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:enabled="@{model.enableView}"
-                    android:hint="@string/activity_event_eventType"
-                    android:singleLine="true"
-                    android:text="@={model.registerForm.registerField.firstName}"
-                    android:textSize="@dimen/text_input"
-                    bind:onFocus="@{model.onFocusFirstName}" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                bind:errorInput="@{model.registerForm.firstNameError}">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/activity_event_et_schedule"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:enabled="@{model.enableView}"
-                    android:hint="@string/activity_event_schedule"
-                    android:singleLine="true"
-                    android:text="@={model.registerForm.registerField.firstName}"
-                    android:textSize="@dimen/text_input"
-                    bind:onFocus="@{model.onFocusFirstName}" />
-
-            </android.support.design.widget.TextInputLayout>
-
-            <android.support.design.widget.TextInputLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                bind:errorInput="@{model.registerForm.firstNameError}">
-
-                <android.support.design.widget.TextInputEditText
-                    android:id="@+id/activity_event_et_members"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:enabled="@{model.enableView}"
-                    android:hint="@string/activity_event_members"
+                    android:hint="@string/activity_member_detail_phone"
                     android:singleLine="true"
                     android:text="@={model.registerForm.registerField.firstName}"
                     android:textSize="@dimen/text_input"
@@ -133,7 +95,7 @@
         </LinearLayout>
 
         <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/fragmentFloatingActionButton"
+            android:id="@+id/activity_member_detail_fab"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
