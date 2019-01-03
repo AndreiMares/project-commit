@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme">
 
         <activity
-            android:name=".login.LoginActivity"
+            android:name=".activities.LoginActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan"
             android:theme="@style/AppTheme"
@@ -29,31 +29,31 @@
 
 
         <activity
-            android:name=".main.MainActivity"
+            android:name=".activities.MainActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop">
 
         </activity>
 
-        <activity android:name=".search.SearchActivity"
+        <activity android:name=".activities.SearchActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>
 
-        <activity android:name=".profile.ProfileActivity"
+        <activity android:name=".activities.ProfileActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>
 
-        <activity android:name=".info.InfoActivity"
+        <activity android:name=".activities.InfoActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>
 
-        <activity android:name=".event.EventActivity"
+        <activity android:name=".activities.EventDetailActivity"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"
             android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
-            android:name=".register.RegisterActivity"
+            android:name=".activities.RegisterActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme"
             android:launchMode="singleTop"/>

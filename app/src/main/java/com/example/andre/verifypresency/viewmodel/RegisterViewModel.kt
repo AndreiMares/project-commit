@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.register
+package com.example.andre.verifypresency.viewmodel
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData

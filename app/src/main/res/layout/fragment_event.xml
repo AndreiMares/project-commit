@@ -9,7 +9,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.login.LoginViewModel" />
+            type="com.example.andre.verifypresency.viewmodel.EventViewModel" />
     </data>
 
     <RelativeLayout
@@ -33,7 +33,7 @@
 
         <include
             layout="@layout/layout_progressbar"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

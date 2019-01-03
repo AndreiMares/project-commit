@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.login
+package com.example.andre.verifypresency.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -27,11 +27,13 @@ class LoginModelFactory(private val loginRepository: LoginRepository)
         private var INSTANCE: LoginModelFactory? = null
 
         fun getInstance(): LoginModelFactory =
-                INSTANCE ?: synchronized(LoginModelFactory::class.java) {
-                    INSTANCE ?: LoginModelFactory(
-                            InjectorUtils.provideLoginRepository())
-                            .also { INSTANCE = it }
-                }
+                INSTANCE
+                        ?: synchronized(LoginModelFactory::class.java) {
+                            INSTANCE
+                                    ?: LoginModelFactory(
+                                            InjectorUtils.provideLoginRepository())
+                                            .also { INSTANCE = it }
+                        }
 
 
     }

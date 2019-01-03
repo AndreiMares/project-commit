@@ -1,14 +1,14 @@
-package com.example.andre.verifypresency.main
+package com.example.andre.verifypresency.activities
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.BaseActivity
-import com.example.andre.verifypresency.register.RegisterFragment
-import com.example.andre.verifypresency.register.RegisterModelFactory
-import com.example.andre.verifypresency.register.RegisterViewModel
-import com.example.andre.verifypresency.util.replaceFragmentInActivity
+import com.example.andre.verifypresency.fragments.EventFragment
+import com.example.andre.verifypresency.viewmodel.EventViewModel
+import com.example.andre.verifypresency.fragments.MembersFragment
+import com.example.andre.verifypresency.viewpager.SectionPagerAdapter
+import com.example.andre.verifypresency.viewmodel.RegisterModelFactory
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*
 

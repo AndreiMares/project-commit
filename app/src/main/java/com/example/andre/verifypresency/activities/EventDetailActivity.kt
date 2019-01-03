@@ -1,21 +1,25 @@
-package com.example.andre.verifypresency.event
+package com.example.andre.verifypresency.activities
 
 import android.os.Bundle
 import android.view.MenuItem
-import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.R
-import kotlinx.android.synthetic.main.snippet_top_profilebar.*
+import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
-class EventActivity : BaseActivity() {
+class EventDetailActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event)
 
-        setSupportActionBar(snippet_top_profilebar_tb_header)
+        //sets the custom toolbar
+        setSupportActionBar(snippet_top_detailbar_tb_header)
 
+        //sets the arrow back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        //sets the title, method must be done to check if its a visualize or create page
+        snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_event_detail_create)
 
     }
 

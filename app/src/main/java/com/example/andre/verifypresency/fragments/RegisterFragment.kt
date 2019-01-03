@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.register
+package com.example.andre.verifypresency.fragments
 
 import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
@@ -7,13 +7,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.activities.RegisterActivity
 import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
 import com.example.andre.verifypresency.listener.RegisterNavigationListener
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
-import kotlinx.android.synthetic.main.fragment_register.*
+import com.example.andre.verifypresency.viewmodel.RegisterViewModel
 
 /**
  *

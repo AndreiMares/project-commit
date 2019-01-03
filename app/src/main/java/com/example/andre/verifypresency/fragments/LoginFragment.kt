@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.login
+package com.example.andre.verifypresency.fragments
 
 import android.arch.lifecycle.Observer
 import android.content.Intent
@@ -8,12 +8,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import com.example.andre.verifypresency.BaseFragment
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.activities.LoginActivity
 import com.example.andre.verifypresency.listener.LoginNavigationListener
 import com.example.andre.verifypresency.databinding.FragmentLoginBinding
-import com.example.andre.verifypresency.main.MainActivity
-import com.example.andre.verifypresency.register.RegisterActivity
+import com.example.andre.verifypresency.viewmodel.LoginViewModel
+import com.example.andre.verifypresency.activities.MainActivity
+import com.example.andre.verifypresency.activities.RegisterActivity
 
 class LoginFragment : BaseFragment(), LoginNavigationListener {
 

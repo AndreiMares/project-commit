@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.register
+package com.example.andre.verifypresency.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
@@ -27,11 +27,13 @@ class RegisterModelFactory(private val registerRepository: RegisterRepository)
         private var INSTANCE: RegisterModelFactory? = null
 
         fun getInstance(): RegisterModelFactory =
-                INSTANCE ?: synchronized(RegisterModelFactory::class.java) {
-                    INSTANCE ?: RegisterModelFactory(
-                            InjectorUtils.provideRegisterRepository())
-                            .also { INSTANCE = it }
-                }
+                INSTANCE
+                        ?: synchronized(RegisterModelFactory::class.java) {
+                            INSTANCE
+                                    ?: RegisterModelFactory(
+                                            InjectorUtils.provideRegisterRepository())
+                                            .also { INSTANCE = it }
+                        }
 
 
     }

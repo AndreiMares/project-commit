@@ -30,6 +30,9 @@
     <string name="activity_event_members">Members</string>
     <string name="empty_list">No items in the list</string>
 
+    <!--EventDetail activity strings-->
+    <string name="activity_event_detail_create">Create event</string>
+    <string name="activity_event_detail">Event detail</string>
 
     <!--Error strings-->
     <string name="ERROR_WEAK_PASSWORD">The password is invalid it must 6 characters at least</string>

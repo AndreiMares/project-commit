@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency
+package com.example.andre.verifypresency.fragments
 
 import android.support.v4.app.Fragment
 import android.view.View

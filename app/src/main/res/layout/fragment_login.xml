@@ -8,7 +8,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.login.LoginViewModel" />
+            type="com.example.andre.verifypresency.viewmodel.LoginViewModel" />
     </data>
 
     <LinearLayout

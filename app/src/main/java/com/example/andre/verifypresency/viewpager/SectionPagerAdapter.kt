@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.main
+package com.example.andre.verifypresency.viewpager
 
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager

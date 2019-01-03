@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.main
+package com.example.andre.verifypresency.fragments
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -9,8 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentEventBinding
-import com.example.andre.verifypresency.event.EventActivity
-import kotlinx.android.synthetic.main.fragment_event.*
+import com.example.andre.verifypresency.activities.EventDetailActivity
 
 
 class EventFragment : Fragment() {
@@ -30,7 +29,7 @@ class EventFragment : Fragment() {
     }
 
     fun openEventActivity() {
-        val intent = Intent(context, EventActivity::class.java)
+        val intent = Intent(context, EventDetailActivity::class.java)
         startActivity(intent)
     }
 
