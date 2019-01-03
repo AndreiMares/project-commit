@@ -6,7 +6,7 @@
         android:background="@drawable/white_grey_border_bottom">
 
         <android.support.v7.widget.Toolbar
-            android:id="@+id/snippet_top_profilebar_tb_header"
+            android:id="@+id/snippet_top_detailbar_tb_header"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -15,7 +15,7 @@
                 android:layout_height="match_parent">
 
                 <TextView
-                    android:id="@+id/snippet_top_profileBar_tv_profileName"
+                    android:id="@+id/snippet_top_detailbar_tv_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"

@@ -45,7 +45,12 @@
 
         <activity android:name=".info.InfoActivity"
             android:theme="@style/AppTheme"
-            android:launchMode="singleTop"></activity>
+            android:launchMode="singleTop"/>
+
+        <activity android:name=".event.EventActivity"
+            android:theme="@style/AppTheme"
+            android:launchMode="singleTop"
+            android:windowSoftInputMode="adjustPan|stateHidden"/>
 
         <activity
             android:name=".register.RegisterActivity"

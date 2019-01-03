@@ -9,14 +9,14 @@ import com.example.andre.verifypresency.util.DateConverter
 import com.example.andre.verifypresency.source.local.dao.*
 import com.example.andre.verifypresency.source.models.*
 
-@Database(entities = arrayOf(Dictionary::class, DictionaryDetail::class, Event::class, EventDetail::class
+@Database(entities = arrayOf(Dictionary::class, DictionaryDetail::class, /*Event::class,*/ EventDetail::class
         , EventDetailXMember::class, Member::class), version = 1)
 @TypeConverters(DateConverter::class)
 abstract class AppDatabase : RoomDatabase() {
 
     abstract fun dictionaryDao(): DictionaryDao
     abstract fun dictionaryDetailDao(): DictionaryDetailDao
-    abstract fun eventDao(): EventDao
+//    abstract fun eventDao(): EventDao
     abstract fun eventDetailDao(): EventDetailDao
     abstract fun eventDetailXMemberDao(): EventDetailXMemberDao
     abstract fun memberDao(): MemberDao

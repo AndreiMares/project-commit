@@ -13,16 +13,19 @@
             type="com.example.andre.verifypresency.register.RegisterViewModel" />
     </data>
 
-    <RelativeLayout
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="@dimen/activity_horizontal_margin">
 
         <ScrollView
+            android:id="@+id/scrollview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_above="@+id/fragment_register_btn_register"
-            android:layout_alignParentTop="true">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -155,24 +158,31 @@
 
         </ScrollView>
 
+        <include
+            layout="@layout/layout_progressbar"
+            android:visibility="@{model.dataLoading ? View.VISIBLE : View.INVISIBLE  }"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
         <Button
             android:id="@+id/fragment_register_btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:background="@color/light_blue_600"
             android:enabled="@{model.registerForm.valid}"
             android:onClick="@{() -> model.onButtonClick()}"
             android:text="@string/register_txt"
             android:textAllCaps="false"
-            android:textColor="@color/whiteTxtColor" />
+            android:textColor="@color/whiteTxtColor"
+            app:layout_constraintTop_toBottomOf="@+id/scrollview"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
 
-        <include
-            layout="@layout/layout_progressbar"
-            android:visibility="@{model.dataLoading ? View.VISIBLE : View.INVISIBLE  }" />
-
-
-    </RelativeLayout>
+    </android.support.constraint.ConstraintLayout>
 
 </layout>

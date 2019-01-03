@@ -24,9 +24,6 @@ class MainActivity : BaseActivity() {
 
         this.setupViewPager()
 
-     /*   //testing
-        val db = AppDatabase.getInstance(this)*/
-
     }
 
     private fun setupViewPager(){

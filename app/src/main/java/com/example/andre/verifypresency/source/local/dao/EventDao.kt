@@ -4,7 +4,7 @@ import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
 import com.example.andre.verifypresency.source.models.Event
 
-@Dao
+//@Dao
 interface EventDao {
 
     /**
@@ -12,6 +12,6 @@ interface EventDao {
 
      * @return the event from the table with a specific id.
      */
-    @Query("SELECT * FROM Event WHERE EventId = :id")
+//    @Query("SELECT * FROM Event WHERE EventId = :id")
     fun getEventById(id: String): Event
 }

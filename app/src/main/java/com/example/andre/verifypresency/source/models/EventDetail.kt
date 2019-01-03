@@ -5,9 +5,9 @@ import org.jetbrains.annotations.NotNull
 
 @Entity(tableName = "EventDetail",
         foreignKeys = arrayOf(
-                ForeignKey(entity = Event::class,
-                        parentColumns = arrayOf("EventId"),
-                        childColumns = arrayOf("EventId")),
+//                ForeignKey(entity = Event::class,
+//                        parentColumns = arrayOf("EventId"),
+//                        childColumns = arrayOf("EventId")),
                 ForeignKey(entity = DictionaryDetail::class,
                         parentColumns = arrayOf("DictionaryDetailId"),
                         childColumns = arrayOf("DictionaryDetailId"))))
