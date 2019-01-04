@@ -1,6 +1,6 @@
 package com.example.andre.verifypresency.source.remote.login
 
-import com.example.andre.verifypresency.login.model.LoginFields
+import com.example.andre.verifypresency.form.login.LoginFields
 
 class LoginRepository(
         private val mLoginRemoteDateSource: LoginRemoteDataSource) {

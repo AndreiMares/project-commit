@@ -6,25 +6,12 @@ import android.arch.persistence.room.Ignore
 import android.arch.persistence.room.PrimaryKey
 import org.jetbrains.annotations.NotNull
 
-@Entity(tableName = "Member")
-data class Member(@PrimaryKey(autoGenerate = true)
-                  @ColumnInfo(name = "MemberId")
-                  @NotNull
-                  var MemberId: Long,
-                  @ColumnInfo(name = "FirstName")
-                  @NotNull
-                  var FirstName: String,
-                  @ColumnInfo(name = "LastName")
-                  @NotNull
-                  var LastName: String,
-                  @ColumnInfo(name = "Email")
-                  @NotNull
-                  var Email: String,
-                  @ColumnInfo(name = "PhoneNumber")
-                  @NotNull
-                  var PhoneNumber: String) : BaseEntity()
-{
-    @Ignore
-    constructor():this(0, "","","","")
+//@Entity(tableName = "Member")
+data class Member(/*@PrimaryKey(autoGenerate = true)
+                  var memberId: Long,*/
+        var name: String,
+        var email: String,
+        var phoneNumber: String,
+        var active: Boolean) : BaseEntity() {
 
 }

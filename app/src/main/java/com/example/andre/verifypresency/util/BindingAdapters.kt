@@ -6,19 +6,19 @@ import android.view.View
 import android.widget.EditText
 import android.widget.ScrollView
 
-@BindingAdapter("bind:error")
-fun setError(editText: EditText, strOrResId: Any?) {
-
-    if (strOrResId != null) {
-        if (strOrResId is Int) {
-            editText.error = editText.context.getString(strOrResId)
-
-        } else {
-            editText.error = strOrResId as String
-        }
-    } else
-        editText.error = null
-}
+//@BindingAdapter("bind:error")
+//fun setError(editText: EditText, strOrResId: Any?) {
+//
+//    if (strOrResId != null) {
+//        if (strOrResId is Int) {
+//            editText.error = editText.context.getString(strOrResId)
+//
+//        } else {
+//            editText.error = strOrResId as String
+//        }
+//    } else
+//        editText.error = null
+//}
 
 @BindingAdapter("bind:errorInput")
 fun setError(editText: TextInputLayout, strOrResId: Any?) {

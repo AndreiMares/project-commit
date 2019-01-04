@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.login.model
+package com.example.andre.verifypresency.form.login
 
 /**
  * Class which encapsulates resource id's.

@@ -7,7 +7,7 @@ import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.LoginNavigationListener
-import com.example.andre.verifypresency.login.model.LoginForm
+import com.example.andre.verifypresency.form.login.LoginForm
 import com.example.andre.verifypresency.source.remote.login.LoginDataSource
 import com.example.andre.verifypresency.source.remote.login.LoginRepository
 
