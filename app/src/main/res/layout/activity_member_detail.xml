@@ -106,7 +106,7 @@
             android:layout_marginBottom="@dimen/activity_vertical_margin"
             android:src="@drawable/ic_check_white_24dp"
             android:visibility="@{model.fabVisibilityView ? View.VISIBLE : View.INVISIBLE  }"
-            android:onClick="@{() -> model.initList()}"
+            android:onClick="@{() -> model.onButtonClick()}"
             fab:fab_colorNormal="@color/colorPrimaryLight"
             fab:fab_colorPressed="@color/accent"
             fab:fab_colorRipple="@color/colorPrimaryDark"

@@ -26,6 +26,8 @@ class LoginFragment : BaseFragment(), LoginNavigationListener {
         this.mViewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container,
                 false)
 
+        this.mViewBinding.fragmentLoginIvImage.setOnClickListener { this.autocomplete() }
+
         return this.mViewBinding.root
 
     }
@@ -76,6 +78,13 @@ class LoginFragment : BaseFragment(), LoginNavigationListener {
         val intent = Intent(context, MainActivity::class.java)
         startActivity(intent)
         activity?.finish()
+    }
+
+    private fun autocomplete() {
+        this.mViewBinding.fragmentLoginEtEmail.setText("andrei.mares06@gmail.com")
+        this.mViewBinding.fragmentLoginEtPassword.setText("21andreimares")
+
+
     }
 
     companion object {

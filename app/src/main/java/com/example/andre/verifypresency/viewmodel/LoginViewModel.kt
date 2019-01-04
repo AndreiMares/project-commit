@@ -61,7 +61,6 @@ class LoginViewModel(private val mLoginRepository: LoginRepository)
 
     }
 
-
     /**
      * Navigate to RegisterActivity when user press Register Button.
      */

@@ -1,17 +1,20 @@
 package com.example.andre.verifypresency.source.models
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
+import com.google.firebase.firestore.PropertyName
 
-//@Entity(tableName = "Member")
-data class Member(/*@PrimaryKey(autoGenerate = true)
-                  var memberId: Long,*/
+data class Member(
+        @set:PropertyName("Name")
+        @get:PropertyName("Name")
         var name: String,
+        @set:PropertyName("Email")
+        @get:PropertyName("Email")
         var email: String,
+        @set:PropertyName("PhoneNumber")
+        @get:PropertyName("PhoneNumber")
         var phoneNumber: String,
+        @set:PropertyName("Active")
+        @get:PropertyName("Active")
         var active: Boolean) : BaseEntity() {
 
+    constructor() : this("","","", false)
 }
