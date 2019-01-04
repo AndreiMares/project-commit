@@ -28,7 +28,7 @@ class EventFragment : Fragment() {
 
     }
 
-    fun openEventActivity() {
+    private fun openEventActivity() {
         val intent = Intent(context, EventDetailActivity::class.java)
         startActivity(intent)
     }
