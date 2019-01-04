@@ -46,6 +46,32 @@ class MemberRemoteDataSource {
 
     }
 
+    fun getMemberList(callBack: MemberDataSource.LoadListCallback) {
+
+        val key = FirebaseAuth.getInstance().currentUser?.uid
+
+        this.mDB.collection("Member")
+                .whereEqualTo("UserId", key)
+                .get()
+                .addOnSuccessListener { documents ->
+
+                    if (documents.isEmpty) {
+                        callBack.onDataNotAvailable()
+                    } else {
+                        val list = documents.toObjects(Member::class.java)
+
+                        callBack.onListLoaded(list)
+                    }
+
+                }
+                .addOnFailureListener { exception ->
+
+                    exception.message?.let { callBack.onError(it) }
+                    Log.w(TAG, "Error getting documents: ", exception)
+                }
+
+    }
+
     private fun saveMember(key: String, memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
 
         this.mDB.collection("Member").document(key).set(memberDetail)

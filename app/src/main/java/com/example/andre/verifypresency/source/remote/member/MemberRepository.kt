@@ -5,7 +5,6 @@ import com.example.andre.verifypresency.source.models.Member
 class MemberRepository(
         private val mMemberRemoteDataSource: MemberRemoteDataSource) {
 
-
     fun saveMember(member: Member, callBack: MemberDataSource.SaveCallback) {
 
         this.mMemberRemoteDataSource.saveMember(member, object : MemberDataSource.SaveCallback {
@@ -23,14 +22,31 @@ class MemberRepository(
         })
     }
 
-    fun getMembers(id: String, callBack: MemberDataSource.LoadListCallback) {
+    fun getMembersList(callBack: MemberDataSource.LoadListCallback) {
+
+        this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback {
+
+            override fun onListLoaded(users: List<Member>) {
+
+                callBack.onListLoaded(users)
+            }
+
+            override fun onDataNotAvailable() {
+                callBack.onDataNotAvailable()
+            }
+
+            override fun onError(message: String) {
+
+                callBack.onError(message)
+            }
+
+        })
 
     }
 
     fun getMember(id: String, callBack: MemberDataSource.LoadSingleCallback) {
 
     }
-
 
     companion object {
         @Volatile

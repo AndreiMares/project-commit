@@ -7,9 +7,11 @@ interface MemberDataSource {
 
     interface LoadListCallback {
 
-        fun onListLoaded(users: MutableLiveData<Member>)
+        fun onListLoaded(users: List<Member>)
 
         fun onDataNotAvailable()
+
+        fun onError(message: String)
     }
 
     interface LoadSingleCallback {

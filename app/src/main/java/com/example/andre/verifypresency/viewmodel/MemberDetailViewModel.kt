@@ -7,6 +7,7 @@ import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.form.member.MemberForm
+import com.example.andre.verifypresency.source.models.Member
 import com.example.andre.verifypresency.source.remote.member.MemberDataSource
 import com.example.andre.verifypresency.source.remote.member.MemberRepository
 
@@ -49,6 +50,8 @@ class MemberDetailViewModel(private val memberRepository: MemberRepository)
     val fabVisibilityView: ObservableBoolean = ObservableBoolean(true)
 
     private var mMessage = MutableLiveData<String>()
+
+    private val mMemberLiveData = MutableLiveData<List<Member>>()
 
     init {
 
@@ -139,5 +142,30 @@ class MemberDetailViewModel(private val memberRepository: MemberRepository)
         }
     }
 
+    fun initList() {
+
+        dataLoading.set(true)
+        enableView.set(false)
+
+        this.memberRepository.getMembersList(object : MemberDataSource.LoadListCallback {
+            override fun onListLoaded(users: List<Member>) {
+
+                mMemberLiveData.postValue(users)
+            }
+
+            override fun onDataNotAvailable() {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+            override fun onError(message: String) {
+                mMessage.value = message
+            }
+
+        })
+
+    }
+
     fun getMessage(): LiveData<String> = this.mMessage
+
+    fun getMemberList(): LiveData<List<Member>> = this.mMemberLiveData
 }
