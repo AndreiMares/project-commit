@@ -20,4 +20,7 @@
     <dimen name="buttons">14sp</dimen>
     <dimen name="text_input">16sp</dimen>
     <dimen name="helper_text_size">12sp</dimen>
+
+    <dimen name="imageView_width">60dp</dimen>
+    <dimen name="imageView_height">60dp</dimen>
 </resources>
