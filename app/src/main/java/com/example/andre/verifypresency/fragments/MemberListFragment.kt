@@ -11,13 +11,13 @@ import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.activities.MemberDetailActivity
 import com.example.andre.verifypresency.databinding.FragmentMemberBinding
 
-class MemberFragment : Fragment() {
+class MemberListFragment : Fragment() {
 
     private lateinit var mViewBinding: FragmentMemberBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.mViewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_member, container, false)
+        this.mViewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_member_list, container, false)
 
 
         this.mViewBinding.fragmentMemberFab.setOnClickListener { this.openMemberActivity() }
@@ -37,7 +37,7 @@ class MemberFragment : Fragment() {
 
 
     companion object {
-        fun newInstance() = MemberFragment
+        fun newInstance() = MemberListFragment
     }
 
 

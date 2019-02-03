@@ -5,7 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.fragments.EventFragment
-import com.example.andre.verifypresency.fragments.MemberFragment
+import com.example.andre.verifypresency.fragments.MemberListFragment
 import com.example.andre.verifypresency.viewmodel.EventViewModel
 import com.example.andre.verifypresency.viewpager.SectionPagerAdapter
 import com.example.andre.verifypresency.viewmodel.RegisterModelFactory
@@ -30,7 +30,7 @@ class MainActivity : BaseActivity() {
         val adapter = SectionPagerAdapter(supportFragmentManager)
         container.currentItem
         adapter.addFragment(EventFragment())
-        adapter.addFragment(MemberFragment())
+        adapter.addFragment(MemberListFragment())
 
         //initialized viewPager with an adapter
         container.adapter = adapter

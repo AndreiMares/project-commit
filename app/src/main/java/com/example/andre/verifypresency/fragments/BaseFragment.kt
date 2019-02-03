@@ -6,14 +6,14 @@ import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.layout_progressbar.*
 
-open class BaseFragment: Fragment() {
+open class BaseFragment : Fragment() {
 
     protected fun startProgressBar() {
         progressBar?.visibility = View.VISIBLE
     }
 
     protected fun hideProgressBar() {
-        if(progressBar?.visibility == View.VISIBLE)
+        if (progressBar?.visibility == View.VISIBLE)
             progressBar.visibility = View.INVISIBLE
     }
 
