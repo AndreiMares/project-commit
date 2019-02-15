@@ -67,7 +67,7 @@
             android:name=".activities.RegisterActivity"
             android:windowSoftInputMode="adjustPan|stateHidden"
             android:theme="@style/AppTheme"
-            android:launchMode="singleTop"
+            android:launchMode="singleInstance"
             android:screenOrientation="portrait"/>
 
     </application>

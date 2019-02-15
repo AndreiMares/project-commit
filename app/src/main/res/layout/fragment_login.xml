@@ -132,7 +132,7 @@
                     android:textColor="@color/lightBlue"
                     android:textStyle="bold"
                     android:textAllCaps="false"
-                    android:onClick="@{() -> model.onRegisterButtcconClick()}"
+                    android:onClick="@{() -> model.onRegisterButtonClick()}"
                     android:background="@color/transparent"/>
 
                 <!--<TextView-->
