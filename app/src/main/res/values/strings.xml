@@ -3,6 +3,7 @@
 
     <string name="john_doe">John Doe</string>
     <string name="empty_list">No items in the list</string>
+    <string name="error_list">Something went wrong</string>
 
     <!--Login activity strings-->
     <string name="login_email">Email</string>

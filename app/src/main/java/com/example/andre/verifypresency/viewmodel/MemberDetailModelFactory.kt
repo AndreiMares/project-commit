@@ -15,6 +15,9 @@ class MemberDetailModelFactory(private val memberRepository: MemberRepository)
                     isAssignableFrom(MemberDetailViewModel::class.java) ->
                         MemberDetailViewModel(memberRepository)
 
+                    isAssignableFrom(MemberViewModel::class.java) ->
+                        MemberViewModel(memberRepository)
+
                     else ->
                         throw IllegalArgumentException("Unknown ViewModel class: ${modelClass.name}")
                 }
