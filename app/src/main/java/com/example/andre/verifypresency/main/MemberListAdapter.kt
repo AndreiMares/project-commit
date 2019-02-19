@@ -1,13 +1,11 @@
-package com.example.andre.verifypresency.adapters
+package com.example.andre.verifypresency.main
 
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.source.models.Member
-import com.example.andre.verifypresency.viewholder.MemberListViewHolder
-import com.example.andre.verifypresency.viewmodel.MemberViewModel
+import com.example.andre.verifypresency.main.form.Member
 
 class MemberListAdapter(
         private var memberList: List<Member>,

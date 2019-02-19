@@ -1,7 +1,7 @@
-package com.example.andre.verifypresency.source.remote.member
+package com.example.andre.verifypresency.main.remote
 
 import android.util.Log
-import com.example.andre.verifypresency.source.models.Member
+import com.example.andre.verifypresency.main.form.Member
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

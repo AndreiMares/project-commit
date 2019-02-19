@@ -1,6 +1,4 @@
-package com.example.andre.verifypresency.source.remote.member
-
-import com.example.andre.verifypresency.source.models.Member
+package com.example.andre.verifypresency.main.remote
 
 interface MemberDataSource {
 

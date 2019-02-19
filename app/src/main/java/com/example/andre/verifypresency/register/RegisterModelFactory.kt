@@ -2,6 +2,7 @@ package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.example.andre.verifypresency.register.remote.RegisterRepository
 import com.example.andre.verifypresency.util.InjectorUtils
 
 class RegisterModelFactory(private val registerRepository: RegisterRepository)

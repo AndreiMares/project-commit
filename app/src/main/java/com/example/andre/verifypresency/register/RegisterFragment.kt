@@ -3,18 +3,18 @@ package com.example.andre.verifypresency.register
 import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
-import com.example.andre.verifypresency.fragments.BaseFragment
 
 /**
  *
  */
-class RegisterFragment : BaseFragment(), RegisterNavigationListener {
+class RegisterFragment : Fragment(), RegisterNavigationListener {
 
     //region Variables
 

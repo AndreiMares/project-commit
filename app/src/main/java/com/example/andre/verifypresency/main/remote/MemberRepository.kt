@@ -1,6 +1,6 @@
-package com.example.andre.verifypresency.source.remote.member
+package com.example.andre.verifypresency.main.remote
 
-import com.example.andre.verifypresency.source.models.Member
+import com.example.andre.verifypresency.main.form.Member
 
 class MemberRepository(
         private val mMemberRemoteDataSource: MemberRemoteDataSource) {

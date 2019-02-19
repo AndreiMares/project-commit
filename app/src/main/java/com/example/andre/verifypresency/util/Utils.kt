@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.activities.InfoActivity
-import com.example.andre.verifypresency.activities.MainActivity
+import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.activities.ProfileActivity
 import com.example.andre.verifypresency.activities.SearchActivity
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx

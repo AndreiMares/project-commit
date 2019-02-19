@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.register
+package com.example.andre.verifypresency.register.remote
 
 import com.example.andre.verifypresency.register.form.User
 
@@ -27,7 +27,8 @@ class RegisterRepository(
         private var INSTANCE: RegisterRepository? = null
 
         fun getInstance(usersRemoteDateSource: RegisterRemoteDataSource): RegisterRepository =
-                INSTANCE ?: synchronized(this) {
+                INSTANCE
+                        ?: synchronized(this) {
                     INSTANCE
                             ?: RegisterRepository(usersRemoteDateSource).also { INSTANCE = it }
                 }

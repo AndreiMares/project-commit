@@ -7,6 +7,8 @@ import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.login.form.LoginForm
+import com.example.andre.verifypresency.login.remote.LoginDataSource
+import com.example.andre.verifypresency.login.remote.LoginRepository
 
 class LoginViewModel(private val mLoginRepository: LoginRepository)
     : ViewModel() {

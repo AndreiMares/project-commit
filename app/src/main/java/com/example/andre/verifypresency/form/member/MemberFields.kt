@@ -1,6 +1,6 @@
 package com.example.andre.verifypresency.form.member
 
-import com.example.andre.verifypresency.source.models.Member
+import com.example.andre.verifypresency.main.form.Member
 
 /**
  * Class which encapsulates user inputs.

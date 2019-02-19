@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.fragments
+package com.example.andre.verifypresency.main
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -8,23 +8,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.databinding.FragmentEventBinding
+import com.example.andre.verifypresency.databinding.FragmentEventListBinding
 import com.example.andre.verifypresency.activities.EventDetailActivity
 
 
-class EventFragment : Fragment() {
+class EventListFragment : Fragment() {
 
-    private lateinit var mViewBinding: FragmentEventBinding
+    private lateinit var viewBinding: FragmentEventListBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.mViewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_event, container,
+        this.viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_list, container,
                 false)
 
 
-        this.mViewBinding.fragmentEventFab.setOnClickListener { this.openEventActivity() }
+        this.viewBinding.fragmentEventFab.setOnClickListener { this.openEventActivity() }
 
-        return this.mViewBinding.root
+        return this.viewBinding.root
 
     }
 
@@ -34,7 +34,7 @@ class EventFragment : Fragment() {
     }
 
     companion object {
-        fun newInstance() = EventFragment
+        fun newInstance() = EventListFragment
     }
 
 }

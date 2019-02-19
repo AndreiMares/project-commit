@@ -11,7 +11,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentLoginBinding
-import com.example.andre.verifypresency.activities.MainActivity
+import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
 
 class LoginFragment : Fragment(), LoginNavigationListener {

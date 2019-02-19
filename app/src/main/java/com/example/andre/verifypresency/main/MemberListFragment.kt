@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.fragments
+package com.example.andre.verifypresency.main
 
 import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
@@ -11,10 +11,8 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.activities.MemberDetailActivity
-import com.example.andre.verifypresency.adapters.MemberListAdapter
 import com.example.andre.verifypresency.databinding.FragmentMemberListBinding
 import com.example.andre.verifypresency.viewmodel.MemberDetailModelFactory
-import com.example.andre.verifypresency.viewmodel.MemberViewModel
 
 class MemberListFragment : Fragment() {
 

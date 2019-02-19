@@ -2,7 +2,8 @@ package com.example.andre.verifypresency.viewmodel
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.example.andre.verifypresency.source.remote.member.MemberRepository
+import com.example.andre.verifypresency.main.MemberViewModel
+import com.example.andre.verifypresency.main.remote.MemberRepository
 import com.example.andre.verifypresency.util.InjectorUtils
 
 class MemberDetailModelFactory(private val memberRepository: MemberRepository)

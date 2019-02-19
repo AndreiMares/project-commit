@@ -9,7 +9,7 @@ xmlns:bind="http://schemas.android.com/tools">
 
     <variable
         name="model"
-        type="com.example.andre.verifypresency.source.models.Member" />
+        type="com.example.andre.verifypresency.main.form.Member" />
 
 
 </data>

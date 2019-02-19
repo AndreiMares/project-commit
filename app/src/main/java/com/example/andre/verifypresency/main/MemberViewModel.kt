@@ -1,12 +1,12 @@
-package com.example.andre.verifypresency.viewmodel
+package com.example.andre.verifypresency.main
 
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
-import com.example.andre.verifypresency.source.models.Member
-import com.example.andre.verifypresency.source.remote.member.MemberDataSource
-import com.example.andre.verifypresency.source.remote.member.MemberRepository
+import com.example.andre.verifypresency.main.form.Member
+import com.example.andre.verifypresency.main.remote.MemberDataSource
+import com.example.andre.verifypresency.main.remote.MemberRepository
 
 class MemberViewModel(private val memberRepository: MemberRepository)
     : ViewModel() {

@@ -6,10 +6,9 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
-import com.example.andre.verifypresency.register.RegisterNavigationListener
 import com.example.andre.verifypresency.register.form.RegisterForm
-import com.example.andre.verifypresency.register.RegisterDataSource
-import com.example.andre.verifypresency.register.RegisterRepository
+import com.example.andre.verifypresency.register.remote.RegisterDataSource
+import com.example.andre.verifypresency.register.remote.RegisterRepository
 
 /**
  * ViewModel used for registration layout.

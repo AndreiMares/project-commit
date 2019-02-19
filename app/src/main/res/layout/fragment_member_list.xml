@@ -11,7 +11,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.viewmodel.MemberViewModel" />
+            type="com.example.andre.verifypresency.main.MemberViewModel" />
     </data>
 
     <RelativeLayout

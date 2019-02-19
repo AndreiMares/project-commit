@@ -2,6 +2,7 @@ package com.example.andre.verifypresency.login
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
+import com.example.andre.verifypresency.login.remote.LoginRepository
 import com.example.andre.verifypresency.util.InjectorUtils
 
 class LoginModelFactory(private val loginRepository: LoginRepository)

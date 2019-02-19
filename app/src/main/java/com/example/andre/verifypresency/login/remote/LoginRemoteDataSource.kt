@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.login
+package com.example.andre.verifypresency.login.remote
 
 import com.example.andre.verifypresency.login.form.LoginFields
 import com.google.firebase.auth.FirebaseAuth
