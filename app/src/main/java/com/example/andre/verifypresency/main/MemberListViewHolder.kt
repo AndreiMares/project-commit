@@ -7,8 +7,9 @@ import  com.example.andre.verifypresency.databinding.RowMemberListItemBinding
 class MemberListViewHolder(private val viewBinding: RowMemberListItemBinding) : RecyclerView.ViewHolder(viewBinding.root) {
 
 
-    fun bind(member: Member) {
+    fun bind(member: Member, viewModel: MemberViewModel) {
         this.viewBinding.model = member
+        this.viewBinding.viewModel = viewModel
         this.viewBinding.executePendingBindings()
     }
 }

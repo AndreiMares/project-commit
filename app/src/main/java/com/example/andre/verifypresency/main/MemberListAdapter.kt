@@ -43,7 +43,7 @@ class MemberListAdapter(
 //        }
 
 
-        p0.bind(product)
+        p0.bind(product, this.viewModel)
 
 
 //

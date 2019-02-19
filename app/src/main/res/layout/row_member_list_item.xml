@@ -11,13 +11,18 @@ xmlns:bind="http://schemas.android.com/tools">
         name="model"
         type="com.example.andre.verifypresency.main.form.Member" />
 
+    <variable
+        name="viewModel"
+        type="com.example.andre.verifypresency.main.MemberViewModel" />
+
 
 </data>
 
 <android.support.v7.widget.CardView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="12dp">
+    android:layout_margin="12dp"
+    android:onClick="@{() -> viewModel.cardViewClicked()}">
 
     <LinearLayout
         android:layout_width="match_parent"

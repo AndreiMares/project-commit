@@ -21,7 +21,7 @@ class MemberViewModel(private val memberRepository: MemberRepository)
 
     fun prepareLoadingList(): Unit = this.loadProductList()
 
-    fun filter() = bottomSheetBehaviorState.call()
+    fun cardViewClicked() = bottomSheetBehaviorState.call()
 
     private fun loadProductList() {
 
