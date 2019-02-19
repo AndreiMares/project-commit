@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.form.member
+package com.example.andre.verifypresency.memberdetail.form
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable

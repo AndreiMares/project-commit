@@ -6,7 +6,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.activities.BaseActivity
+import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.login.LoginActivity
 import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import com.example.andre.verifypresency.util.setupActionBar

@@ -1,8 +1,9 @@
-package com.example.andre.verifypresency.activities
+package com.example.andre.verifypresency.eventdetail
 
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.BaseActivity
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class EventDetailActivity : BaseActivity() {

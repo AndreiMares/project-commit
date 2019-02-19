@@ -1,8 +1,8 @@
-package com.example.andre.verifypresency.activities
+package com.example.andre.verifypresency.profile
 
 import android.os.Bundle
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.activities.BaseActivity
+import com.example.andre.verifypresency.BaseActivity
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.android.synthetic.main.snippet_top_profilebar.*
 

@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.activities.BaseActivity
+import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.register.RegisterModelFactory
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*

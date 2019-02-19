@@ -9,7 +9,7 @@
 
         <variable
             name="model"
-            type="com.example.andre.verifypresency.viewmodel.MemberDetailViewModel" />
+            type="com.example.andre.verifypresency.memberdetail.MemberDetailViewModel" />
     </data>
 
     <RelativeLayout

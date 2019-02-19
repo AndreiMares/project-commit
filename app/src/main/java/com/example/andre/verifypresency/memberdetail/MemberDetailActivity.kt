@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.activities
+package com.example.andre.verifypresency.memberdetail
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
@@ -8,14 +8,13 @@ import android.os.Bundle
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.databinding.ActivityMemberDetailBinding
-import com.example.andre.verifypresency.viewmodel.MemberDetailModelFactory
-import com.example.andre.verifypresency.viewmodel.MemberDetailViewModel
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class MemberDetailActivity : BaseActivity() {
 
-    private lateinit var mMemberViewDetailModel: MemberDetailViewModel
+    private lateinit var memberViewDetailModel: MemberDetailViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +23,9 @@ class MemberDetailActivity : BaseActivity() {
 
         this.configureViews()
 
-        this.mMemberViewDetailModel = this.obtainViewModel(MemberDetailViewModel::class.java)
+        this.memberViewDetailModel = this.obtainViewModel(MemberDetailViewModel::class.java)
 
-        binding.model = this.mMemberViewDetailModel
+        binding.model = this.memberViewDetailModel
 
     }
 
@@ -46,7 +45,7 @@ class MemberDetailActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
 
-        this.mMemberViewDetailModel.getMessage().observe(this, Observer {
+        this.memberViewDetailModel.getMessage().observe(this, Observer {
 
             Toast.makeText(this, it, Toast.LENGTH_LONG).show()
         })

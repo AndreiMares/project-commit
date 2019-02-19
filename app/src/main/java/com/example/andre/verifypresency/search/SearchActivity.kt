@@ -1,17 +1,18 @@
-package com.example.andre.verifypresency.activities
+package com.example.andre.verifypresency.search
 
 import android.os.Bundle
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.BaseActivity
 
-class InfoActivity : BaseActivity() {
+class SearchActivity : BaseActivity() {
 
-    private val INFO_NUM = 3
+    private val SEARCH_NUM = 1
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_base)
 
-        super.configureBottomNav(this.INFO_NUM)
+        super.configureBottomNav(this.SEARCH_NUM)
     }
 
 }

@@ -10,9 +10,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.activities.MemberDetailActivity
+import com.example.andre.verifypresency.memberdetail.MemberDetailActivity
 import com.example.andre.verifypresency.databinding.FragmentMemberListBinding
-import com.example.andre.verifypresency.viewmodel.MemberDetailModelFactory
+import com.example.andre.verifypresency.memberdetail.MemberDetailModelFactory
 
 class MemberListFragment : Fragment() {
 

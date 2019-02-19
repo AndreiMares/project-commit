@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.viewmodel
+package com.example.andre.verifypresency.memberdetail
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -6,7 +6,7 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
-import com.example.andre.verifypresency.form.member.MemberForm
+import com.example.andre.verifypresency.memberdetail.form.MemberForm
 import com.example.andre.verifypresency.main.remote.MemberDataSource
 import com.example.andre.verifypresency.main.remote.MemberRepository
 

@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.form.member
+package com.example.andre.verifypresency.memberdetail.form
 
 import com.example.andre.verifypresency.main.form.Member
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentEventListBinding
-import com.example.andre.verifypresency.activities.EventDetailActivity
+import com.example.andre.verifypresency.eventdetail.EventDetailActivity
 
 
 class EventListFragment : Fragment() {

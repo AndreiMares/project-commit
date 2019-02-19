@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.viewmodel
+package com.example.andre.verifypresency.memberdetail
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
