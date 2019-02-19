@@ -9,6 +9,10 @@
         <variable
             name="model"
             type="com.example.andre.verifypresency.login.LoginViewModel" />
+
+        <variable
+            name="appModule"
+            type="com.example.andre.verifypresency.AppModuleEnum" />
     </data>
 
     <LinearLayout
@@ -119,7 +123,7 @@
                     android:layout_gravity="center_horizontal"
                     android:background="@color/light_blue_600"
                     android:enabled="@{model.loginForm.valid}"
-                    android:onClick="@{()->model.onSignInButtonClick()}"
+                    android:onClick="@{()->model.onButtonClicked(appModule.LOGIN)}"
                     android:layout_marginBottom="@dimen/activity_vertical_margin"/>
 
                 <Button
@@ -132,45 +136,13 @@
                     android:textColor="@color/lightBlue"
                     android:textStyle="bold"
                     android:textAllCaps="false"
-                    android:onClick="@{() -> model.onRegisterButtonClick()}"
+                    android:onClick="@{()->model.onButtonClicked(appModule.REGISTER)}"
+                    android:enabled="@{model.dataLoading ? false : true}"
                     android:background="@color/transparent"/>
-
-                <!--<TextView-->
-                    <!--android:id="@+id/fragment_login_tv_register"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="@string/login_register"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:textColor="@color/lightBlue"-->
-                    <!--android:textStyle="bold"/>-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/fragment_login_tv_forgotPass"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="@string/login_forgot_pass"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:textColor="@color/lightBlue"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:visibility="gone"/>-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/fragment_login_tv_resendEmail"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:text="@string/login_resend_verification_email"-->
-                    <!--android:layout_gravity="center_horizontal"-->
-                    <!--android:textColor="@color/lightBlue"-->
-                    <!--android:textStyle="bold"-->
-                    <!--android:visibility="gone"/>-->
 
             </LinearLayout>
 
         </RelativeLayout>
-
-
 
     </LinearLayout>
 

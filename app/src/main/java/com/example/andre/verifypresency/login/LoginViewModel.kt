@@ -1,11 +1,11 @@
 package com.example.andre.verifypresency.login
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
+import com.example.andre.verifypresency.AppModuleEnum
+import com.example.andre.verifypresency.SingleLiveEvent
 import com.example.andre.verifypresency.login.form.LoginForm
 import com.example.andre.verifypresency.login.remote.LoginDataSource
 import com.example.andre.verifypresency.login.remote.LoginRepository
@@ -13,96 +13,58 @@ import com.example.andre.verifypresency.login.remote.LoginRepository
 class LoginViewModel(private val mLoginRepository: LoginRepository)
     : ViewModel() {
 
-    //region Public Fields
-
-    /**
-     * Validation form variable specified for fragment_login.xml layout.
-     */
-    lateinit var loginForm: LoginForm
-
-    /**
-     * OnFocusChangeListener specified for "Email" View.
-     */
+    var loginForm: LoginForm = LoginForm()
     lateinit var onFocusEmail: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Password" View.
-     */
     lateinit var onFocusPassword: View.OnFocusChangeListener
 
-    /**
-     * Variable used to show/hide Progress Bar.
-     */
+    //observable fields
     val dataLoading: ObservableBoolean = ObservableBoolean(false)
+    val snackBarMessage = SingleLiveEvent<String>()
+    val navigation = SingleLiveEvent<AppModuleEnum>()
 
-    //endregion
-
-    //region Private Fields
-
-    private lateinit var mLoginNavigationListener: LoginNavigationListener
-
-    private var mMessage = MutableLiveData<String>()
-
-    //endregion
-
-    //region Public Functions
-
-    /**
-     * Initialize onFocusChangeListeners and loginForm.
-     */
-    fun initialize(listener: LoginNavigationListener) {
-
-        this.mLoginNavigationListener = listener
-
-        this.loginForm = LoginForm()
+    init {
 
         this.initOnFocusListeners()
 
     }
 
-    /**
-     * Navigate to RegisterActivity when user press Register Button.
-     */
-    fun onRegisterButtonClick() {
+    fun onButtonClicked(appModuleEnum: AppModuleEnum): Unit =
+            when (appModuleEnum) {
 
-        if (!this.dataLoading.get())
-            this.mLoginNavigationListener.onSignUpClicked()
-    }
+                AppModuleEnum.LOGIN -> {
+                    this.onSignInButtonClick()
+                }
+
+                AppModuleEnum.REGISTER -> {
+                    navigation.value = AppModuleEnum.REGISTER
+                }
+            }
 
     /**
      * Register Button click handler.
      */
-    fun onSignInButtonClick() {
+    private fun onSignInButtonClick() {
         if (this.loginForm.valid) {
 
             dataLoading.set(true)
 
-            this.mLoginRepository.login(this.loginForm.loginField, object : LoginDataSource.LoginCallback {
+            this.mLoginRepository.login(data = this.loginForm.loginField, callBack = object : LoginDataSource.LoginCallback {
 
                 override fun onLoginSuccess() {
 
                     dataLoading.set(false)
 
-                    mLoginNavigationListener.onSignInClicked()
+                    navigation.value = AppModuleEnum.LOGIN
                 }
 
                 override fun onLoginFailed(message: String) {
                     dataLoading.set(false)
 
-                    mMessage.value = message
+                    snackBarMessage.value = message
                 }
-
             })
-
-
         }
     }
-
-    fun getMessage(): LiveData<String> = this.mMessage
-
-    //endregion
-
-    //region Private Functions
 
     private fun initOnFocusListeners() {
 
@@ -131,9 +93,5 @@ class LoginViewModel(private val mLoginRepository: LoginRepository)
                 this.loginForm.passwordValid(true)
 
         }
-
-
     }
-
-    //endregion
 }

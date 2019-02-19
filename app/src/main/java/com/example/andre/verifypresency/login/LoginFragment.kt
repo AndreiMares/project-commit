@@ -4,59 +4,61 @@ import android.arch.lifecycle.Observer
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import com.example.andre.verifypresency.AppModuleEnum
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentLoginBinding
 import com.example.andre.verifypresency.main.MainActivity
 import com.example.andre.verifypresency.register.RegisterActivity
 
-class LoginFragment : Fragment(), LoginNavigationListener {
+class LoginFragment : Fragment(){
 
-    private lateinit var mViewBinding: FragmentLoginBinding
-    private lateinit var mLoginViewModel: LoginViewModel
+    private lateinit var viewBinding: FragmentLoginBinding
+    private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.mViewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container,
+        this.viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_login, container,
                 false)
 
-        this.mViewBinding.fragmentLoginIvImage.setOnClickListener { this.autocomplete() }
+        this.loginViewModel = (activity as LoginActivity).obtainViewModel()
 
-        return this.mViewBinding.root
+        this.viewBinding.model = this.loginViewModel
 
-    }
+        this.viewBinding.fragmentLoginIvImage.setOnClickListener { this.autocomplete() }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        this.mLoginViewModel = (activity as LoginActivity).obtainViewModel()
-
-        this.mLoginViewModel.initialize(this)
-
-        this.mViewBinding.model = this.mLoginViewModel
+        return this.viewBinding.root
 
     }
 
     override fun onStart() {
         super.onStart()
-        this.mLoginViewModel.getMessage().observe(this, Observer {
 
-            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-        })
-    }
+        this.loginViewModel.apply {
+            snackBarMessage.observe(this@LoginFragment, Observer<String> { it ->
 
+                it?.let { Snackbar.make(viewBinding.root, it, Snackbar.LENGTH_SHORT).show() }
+            })
+        }
 
-    override fun onSignInClicked() {
-        this.navigateToMainActivity()
-    }
+        this.loginViewModel.apply {
+            navigation.observe(this@LoginFragment, Observer<AppModuleEnum> { it ->
 
-    override fun onSignUpClicked() {
+                it?.let {
 
-        this.navigateRegisterActivity()
+                    when (it) {
+
+                        AppModuleEnum.REGISTER -> navigateRegisterActivity()
+                        AppModuleEnum.LOGIN -> navigateToMainActivity()
+                    }
+                }
+            })
+        }
     }
 
     /**
@@ -79,8 +81,8 @@ class LoginFragment : Fragment(), LoginNavigationListener {
     }
 
     private fun autocomplete() {
-        this.mViewBinding.fragmentLoginEtEmail.setText("andrei.mares06@gmail.com")
-        this.mViewBinding.fragmentLoginEtPassword.setText("21andreimares")
+        this.viewBinding.fragmentLoginEtEmail.setText("andrei.mares06@gmail.com")
+        this.viewBinding.fragmentLoginEtPassword.setText("21andreimares")
 
 
     }
