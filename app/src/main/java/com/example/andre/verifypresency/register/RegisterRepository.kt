@@ -1,6 +1,6 @@
-package com.example.andre.verifypresency.source.remote.register
+package com.example.andre.verifypresency.register
 
-import com.example.andre.verifypresency.source.models.User
+import com.example.andre.verifypresency.register.form.User
 
 class RegisterRepository(
         private val usersRemoteDateSource: RegisterRemoteDataSource) {
@@ -28,7 +28,8 @@ class RegisterRepository(
 
         fun getInstance(usersRemoteDateSource: RegisterRemoteDataSource): RegisterRepository =
                 INSTANCE ?: synchronized(this) {
-                    INSTANCE ?: RegisterRepository(usersRemoteDateSource).also { INSTANCE = it }
+                    INSTANCE
+                            ?: RegisterRepository(usersRemoteDateSource).also { INSTANCE = it }
                 }
 
     }

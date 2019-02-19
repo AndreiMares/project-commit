@@ -2,7 +2,7 @@ package com.example.andre.verifypresency.source.remote
 
 import com.example.andre.verifypresency.login.LoginRemoteDataSource
 import com.example.andre.verifypresency.source.remote.member.MemberRemoteDataSource
-import com.example.andre.verifypresency.source.remote.register.RegisterRemoteDataSource
+import com.example.andre.verifypresency.register.RegisterRemoteDataSource
 
 class RemoteDataBase private constructor() {
 

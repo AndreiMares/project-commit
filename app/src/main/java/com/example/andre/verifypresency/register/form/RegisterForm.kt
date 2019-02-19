@@ -1,10 +1,9 @@
-package com.example.andre.verifypresency.form.register
+package com.example.andre.verifypresency.register.form
 
 import android.databinding.BaseObservable
 import android.databinding.Bindable
 import com.example.andre.verifypresency.BR
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.source.models.User
 
 /**
  * RegisterForm represent a validation layer for every view from fragment_register.xml layout.

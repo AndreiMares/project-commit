@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.viewmodel
+package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -6,10 +6,10 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
-import com.example.andre.verifypresency.listener.RegisterNavigationListener
-import com.example.andre.verifypresency.form.register.RegisterForm
-import com.example.andre.verifypresency.source.remote.register.RegisterDataSource
-import com.example.andre.verifypresency.source.remote.register.RegisterRepository
+import com.example.andre.verifypresency.register.RegisterNavigationListener
+import com.example.andre.verifypresency.register.form.RegisterForm
+import com.example.andre.verifypresency.register.RegisterDataSource
+import com.example.andre.verifypresency.register.RegisterRepository
 
 /**
  * ViewModel used for registration layout.

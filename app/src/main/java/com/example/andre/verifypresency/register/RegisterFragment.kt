@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.fragments
+package com.example.andre.verifypresency.register
 
 import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
@@ -8,10 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.activities.RegisterActivity
 import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
-import com.example.andre.verifypresency.listener.RegisterNavigationListener
-import com.example.andre.verifypresency.viewmodel.RegisterViewModel
+import com.example.andre.verifypresency.fragments.BaseFragment
 
 /**
  *

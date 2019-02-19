@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.source.remote.register
+package com.example.andre.verifypresency.register
 
 interface RegisterDataSource {
 

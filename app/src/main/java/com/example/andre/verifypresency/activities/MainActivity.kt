@@ -8,7 +8,7 @@ import com.example.andre.verifypresency.fragments.EventFragment
 import com.example.andre.verifypresency.fragments.MemberListFragment
 import com.example.andre.verifypresency.viewmodel.EventViewModel
 import com.example.andre.verifypresency.viewpager.SectionPagerAdapter
-import com.example.andre.verifypresency.viewmodel.RegisterModelFactory
+import com.example.andre.verifypresency.register.RegisterModelFactory
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*
 

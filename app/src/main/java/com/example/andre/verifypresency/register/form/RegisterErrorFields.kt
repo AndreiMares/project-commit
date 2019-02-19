@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.form.register
+package com.example.andre.verifypresency.register.form
 
 
 /**

@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.listener
+package com.example.andre.verifypresency.login
 
 interface LoginNavigationListener {
 

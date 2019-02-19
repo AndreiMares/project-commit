@@ -1,6 +1,6 @@
-package com.example.andre.verifypresency.source.remote.register
+package com.example.andre.verifypresency.register
 
-import com.example.andre.verifypresency.source.models.User
+import com.example.andre.verifypresency.register.form.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlin.collections.HashMap

@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.source.models
+package com.example.andre.verifypresency.register.form
 
 /**
  * Class which encapsulates user inputs.

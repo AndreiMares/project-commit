@@ -6,7 +6,6 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
-import com.example.andre.verifypresency.listener.LoginNavigationListener
 import com.example.andre.verifypresency.login.form.LoginForm
 
 class LoginViewModel(private val mLoginRepository: LoginRepository)
