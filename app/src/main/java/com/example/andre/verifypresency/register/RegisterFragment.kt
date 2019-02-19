@@ -3,6 +3,7 @@ package com.example.andre.verifypresency.register
 import android.arch.lifecycle.Observer
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,53 +15,39 @@ import com.example.andre.verifypresency.databinding.FragmentRegisterBinding
 /**
  *
  */
-class RegisterFragment : Fragment(), RegisterNavigationListener {
+class RegisterFragment : Fragment() {
 
-    //region Variables
-
-    private lateinit var mViewDataBinding: FragmentRegisterBinding
-    private lateinit var mRegisterViewModel: RegisterViewModel
-
-    //endregion
-
-    //region Override
+    private lateinit var viewDataBinding: FragmentRegisterBinding
+    private lateinit var registerViewModel: RegisterViewModel
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
-        this.mViewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container,
+        this.viewDataBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container,
                 false)
 
-        return this.mViewDataBinding.root
+        this.registerViewModel = (activity as RegisterActivity).obtainViewModel()
 
+        this.viewDataBinding.model = this.registerViewModel
 
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-        this.mRegisterViewModel = (activity as RegisterActivity).obtainViewModel()
-
-        this.mRegisterViewModel.initialize(this)
-
-        this.mViewDataBinding.model = this.mRegisterViewModel
+        return this.viewDataBinding.root
 
     }
 
     override fun onStart() {
         super.onStart()
 
-        this.mRegisterViewModel.getMessage().observe(this, Observer {
+        this.registerViewModel.getMessage().observe(this, Observer {
 
             Toast.makeText(context, it, Toast.LENGTH_LONG).show()
         })
+
+        this.registerViewModel.apply {
+            navigation.observe(this@RegisterFragment, Observer<Unit> { it ->
+
+                it?.let { (activity as RegisterActivity).redirectToLoginScreen() }
+            })
+        }
     }
-
-    override fun onRegisterClicked() {
-
-        (activity as RegisterActivity).redirectToLoginScreen()
-    }
-
-    //endregion
 
     companion object {
         fun newInstance(): RegisterFragment = RegisterFragment()

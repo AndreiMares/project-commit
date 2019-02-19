@@ -6,6 +6,8 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
+import com.example.andre.verifypresency.AppModuleEnum
+import com.example.andre.verifypresency.SingleLiveEvent
 import com.example.andre.verifypresency.register.form.RegisterForm
 import com.example.andre.verifypresency.register.remote.RegisterDataSource
 import com.example.andre.verifypresency.register.remote.RegisterRepository
@@ -16,79 +18,22 @@ import com.example.andre.verifypresency.register.remote.RegisterRepository
 class RegisterViewModel(private val registerRepository: RegisterRepository)
     : ViewModel() {
 
-    //region Public Fields
-
-    /**
-     * Validation form variable specified for fragment_registration.xml layout.
-     */
-    lateinit var registerForm: RegisterForm
-
-    /**
-     * OnFocusChangeListener specified for "First Name" View.
-     */
+    var registerForm: RegisterForm = RegisterForm()
     lateinit var onFocusFirstName: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Last Name" View.
-     */
     lateinit var onFocusLastName: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Organization Name" View.
-     */
     lateinit var onFocusOrgName: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Email" View.
-     */
     lateinit var onFocusEmail: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Password" View.
-     */
     lateinit var onFocusPassword: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Confirm Password" View.
-     */
     lateinit var onFocusConfirm: View.OnFocusChangeListener
 
-    /**
-     * Variable used to show/hide Progress Bar.
-     */
+    //observable fields
     val dataLoading: ObservableBoolean = ObservableBoolean(false)
-
-    /**
-     * Variable used to enable/disable EditText while progressBar is active.
-     */
     val enableView: ObservableBoolean = ObservableBoolean(true)
-
-    //endregion
-
-    //region Private Fields
-
-    /**
-     * Variable used to go back to Login Activity: true/false.
-     */
-    private lateinit var mRegisterNavigationListener: RegisterNavigationListener
-
+    val navigation = SingleLiveEvent<Unit>()
     private var mMessage = MutableLiveData<String>()
 
-    //endregion
-
-    //region Public Functions
-
-    /**
-     * Initialize onFocusChangeListeners and RegisterForm.
-     */
-    fun initialize(listener: RegisterNavigationListener) {
-
-        this.mRegisterNavigationListener = listener
-
-        this.registerForm = RegisterForm()
-
+    init {
         this.initOnFocusListeners()
-
     }
 
     /**
@@ -108,7 +53,7 @@ class RegisterViewModel(private val registerRepository: RegisterRepository)
 
                     mMessage.value = message
 
-                    mRegisterNavigationListener.onRegisterClicked()
+                    navigation.call()
                 }
 
                 override fun onSaveFailed(message: String) {
@@ -122,10 +67,6 @@ class RegisterViewModel(private val registerRepository: RegisterRepository)
     }
 
     fun getMessage(): LiveData<String> = this.mMessage
-
-    //endregion
-
-    //region Private Functions
 
     private fun initOnFocusListeners() {
 
@@ -210,7 +151,5 @@ class RegisterViewModel(private val registerRepository: RegisterRepository)
 
         }
     }
-
-    //endregion
 
 }

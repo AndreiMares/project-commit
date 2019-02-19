@@ -13,12 +13,10 @@ import com.example.andre.verifypresency.util.setupActionBar
 
 class RegisterActivity : BaseActivity() {
 
-    //region Override
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        setContentView(R.layout.activity_register)
+        super.setContentView(R.layout.activity_register)
 
         this.findOrCreateEventsFragment()
 
@@ -39,17 +37,12 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
-    //endregion
-
-    //region Public Functions
-
     /**
      * Redirects user to Login Screen
      */
     fun redirectToLoginScreen() {
 
         val intent = Intent(this, LoginActivity::class.java)
-
         startActivity(intent)
         finish()
 
@@ -60,10 +53,6 @@ class RegisterActivity : BaseActivity() {
      */
     fun obtainViewModel(): RegisterViewModel = this.obtainViewModel(RegisterViewModel::class.java)
 
-    //endregion
-
-    //region Private Functions
-
     private fun findOrCreateEventsFragment() =
             supportFragmentManager.findFragmentById(R.id.activity_register_fl_fragment)
                     ?: RegisterFragment.newInstance().also {
@@ -72,7 +61,5 @@ class RegisterActivity : BaseActivity() {
 
     private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
             ViewModelProviders.of(this, RegisterModelFactory.getInstance()).get(viewModelClass)
-
-    //endregion
 
 }
