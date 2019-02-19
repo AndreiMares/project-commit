@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.EditText
 import android.widget.ScrollView
+import com.example.andre.verifypresency.adapters.MemberListAdapter
 import com.example.andre.verifypresency.source.models.Event
 import com.example.andre.verifypresency.source.models.Member
 
@@ -44,20 +45,10 @@ fun EditText.bindFocusChange(onFocusChangeListener: View.OnFocusChangeListener?)
         this.onFocusChangeListener = onFocusChangeListener
 }
 
-//@BindingAdapter("bind:setList")
-//inline fun <reified T> setList(recyclerView: RecyclerView, list: List<T>) {
-//
-//    when (T::class) {
-//        Member::class -> {
-//            //atasezi lista adaptorului
-//        }
-//
-//        Event::class -> {
-//            //atasezi lista adaptoruluii
-//        }
-//
-//
-//    }
-//
-//}
+@BindingAdapter("bind:memberList")
+fun setMemberList(recyclerView: RecyclerView, list: List<Member>) =
+        with(recyclerView.adapter as MemberListAdapter) {
+            loadList(list)
+        }
+
 

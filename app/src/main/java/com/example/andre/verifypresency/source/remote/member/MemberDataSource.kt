@@ -1,22 +1,20 @@
 package com.example.andre.verifypresency.source.remote.member
 
-import android.arch.lifecycle.MutableLiveData
 import com.example.andre.verifypresency.source.models.Member
 
 interface MemberDataSource {
 
-    interface LoadListCallback {
+    interface LoadListCallback<T> {
 
-        fun onListLoaded(users: List<Member>)
+        fun onListLoaded(users: List<T>)
 
-        fun onDataNotAvailable()
 
-        fun onError(message: String)
+        fun onError()
     }
 
-    interface LoadSingleCallback {
+    interface LoadSingleCallback<T> {
 
-        fun onSingleLoaded(member: Member)
+        fun onSingleLoaded(member: T)
 
         fun onDataNotAvailable()
     }

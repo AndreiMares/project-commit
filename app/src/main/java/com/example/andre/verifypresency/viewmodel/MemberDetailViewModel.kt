@@ -14,44 +14,19 @@ import com.example.andre.verifypresency.source.remote.member.MemberRepository
 class MemberDetailViewModel(private val memberRepository: MemberRepository)
     : ViewModel() {
 
-    /**
-     * Validation form variable specified for activity_member_detail.xml layout.
-     */
+
     lateinit var memberForm: MemberForm
 
-    /**
-     * OnFocusChangeListener specified for "Name" View.
-     */
     lateinit var onFocusName: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "Email" View.
-     */
     lateinit var onFocusEmail: View.OnFocusChangeListener
-
-    /**
-     * OnFocusChangeListener specified for "PhoneNumber" View.
-     */
     lateinit var onFocusPhoneNumber: View.OnFocusChangeListener
 
-    /**
-     * Variable used to show/hide Progress Bar.
-     */
+    //varibales used to automatically update views
     val dataLoading: ObservableBoolean = ObservableBoolean(false)
-
-    /**
-     * Variable used to enable/disable EditText while progressBar is active.
-     */
     val enableView: ObservableBoolean = ObservableBoolean(true)
-
-    /**
-     * Variable used to enable/disable EditText while progressBar is active.
-     */
     val fabVisibilityView: ObservableBoolean = ObservableBoolean(true)
 
     private var mMessage = MutableLiveData<String>()
-
-    private val mMemberLiveData = MutableLiveData<List<Member>>()
 
     init {
 
@@ -142,30 +117,6 @@ class MemberDetailViewModel(private val memberRepository: MemberRepository)
         }
     }
 
-    fun initList() {
-
-        dataLoading.set(true)
-        enableView.set(false)
-
-        this.memberRepository.getMembersList(object : MemberDataSource.LoadListCallback {
-            override fun onListLoaded(users: List<Member>) {
-
-                mMemberLiveData.postValue(users)
-            }
-
-            override fun onDataNotAvailable() {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-            override fun onError(message: String) {
-                mMessage.value = message
-            }
-
-        })
-
-    }
-
     fun getMessage(): LiveData<String> = this.mMessage
 
-    fun getMemberList(): LiveData<List<Member>> = this.mMemberLiveData
 }

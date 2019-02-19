@@ -23,15 +23,15 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true">
-            <!--bind:setList="@{model.memberList}"-->
+            android:layout_alignParentTop="true"
+            bind:memberList="@{model.memberList}" >
+
 
         </android.support.v7.widget.RecyclerView>
 
         <include
             layout="@layout/layout_empty_list"
             android:visibility="@{model.onEmpty? View.VISIBLE: View.GONE}" />
-
 
         <include
             layout="@layout/layout_progressbar"

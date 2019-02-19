@@ -22,29 +22,25 @@ class MemberRepository(
         })
     }
 
-    fun getMembersList(callBack: MemberDataSource.LoadListCallback) {
+    fun getMembersList(callBack: MemberDataSource.LoadListCallback<Member>) {
 
-        this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback {
+        this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback<Member> {
 
             override fun onListLoaded(users: List<Member>) {
 
                 callBack.onListLoaded(users)
             }
 
-            override fun onDataNotAvailable() {
-                callBack.onDataNotAvailable()
-            }
+            override fun onError() {
 
-            override fun onError(message: String) {
-
-                callBack.onError(message)
+                callBack.onError()
             }
 
         })
 
     }
 
-    fun getMember(id: String, callBack: MemberDataSource.LoadSingleCallback) {
+    fun getMember(id: String, callBack: MemberDataSource.LoadSingleCallback<Member>) {
 
     }
 
