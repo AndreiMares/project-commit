@@ -1,6 +1,6 @@
 package com.example.andre.verifypresency.source.remote
 
-import com.example.andre.verifypresency.source.remote.login.LoginRemoteDataSource
+import com.example.andre.verifypresency.login.LoginRemoteDataSource
 import com.example.andre.verifypresency.source.remote.member.MemberRemoteDataSource
 import com.example.andre.verifypresency.source.remote.register.RegisterRemoteDataSource
 

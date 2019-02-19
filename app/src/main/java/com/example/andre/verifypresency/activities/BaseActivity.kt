@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.example.andre.verifypresency.login.LoginActivity
 import com.example.andre.verifypresency.util.enableNavigation
 import com.example.andre.verifypresency.util.setupBottomNavigationView
 import com.example.andre.verifypresency.util.setupCheckedMenuItem

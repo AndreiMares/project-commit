@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.source.remote.login
+package com.example.andre.verifypresency.login
 
 interface LoginDataSource {
 

@@ -1,22 +1,13 @@
-package com.example.andre.verifypresency.activities
+package com.example.andre.verifypresency.login
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.fragments.LoginFragment
-import com.example.andre.verifypresency.viewmodel.LoginModelFactory
-import com.example.andre.verifypresency.viewmodel.LoginViewModel
+import com.example.andre.verifypresency.activities.BaseActivity
 import com.example.andre.verifypresency.util.replaceFragmentInActivity
-import com.google.firebase.auth.EmailAuthProvider
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseAuthException
 
 class LoginActivity : BaseActivity() {
-
-    private var mAuthListener: FirebaseAuth.AuthStateListener? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,6 +1,6 @@
-package com.example.andre.verifypresency.source.remote.login
+package com.example.andre.verifypresency.login
 
-import com.example.andre.verifypresency.form.login.LoginFields
+import com.example.andre.verifypresency.login.form.LoginFields
 import com.google.firebase.auth.FirebaseAuth
 
 class LoginRemoteDataSource {

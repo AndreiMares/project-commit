@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.fragments.RegisterFragment
+import com.example.andre.verifypresency.login.LoginActivity
 import com.example.andre.verifypresency.viewmodel.RegisterModelFactory
 import com.example.andre.verifypresency.viewmodel.RegisterViewModel
 import com.example.andre.verifypresency.util.replaceFragmentInActivity

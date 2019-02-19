@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.viewmodel
+package com.example.andre.verifypresency.login
 
 import android.arch.lifecycle.LiveData
 import android.arch.lifecycle.MutableLiveData
@@ -7,9 +7,7 @@ import android.databinding.ObservableBoolean
 import android.view.View
 import android.widget.EditText
 import com.example.andre.verifypresency.listener.LoginNavigationListener
-import com.example.andre.verifypresency.form.login.LoginForm
-import com.example.andre.verifypresency.source.remote.login.LoginDataSource
-import com.example.andre.verifypresency.source.remote.login.LoginRepository
+import com.example.andre.verifypresency.login.form.LoginForm
 
 class LoginViewModel(private val mLoginRepository: LoginRepository)
     : ViewModel() {

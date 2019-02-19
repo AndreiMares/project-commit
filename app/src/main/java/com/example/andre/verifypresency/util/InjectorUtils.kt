@@ -1,7 +1,7 @@
 package com.example.andre.verifypresency.util
 
 import com.example.andre.verifypresency.source.remote.RemoteDataBase
-import com.example.andre.verifypresency.source.remote.login.LoginRepository
+import com.example.andre.verifypresency.login.LoginRepository
 import com.example.andre.verifypresency.source.remote.member.MemberRepository
 import com.example.andre.verifypresency.source.remote.register.RegisterRepository
 

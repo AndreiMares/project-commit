@@ -1,6 +1,6 @@
-package com.example.andre.verifypresency.source.remote.login
+package com.example.andre.verifypresency.login
 
-import com.example.andre.verifypresency.form.login.LoginFields
+import com.example.andre.verifypresency.login.form.LoginFields
 
 class LoginRepository(
         private val mLoginRemoteDateSource: LoginRemoteDataSource) {
@@ -26,7 +26,8 @@ class LoginRepository(
 
         fun getInstance(loginRemoteDateSource: LoginRemoteDataSource): LoginRepository =
                 INSTANCE ?: synchronized(this) {
-                    INSTANCE ?: LoginRepository(loginRemoteDateSource).also { INSTANCE = it }
+                    INSTANCE
+                            ?: LoginRepository(loginRemoteDateSource).also { INSTANCE = it }
                 }
 
     }
