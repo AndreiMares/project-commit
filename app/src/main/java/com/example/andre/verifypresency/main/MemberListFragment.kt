@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.memberdetail.MemberDetailActivity
 import com.example.andre.verifypresency.databinding.FragmentMemberListBinding
 import com.example.andre.verifypresency.memberdetail.MemberDetailModelFactory
+import kotlinx.android.synthetic.main.fragment_member_list.*
 
 class MemberListFragment : Fragment() {
 
@@ -26,6 +28,18 @@ class MemberListFragment : Fragment() {
 
         this.viewBinding.fragmentMemberFab.setOnClickListener { this.openMemberActivity() }
 
+        val bottomSheetBehavior = BottomSheetBehavior.from(this.viewBinding.snippetSearchBar)
+
+        viewBinding.fragmentMemberFab.setOnClickListener {
+
+            if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
+            } else {
+                bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
+            }
+
+        }
+
         return this.viewBinding.root
     }
 
@@ -34,7 +48,6 @@ class MemberListFragment : Fragment() {
 
         this.setAdapter()
     }
-
 
     override fun onResume() {
         super.onResume()
@@ -59,11 +72,5 @@ class MemberListFragment : Fragment() {
 
         }
     }
-
-    companion object {
-        fun newInstance() = MemberListFragment
-    }
-
-
 
 }

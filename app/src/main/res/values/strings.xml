@@ -41,6 +41,8 @@
 
     <!--MemberListFragment strings-->
     <string name="fragment_member_item_subtitle">Work contact </string>
+    <string name="dialog_edit">Edit</string>
+    <string name="dialog_delete">Delete</string>
 
     <!--Error strings-->
     <string name="ERROR_WEAK_PASSWORD">The password is invalid it must 6 characters at least</string>

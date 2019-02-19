@@ -71,7 +71,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio%203.0.1/plugins/android/lib/android.jar!/images/material_design_icons/social/ic_person_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio%203.0.1/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_delete_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -81,11 +81,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="height" value="30" />
-                            <entry key="outputName" value="ic_person_black_30dp" />
+                            <entry key="outputName" value="ic_delete_black_24dp" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\andreimar" />
-                            <entry key="width" value="30" />
                           </map>
                         </option>
                       </PersistentState>

@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
 import android.databinding.ObservableList
+import com.example.andre.verifypresency.SingleLiveEvent
 import com.example.andre.verifypresency.main.form.Member
 import com.example.andre.verifypresency.main.remote.MemberDataSource
 import com.example.andre.verifypresency.main.remote.MemberRepository
@@ -16,8 +17,11 @@ class MemberViewModel(private val memberRepository: MemberRepository)
     val onDataLoading = ObservableBoolean(false)
     val onEmpty = ObservableBoolean(false)
     val onDataLoadingError = ObservableBoolean(false)
+    val bottomSheetBehaviorState = SingleLiveEvent<Void>()
 
     fun prepareLoadingList(): Unit = this.loadProductList()
+
+    fun filter() = bottomSheetBehaviorState.call()
 
     private fun loadProductList() {
 
