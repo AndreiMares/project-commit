@@ -3,29 +3,34 @@ package com.example.andre.verifypresency.memberdetail
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.arch.lifecycle.Observer
+import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
+import android.support.design.widget.BottomSheetBehavior
+import android.support.design.widget.Snackbar
 import android.view.MenuItem
 import android.widget.Toast
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.databinding.ActivityMemberDetailBinding
+import com.example.andre.verifypresency.main.MainActivity
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class MemberDetailActivity : BaseActivity() {
 
     private lateinit var memberViewDetailModel: MemberDetailViewModel
+    private lateinit var viewBinding: ActivityMemberDetailBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val binding = DataBindingUtil.setContentView<ActivityMemberDetailBinding>(this, R.layout.activity_member_detail)
-
-        this.configureViews()
+        this.viewBinding = DataBindingUtil.setContentView<ActivityMemberDetailBinding>(this, R.layout.activity_member_detail)
 
         this.memberViewDetailModel = this.obtainViewModel(MemberDetailViewModel::class.java)
 
-        binding.model = this.memberViewDetailModel
+        this.viewBinding.model = this.memberViewDetailModel
+
+        this.configureViews()
 
     }
 
@@ -45,13 +50,28 @@ class MemberDetailActivity : BaseActivity() {
     override fun onStart() {
         super.onStart()
 
-        this.memberViewDetailModel.getMessage().observe(this, Observer {
+        this.memberViewDetailModel.apply {
+            navigation.observe(this@MemberDetailActivity, Observer<Unit> {
 
-            Toast.makeText(this, it, Toast.LENGTH_LONG).show()
-        })
-        //listen for changes
+                finish()
+
+            })
+        }
+
+        this.memberViewDetailModel.apply {
+            snackbarMessage.observe(this@MemberDetailActivity, Observer<String> { it ->
+
+                it?.let { Snackbar.make(viewBinding.root, it, Snackbar.LENGTH_SHORT).show() }
+            })
+        }
 
     }
+
+//    private fun navigateBack() {
+//        val intent = Intent(this, MainActivity::class.java)
+//        startActivity(intent)
+//        finish()
+//    }
 
     private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
             ViewModelProviders.of(this, MemberDetailModelFactory.getInstance()).get(viewModelClass)
