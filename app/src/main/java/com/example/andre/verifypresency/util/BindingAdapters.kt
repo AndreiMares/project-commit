@@ -49,4 +49,19 @@ fun setMemberList(recyclerView: RecyclerView, list: List<Member>) =
             loadList(list)
         }
 
+@BindingAdapter("bind:notifyItemDeleted")
+fun notifyItemDeleted(recyclerView: RecyclerView, position: Int) {
+
+    if (position != -1) {
+        when (recyclerView.adapter) {
+
+            is MemberListAdapter -> {
+                with(recyclerView.adapter as MemberListAdapter) {
+                    notifyItemRemoved(position)
+                }
+            }
+        }
+    }
+}
+
 

@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.memberdetail.MemberDetailActivity
 import com.example.andre.verifypresency.databinding.FragmentMemberListBinding
+import com.example.andre.verifypresency.main.form.Member
 import com.example.andre.verifypresency.memberdetail.MemberDetailModelFactory
 
 class MemberListFragment : Fragment() {
@@ -31,7 +32,9 @@ class MemberListFragment : Fragment() {
         val bottomSheetBehavior = BottomSheetBehavior.from(this.viewBinding.snippetSearchBar)
 
         this.viewBinding.model?.apply {
-            bottomSheetBehaviorState.observe(this@MemberListFragment, Observer<Void> {
+
+
+            bottomSheetBehaviorState.observe(this@MemberListFragment, Observer<Unit> {
 
                 if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED

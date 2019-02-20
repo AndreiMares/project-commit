@@ -3,6 +3,7 @@ package com.example.andre.verifypresency.main
 import android.arch.lifecycle.ViewModel
 import android.databinding.ObservableArrayList
 import android.databinding.ObservableBoolean
+import android.databinding.ObservableField
 import android.databinding.ObservableList
 import com.example.andre.verifypresency.SingleLiveEvent
 import com.example.andre.verifypresency.main.form.Member
@@ -14,14 +15,55 @@ class MemberViewModel(private val memberRepository: MemberRepository)
 
     //observable views
     val memberList: ObservableList<Member> = ObservableArrayList()
+
     val onDataLoading = ObservableBoolean(false)
     val onEmpty = ObservableBoolean(false)
     val onDataLoadingError = ObservableBoolean(false)
-    val bottomSheetBehaviorState = SingleLiveEvent<Void>()
+    val bottomSheetBehaviorState = SingleLiveEvent<Unit>()
+
+    private var selectedMember: Member? = null
+    var itemPosition: ObservableField<Int> = ObservableField(-1)
 
     fun prepareLoadingList(): Unit = this.loadProductList()
 
-    fun cardViewClicked() = bottomSheetBehaviorState.call()
+    fun cardViewClicked(member: Member) {
+        this.selectedMember = member
+        this.bottomSheetBehaviorState.call()
+
+    }
+
+    fun editMember() {
+
+    }
+
+    fun deleteMember() = this.deleteFromFireStore()
+
+    private fun deleteFromFireStore() {
+
+        this.bottomSheetBehaviorState.call()
+        this.onDataLoading.set(true)
+
+        this.selectedMember?.let {
+
+            val position = this.memberList.indexOf(it)
+
+            this.memberRepository.deleteMember(it, object : MemberDataSource.DeleteCallback {
+                override fun onSuccess() {
+                    onDataLoading.set(false)
+
+                    //notify binding adapter
+                    itemPosition.set(position)
+
+                    memberList.removeAt(position)
+                }
+
+                override fun onFailed(message: String?) {
+                }
+
+            })
+        }
+
+    }
 
     private fun loadProductList() {
 

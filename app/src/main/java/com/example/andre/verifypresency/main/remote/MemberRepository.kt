@@ -22,27 +22,27 @@ class MemberRepository(
         })
     }
 
-    fun getMembersList(callBack: MemberDataSource.LoadListCallback<Member>) {
+    fun getMembersList(callBack: MemberDataSource.LoadListCallback<Member>) =
+            this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback<Member> {
 
-        this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback<Member> {
+                override fun onListLoaded(users: List<Member>) = callBack.onListLoaded(users)
 
-            override fun onListLoaded(users: List<Member>) {
+                override fun onError() = callBack.onError()
+            })
 
-                callBack.onListLoaded(users)
-            }
-
-            override fun onError() {
-
-                callBack.onError()
-            }
-
-        })
-
-    }
 
     fun getMember(id: String, callBack: MemberDataSource.LoadSingleCallback<Member>) {
 
     }
+
+    fun deleteMember(member: Member, callBack: MemberDataSource.DeleteCallback) =
+            this.mMemberRemoteDataSource.deleteMember(member, object : MemberDataSource.DeleteCallback {
+
+                override fun onSuccess() = callBack.onSuccess()
+
+                override fun onFailed(message: String?) = callBack.onFailed(message)
+            })
+
 
     companion object {
         @Volatile

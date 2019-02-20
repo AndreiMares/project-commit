@@ -6,7 +6,6 @@ interface MemberDataSource {
 
         fun onListLoaded(users: List<T>)
 
-
         fun onError()
     }
 
@@ -22,5 +21,12 @@ interface MemberDataSource {
         fun onSaveSuccess(message: String)
 
         fun onSaveFailed(message: String)
+    }
+
+    interface DeleteCallback {
+
+        fun onSuccess()
+
+        fun onFailed(message: String?)
     }
 }

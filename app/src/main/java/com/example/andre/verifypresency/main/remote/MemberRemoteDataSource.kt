@@ -68,6 +68,15 @@ class MemberRemoteDataSource {
 
     }
 
+    fun deleteMember(member: Member, callBack: MemberDataSource.DeleteCallback) {
+
+        this.mDB.collection("Member").document(member.name)
+                .delete()
+                .addOnSuccessListener { callBack.onSuccess() }
+                .addOnFailureListener { exception -> callBack.onFailed(exception.message) }
+
+    }
+
     private fun saveMember(key: String, memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
 
         this.mDB.collection("Member").document(key).set(memberDetail)

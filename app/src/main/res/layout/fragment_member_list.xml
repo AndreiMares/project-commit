@@ -28,7 +28,8 @@
                 android:layout_height="match_parent"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
-                bind:memberList="@{model.memberList}" >
+                bind:memberList="@{model.memberList}"
+                bind:notifyItemDeleted="@{model.itemPosition}">
 
 
             </android.support.v7.widget.RecyclerView>
@@ -106,7 +107,8 @@
                 android:focusable="true"
                 android:orientation="horizontal"
                 android:foreground="?android:attr/selectableItemBackground"
-                android:padding="@dimen/activity_horizontal_margin">
+                android:padding="@dimen/activity_horizontal_margin"
+                android:onClick="@{()-> model.deleteMember()}">
 
                 <ImageView
                     android:layout_width="wrap_content"
