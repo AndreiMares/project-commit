@@ -24,7 +24,7 @@ class MemberRemoteDataSource {
         //we need to verify if we already have an user
         val key = member.name.replace("\\s".toRegex(), "")
 
-        val docRef = this.mDB.collection("Member").document(key)
+        val docRef = this.mDB.collection("Member").document(/*key*/)
         docRef.get()
                 .addOnSuccessListener { document ->
 
@@ -77,9 +77,16 @@ class MemberRemoteDataSource {
 
     }
 
+    fun updatedMember(member: Member){
+
+//        this.mDB.collection("Member")
+//                .
+
+    }
+
     private fun saveMember(key: String, memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
 
-        this.mDB.collection("Member").document(key).set(memberDetail)
+        this.mDB.collection("Member").document(/*key*/).set(memberDetail)
                 .addOnCompleteListener { task ->
                     if (task.isComplete && task.isSuccessful) {
                         callBack.onSaveSuccess("Member successfully added!")

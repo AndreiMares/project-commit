@@ -44,7 +44,7 @@ class RegisterFragment : Fragment() {
         this.registerViewModel.apply {
             navigation.observe(this@RegisterFragment, Observer<Unit> { it ->
 
-                it?.let { (activity as RegisterActivity).redirectToLoginScreen() }
+                (activity as RegisterActivity).redirectToLoginScreen()
             })
         }
     }
