@@ -18,34 +18,35 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:weightSum="3">
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.33">
+            android:layout_weight="1">
 
             <ImageView
                 android:id="@+id/fragment_login_iv_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_login"
-                android:layout_centerInParent="true"/>
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:src="@drawable/ic_login" />
 
-        </RelativeLayout>
+        </FrameLayout>
 
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.33">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_centerInParent="true"
+                android:layout_gravity="center_horizontal|center_vertical"
                 android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin">
+                android:layout_marginEnd="@dimen/activity_horizontal_margin"
+                android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
                     android:layout_width="match_parent"
@@ -57,9 +58,9 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:enabled="@{!model.dataLoading}"
                         android:hint="@string/login_email"
                         android:singleLine="true"
-                        android:enabled="@{!model.dataLoading}"
                         android:text="@={model.loginForm.loginField.email}"
                         android:textSize="@dimen/text_input"
                         bind:onFocus="@{model.onFocusEmail}" />
@@ -77,10 +78,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="@dimen/activity_vertical_margin"
+                        android:enabled="@{!model.dataLoading}"
                         android:hint="@string/login_password"
                         android:inputType="textPassword"
                         android:singleLine="true"
-                        android:enabled="@{!model.dataLoading}"
                         android:text="@={model.loginForm.loginField.password}"
                         android:textSize="@dimen/text_input"
                         bind:onFocus="@{model.onFocusPassword}" />
@@ -90,59 +91,49 @@
 
             </LinearLayout>
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:visibility="@{model.dataLoading ? View.VISIBLE : View.INVISIBLE  }">
+            <include
+                layout="@layout/layout_progressbar"
+                android:visibility="@{model.dataLoading ? View.VISIBLE : View.INVISIBLE  }" />
 
-                <include layout="@layout/layout_progressbar" />
+        </FrameLayout>
 
-            </RelativeLayout>
-
-        </RelativeLayout>
-
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.33">
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <LinearLayout
+            <Button
+                android:id="@+id/fragment_login_btn_sign"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_marginStart="@dimen/activity_horizontal_margin"
-                android:layout_marginEnd="@dimen/activity_horizontal_margin">
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/light_blue_600"
+                android:enabled="@{model.loginForm.valid}"
+                android:onClick="@{()->model.onButtonClicked(appModule.LOGIN)}"
+                android:text="@string/login_signIn"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteTxtColor" />
 
-                <Button
-                    android:id="@+id/fragment_login_btn_sign"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login_signIn"
-                    android:textColor="@color/whiteTxtColor"
-                    android:textAllCaps="false"
-                    android:layout_gravity="center_horizontal"
-                    android:background="@color/light_blue_600"
-                    android:enabled="@{model.loginForm.valid}"
-                    android:onClick="@{()->model.onButtonClicked(appModule.LOGIN)}"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"/>
+            <Button
+                android:id="@+id/fragment_login_tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="@dimen/activity_vertical_margin"
+                android:background="@color/transparent"
+                android:enabled="@{model.dataLoading ? false : true}"
+                android:onClick="@{()->model.onButtonClicked(appModule.REGISTER)}"
+                android:text="@string/login_register"
+                android:textAllCaps="false"
+                android:textColor="@color/lightBlue"
+                android:textStyle="bold" />
 
-                <Button
-                    android:id="@+id/fragment_login_tv_register"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="@string/login_register"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="@dimen/activity_vertical_margin"
-                    android:textColor="@color/lightBlue"
-                    android:textStyle="bold"
-                    android:textAllCaps="false"
-                    android:onClick="@{()->model.onButtonClicked(appModule.REGISTER)}"
-                    android:enabled="@{model.dataLoading ? false : true}"
-                    android:background="@color/transparent"/>
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        </LinearLayout>
 
     </LinearLayout>
 
