@@ -32,13 +32,13 @@ class MemberRemoteDataSource {
                     when {
                         task.isSuccessful ->
                             if (task.result?.documents?.size!! > 0)
-                                callBack.onSaveFailed("There is already a user registered with this email address.")
+                                callBack.onFailed("There is already a user registered with this email address.")
                             else
                                 this.saveMember(memberDetail, callBack)
                     }
                 }
                 .addOnFailureListener { exception ->
-                    exception.message?.let { callBack.onSaveFailed(it) }
+                    exception.message?.let { callBack.onFailed(it) }
                 }
     }
 
@@ -73,25 +73,52 @@ class MemberRemoteDataSource {
 
     }
 
-    fun updatedMember(member: Member) {
+    fun getMember(name: String, callBack: MemberDataSource.LoadSingleCallback<Member>) {
 
-//        this.mDB.collection("Member")
-//                .
+        val userId = FirebaseAuth.getInstance().currentUser?.uid
 
-    }
+        this.mDB.collection("Member")
+                .whereEqualTo("UserId", userId)
+                .whereEqualTo("Name", name)
+                .get()
+                .addOnSuccessListener { documents ->
 
-    private fun saveMember(memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
+                    val member = documents.toObjects(Member::class.java)[0]
+                    member.memberId = documents.documentChanges[0].document.id
 
-        this.mDB.collection("Member").document().set(memberDetail)
-                .addOnCompleteListener { task ->
-                    if (task.isComplete && task.isSuccessful) {
-                        callBack.onSaveSuccess("Member successfully added!")
+                    callBack.onSuccess(member)
 
-                    } else {
-                        task.exception?.message?.let { callBack.onSaveFailed(it) }
-
-                    }
                 }
+                .addOnFailureListener { exception ->
+
+                    exception.message?.let { callBack.onFailed(it) }
+                }
+
     }
+
+    fun updateMember(member: Member, callBack: MemberDataSource.UpdateCallback) {
+
+        val memberDetail = HashMap<String, Any>()
+        member.email.let { memberDetail.put("Email", it) }
+        member.phoneNumber.let { memberDetail.put("PhoneNumber", it) }
+
+        this.mDB.collection("Member")
+                .document(member.memberId)
+                .update(memberDetail)
+                .addOnSuccessListener { callBack.onSuccess() }
+                .addOnFailureListener { exception -> callBack.onFailed(exception.message) }
+    }
+
+    private fun saveMember(memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) =
+            this.mDB.collection("Member").document().set(memberDetail)
+                    .addOnCompleteListener { task ->
+                        if (task.isComplete && task.isSuccessful) {
+                            callBack.onSuccess("Member successfully added!")
+
+                        } else {
+                            task.exception?.message?.let { callBack.onFailed(it) }
+
+                        }
+                    }
 
 }

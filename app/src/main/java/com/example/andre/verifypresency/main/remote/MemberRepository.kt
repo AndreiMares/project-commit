@@ -5,22 +5,20 @@ import com.example.andre.verifypresency.main.form.Member
 class MemberRepository(
         private val mMemberRemoteDataSource: MemberRemoteDataSource) {
 
-    fun saveMember(member: Member, callBack: MemberDataSource.SaveCallback) {
+    fun saveMember(member: Member, callBack: MemberDataSource.SaveCallback) =
+            this.mMemberRemoteDataSource.saveMember(member, object : MemberDataSource.SaveCallback {
 
-        this.mMemberRemoteDataSource.saveMember(member, object : MemberDataSource.SaveCallback {
+                override fun onSuccess(message: String) {
 
-            override fun onSaveSuccess(message: String) {
+                    callBack.onSuccess(message)
+                }
 
-                callBack.onSaveSuccess(message)
-            }
+                override fun onFailed(message: String) {
 
-            override fun onSaveFailed(message: String) {
+                    callBack.onFailed(message)
+                }
 
-                callBack.onSaveFailed(message)
-            }
-
-        })
-    }
+            })
 
     fun getMembersList(callBack: MemberDataSource.LoadListCallback<Member>) =
             this.mMemberRemoteDataSource.getMemberList(object : MemberDataSource.LoadListCallback<Member> {
@@ -30,10 +28,28 @@ class MemberRepository(
                 override fun onError() = callBack.onError()
             })
 
+    fun getMember(name: String, callBack: MemberDataSource.LoadSingleCallback<Member>) =
+            this.mMemberRemoteDataSource.getMember(name, object : MemberDataSource.LoadSingleCallback<Member> {
 
-    fun getMember(id: String, callBack: MemberDataSource.LoadSingleCallback<Member>) {
+                override fun onSuccess(member: Member) = callBack.onSuccess(member)
 
-    }
+                override fun onFailed(message: String?) = callBack.onFailed(message)
+            })
+
+    fun updateMember(member: Member, callBack: MemberDataSource.UpdateCallback) =
+            this.mMemberRemoteDataSource.updateMember(member, object : MemberDataSource.UpdateCallback {
+
+                override fun onSuccess() {
+
+                    callBack.onSuccess()
+                }
+
+                override fun onFailed(message: String?) {
+
+                    callBack.onFailed(message)
+                }
+
+            })
 
     fun deleteMember(member: Member, callBack: MemberDataSource.DeleteCallback) =
             this.mMemberRemoteDataSource.deleteMember(member, object : MemberDataSource.DeleteCallback {
@@ -42,7 +58,6 @@ class MemberRepository(
 
                 override fun onFailed(message: String?) = callBack.onFailed(message)
             })
-
 
     companion object {
         @Volatile

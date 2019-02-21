@@ -14,10 +14,15 @@ import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.memberdetail.MemberDetailActivity
 import com.example.andre.verifypresency.databinding.FragmentMemberListBinding
-import com.example.andre.verifypresency.main.form.Member
 import com.example.andre.verifypresency.memberdetail.MemberDetailModelFactory
 
 class MemberListFragment : Fragment() {
+
+    companion object {
+        val EDIT = "EDIT"
+        val MEMBER_NAME = "MEMBER_NAME"
+    }
+
 
     private lateinit var viewBinding: FragmentMemberListBinding
 
@@ -27,20 +32,26 @@ class MemberListFragment : Fragment() {
 
         this.viewBinding.model = ViewModelProviders.of(this, MemberDetailModelFactory.getInstance()).get(MemberViewModel::class.java)
 
-        this.viewBinding.fragmentMemberFab.setOnClickListener { this.openMemberActivity() }
+        this.viewBinding.fragmentMemberFab.setOnClickListener { this.openMemberActivity(false, "") }
 
+        //bottom sheet observer
         val bottomSheetBehavior = BottomSheetBehavior.from(this.viewBinding.snippetSearchBar)
-
         this.viewBinding.model?.apply {
-
-
-            bottomSheetBehaviorState.observe(this@MemberListFragment, Observer<Unit> {
+            onBottomSheetBehaviorState.observe(this@MemberListFragment, Observer<Unit> {
 
                 if (bottomSheetBehavior.state != BottomSheetBehavior.STATE_EXPANDED) {
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
                 } else {
                     bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
                 }
+            })
+        }
+
+        //navigate to detail observer
+        this.viewBinding.model?.apply {
+            onNavigation.observe(this@MemberListFragment, Observer<String> { name ->
+
+                name?.let { openMemberActivity(true, it) }
             })
         }
 
@@ -59,8 +70,10 @@ class MemberListFragment : Fragment() {
         this.viewBinding.model?.prepareLoadingList()
     }
 
-    private fun openMemberActivity() {
+    private fun openMemberActivity(value: Boolean, name: String) {
         val intent = Intent(context, MemberDetailActivity::class.java)
+        intent.putExtra(EDIT, value)
+        intent.putExtra(MEMBER_NAME, name)
         startActivity(intent)
     }
 

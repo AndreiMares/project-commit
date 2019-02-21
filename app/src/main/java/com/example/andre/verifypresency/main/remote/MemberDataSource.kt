@@ -11,16 +11,23 @@ interface MemberDataSource {
 
     interface LoadSingleCallback<T> {
 
-        fun onSingleLoaded(member: T)
+        fun onSuccess(member: T)
 
-        fun onDataNotAvailable()
+        fun onFailed(message: String?)
     }
 
     interface SaveCallback {
 
-        fun onSaveSuccess(message: String)
+        fun onSuccess(message: String)
 
-        fun onSaveFailed(message: String)
+        fun onFailed(message: String)
+    }
+
+    interface UpdateCallback {
+
+        fun onSuccess()
+
+        fun onFailed(message: String?)
     }
 
     interface DeleteCallback {

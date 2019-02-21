@@ -19,7 +19,8 @@ class MemberViewModel(private val memberRepository: MemberRepository)
     val onDataLoading = ObservableBoolean(false)
     val onEmpty = ObservableBoolean(false)
     val onDataLoadingError = ObservableBoolean(false)
-    val bottomSheetBehaviorState = SingleLiveEvent<Unit>()
+    val onBottomSheetBehaviorState = SingleLiveEvent<Unit>()
+    var onNavigation = SingleLiveEvent<String>()
 
     private var selectedMember: Member? = null
     var itemPosition: ObservableField<Int> = ObservableField(-1)
@@ -28,19 +29,20 @@ class MemberViewModel(private val memberRepository: MemberRepository)
 
     fun cardViewClicked(member: Member) {
         this.selectedMember = member
-        this.bottomSheetBehaviorState.call()
+        this.onBottomSheetBehaviorState.call()
 
     }
 
-    fun editMember() {
-
+    fun openMemberDetailActivity() {
+        this.onBottomSheetBehaviorState.call()
+        this.onNavigation.value = this.selectedMember?.name
     }
 
     fun deleteMember() = this.deleteFromFireStore()
 
     private fun deleteFromFireStore() {
 
-        this.bottomSheetBehaviorState.call()
+        this.onBottomSheetBehaviorState.call()
         this.onDataLoading.set(true)
 
         this.selectedMember?.let {

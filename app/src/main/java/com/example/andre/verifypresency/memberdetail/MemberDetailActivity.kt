@@ -14,6 +14,8 @@ import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
 import com.example.andre.verifypresency.databinding.ActivityMemberDetailBinding
 import com.example.andre.verifypresency.main.MainActivity
+import com.example.andre.verifypresency.main.MemberListFragment.Companion.EDIT
+import com.example.andre.verifypresency.main.MemberListFragment.Companion.MEMBER_NAME
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class MemberDetailActivity : BaseActivity() {
@@ -67,11 +69,15 @@ class MemberDetailActivity : BaseActivity() {
 
     }
 
-//    private fun navigateBack() {
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent)
-//        finish()
-//    }
+    override fun onResume() {
+        super.onResume()
+
+        intent.extras?.let {
+
+            if (it.getBoolean(EDIT))
+                this.viewBinding.model?.loadMember(it.getBoolean(EDIT), it.getString(MEMBER_NAME, ""))
+        }
+    }
 
     private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
             ViewModelProviders.of(this, MemberDetailModelFactory.getInstance()).get(viewModelClass)

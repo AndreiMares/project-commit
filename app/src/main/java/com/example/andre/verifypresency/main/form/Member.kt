@@ -1,6 +1,7 @@
 package com.example.andre.verifypresency.main.form
 
 import com.example.andre.verifypresency.source.models.BaseEntity
+import com.google.firebase.firestore.IgnoreExtraProperties
 import com.google.firebase.firestore.PropertyName
 
 data class Member(
@@ -17,5 +18,7 @@ data class Member(
         @get:PropertyName("Active")
         var active: Boolean) : BaseEntity() {
 
-    constructor() : this("","","", false)
+    var memberId: String = ""
+
+    constructor() : this("", "", "", false)
 }
