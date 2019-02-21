@@ -21,29 +21,25 @@ class MemberRemoteDataSource {
         member.phoneNumber.let { memberDetail.put("PhoneNumber", it) }
         member.active.let { memberDetail.put("Active", true) }
 
-        //we need to verify if we already have an user
+        //we need to verify if we already have aa member register on current logged user
         val key = member.name.replace("\\s".toRegex(), "")
 
-        val docRef = this.mDB.collection("Member").document(/*key*/)
-        docRef.get()
-                .addOnSuccessListener { document ->
-
-                    if (document.data != null) {
-
-                        callBack.onSaveFailed("There is already a user registered with this email address.")
-                        Log.d(TAG, "DocumentSnapshot data: " + document.data)
-
-                    } else {
-                        //if there is no user with the inserted email address, insert a new user into firestore
-                        this.saveMember(key, memberDetail, callBack)
+        this.mDB.collection("Member")
+                .whereEqualTo("UserId", memberDetail.getValue("UserId"))
+                .whereEqualTo("Name", key)
+                .get()
+                .addOnCompleteListener { task ->
+                    when {
+                        task.isSuccessful ->
+                            if (task.result?.documents?.size!! > 0)
+                                callBack.onSaveFailed("There is already a user registered with this email address.")
+                            else
+                                this.saveMember(memberDetail, callBack)
                     }
                 }
                 .addOnFailureListener { exception ->
                     exception.message?.let { callBack.onSaveFailed(it) }
-
-                    Log.d(TAG, "get failed with ", exception)
                 }
-
     }
 
     fun getMemberList(callBack: MemberDataSource.LoadListCallback<Member>) {
@@ -77,16 +73,16 @@ class MemberRemoteDataSource {
 
     }
 
-    fun updatedMember(member: Member){
+    fun updatedMember(member: Member) {
 
 //        this.mDB.collection("Member")
 //                .
 
     }
 
-    private fun saveMember(key: String, memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
+    private fun saveMember(memberDetail: HashMap<String, Any>, callBack: MemberDataSource.SaveCallback) {
 
-        this.mDB.collection("Member").document(/*key*/).set(memberDetail)
+        this.mDB.collection("Member").document().set(memberDetail)
                 .addOnCompleteListener { task ->
                     if (task.isComplete && task.isSuccessful) {
                         callBack.onSaveSuccess("Member successfully added!")
