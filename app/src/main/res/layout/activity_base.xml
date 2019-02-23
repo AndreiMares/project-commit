@@ -1,38 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <RelativeLayout
+    <!-- Top toolbar-->
+    <FrameLayout
+        android:id="@+id/activity_base_rl_top"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <!-- Top toolbar-->
-        <RelativeLayout
-            android:id="@+id/activity_base_rl_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        <include layout="@layout/layout_top_tabs" />
 
-            <include layout="@layout/layout_top_tabs"/>
+    </FrameLayout>
 
-        </RelativeLayout>
+    <!-- Middle section(body)-->
+    <FrameLayout
+        android:id="@+id/activity_base_rl_middle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/activity_base_rl_top"
+        android:layout_marginBottom="?attr/actionBarSize">
 
-        <!-- Middle section(body)-->
-        <RelativeLayout
-            android:id="@+id/activity_base_rl_middle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/activity_base_rl_top">
+        <include layout="@layout/layout_center_viewpager" />
 
-            <include layout="@layout/layout_center_viewpager"/>
+    </FrameLayout>
 
-        </RelativeLayout>
+    <!-- Bottom Navigation -->
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true">
 
         <!-- Bottom Navigation -->
-        <include
-            layout="@layout/layout_bottom_navigation_view"/>
+        <include layout="@layout/layout_bottom_navigation_view" />
 
-    </RelativeLayout>
+    </FrameLayout>
 
-</android.support.design.widget.CoordinatorLayout>
+
+</RelativeLayout>

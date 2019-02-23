@@ -2,9 +2,11 @@ package com.example.andre.verifypresency.util
 
 import android.databinding.BindingAdapter
 import android.support.design.widget.TextInputLayout
+import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.EditText
-import android.widget.ScrollView
+import com.example.andre.verifypresency.main.MemberListAdapter
+import com.example.andre.verifypresency.main.form.Member
 
 //@BindingAdapter("bind:error")
 //fun setError(editText: EditText, strOrResId: Any?) {
@@ -40,3 +42,26 @@ fun EditText.bindFocusChange(onFocusChangeListener: View.OnFocusChangeListener?)
     if (onFocusChangeListener != null)
         this.onFocusChangeListener = onFocusChangeListener
 }
+
+@BindingAdapter("bind:memberList")
+fun setMemberList(recyclerView: RecyclerView, list: List<Member>) =
+        with(recyclerView.adapter as MemberListAdapter) {
+            loadList(list)
+        }
+
+@BindingAdapter("bind:notifyItemDeleted")
+fun notifyItemDeleted(recyclerView: RecyclerView, position: Int) {
+
+    if (position != -1) {
+        when (recyclerView.adapter) {
+
+            is MemberListAdapter -> {
+                with(recyclerView.adapter as MemberListAdapter) {
+                    notifyItemRemoved(position)
+                }
+            }
+        }
+    }
+}
+
+

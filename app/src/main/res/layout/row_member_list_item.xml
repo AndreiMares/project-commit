@@ -1,56 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:bind="http://schemas.android.com/tools">
+
+<data>
+
+    <import type="android.view.View" />
+
+    <variable
+        name="model"
+        type="com.example.andre.verifypresency.main.form.Member" />
+
+    <variable
+        name="viewModel"
+        type="com.example.andre.verifypresency.main.MemberViewModel" />
+
+
+</data>
+
 <android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginTop="12dp"
+    android:layout_marginBottom="12dp"
+    android:onClick="@{() -> viewModel.cardViewClicked(model)}">
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <ImageView
-            android:id="@+id/row_member_list_item_imv_icon"
-            android:layout_width="@dimen/imageView_width"
-            android:layout_height="@dimen/imageView_height"
-            android:src="@color/backgroundColor"
-            android:layout_alignParentStart="true"/>
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_toEndOf="@+id/row_member_list_item_imv_icon"
-            android:layout_toStartOf="@+id/row_member_list_item_ib_expandArrow"
-            android:layout_marginStart="@dimen/activity_horizontal_margin"
-            android:layout_centerVertical="true">
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/row_member_list_item_tv_name"
+            <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Andrei Mares"
-                android:textStyle="bold"
-                android:textSize="@dimen/list_item_title"
-                android:textColor="@color/black"/>
+                android:background="@drawable/ic_person_black_30dp"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/fragment_member_item_subtitle"
+                android:text="@{model.name}"
                 android:textSize="@dimen/secondary_text"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"/>
 
         </LinearLayout>
 
-        <ImageButton
-            android:id="@+id/row_member_list_item_ib_expandArrow"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible"
-            android:layout_alignParentEnd="true"
-            android:src="@android:drawable/arrow_down_float"
-            android:layout_centerVertical="true"/>
+            android:orientation="horizontal">
 
-    </RelativeLayout>
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_local_phone_black_30dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.phoneNumber}"
+                android:textSize="@dimen/secondary_text"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/ic_email_black_24dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.email}"
+                android:textSize="@dimen/secondary_text"
+                android:textColor="@color/black"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="@dimen/activity_horizontal_margin"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.v7.widget.CardView>
+
+</layout>

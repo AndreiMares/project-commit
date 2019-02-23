@@ -1,8 +1,8 @@
 package com.example.andre.verifypresency.source.remote
 
-import com.example.andre.verifypresency.source.remote.login.LoginRemoteDataSource
-import com.example.andre.verifypresency.source.remote.member.MemberRemoteDataSource
-import com.example.andre.verifypresency.source.remote.register.RegisterRemoteDataSource
+import com.example.andre.verifypresency.login.remote.LoginRemoteDataSource
+import com.example.andre.verifypresency.main.remote.MemberRemoteDataSource
+import com.example.andre.verifypresency.register.remote.RegisterRemoteDataSource
 
 class RemoteDataBase private constructor() {
 

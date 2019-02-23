@@ -2,7 +2,7 @@
 //
 //import android.arch.persistence.room.Dao
 //import android.arch.persistence.room.Query
-//import com.example.andre.verifypresency.source.models.Member
+//import com.example.andre.verifypresency.main.form.Member
 //
 ////@Dao
 //interface MemberDao {

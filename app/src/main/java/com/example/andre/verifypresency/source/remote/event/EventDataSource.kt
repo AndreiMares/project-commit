@@ -2,7 +2,7 @@ package com.example.andre.verifypresency.source.remote.event
 
 import android.arch.lifecycle.MutableLiveData
 import com.example.andre.verifypresency.source.models.Event
-import com.example.andre.verifypresency.source.models.User
+import com.example.andre.verifypresency.register.form.User
 
 interface EventDataSource {
 
