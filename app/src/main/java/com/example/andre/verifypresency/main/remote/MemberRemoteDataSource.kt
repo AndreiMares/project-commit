@@ -51,22 +51,27 @@ class MemberRemoteDataSource {
                 .get()
                 .addOnSuccessListener { documents ->
 
-                    val list = documents.toObjects(Member::class.java)
+                    val queryList = arrayListOf<Member>()
 
-                    callBack.onListLoaded(list)
+                    documents.forEach {
+                        val member = it.toObject(Member::class.java)
+                        member.memberId = it.id
+                        queryList.add(member)
 
+                    }
+
+                    callBack.onListLoaded(queryList)
                 }
                 .addOnFailureListener { exception ->
 
                     exception.message?.let { callBack.onError() }
                     Log.w(TAG, "Error getting documents: ", exception)
                 }
-
     }
 
     fun deleteMember(member: Member, callBack: MemberDataSource.DeleteCallback) {
 
-        this.mDB.collection("Member").document(member.name)
+        this.mDB.collection("Member").document(member.memberId)
                 .delete()
                 .addOnSuccessListener { callBack.onSuccess() }
                 .addOnFailureListener { exception -> callBack.onFailed(exception.message) }
