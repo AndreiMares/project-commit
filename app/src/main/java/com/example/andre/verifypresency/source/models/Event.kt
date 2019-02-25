@@ -1,31 +1,19 @@
 package com.example.andre.verifypresency.source.models
 
-import android.arch.persistence.room.ColumnInfo
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.Ignore
-import android.arch.persistence.room.PrimaryKey
-import org.jetbrains.annotations.NotNull
+import com.google.firebase.firestore.PropertyName
 import java.util.*
 
-//@Entity(tableName = "Event")
-//data class Event(@PrimaryKey(autoGenerate = true)
-//                 @ColumnInfo(name = "EventId")
-//                 @NotNull
-//                 var EventId: Long,
-//                 @ColumnInfo(name = "ScheduleTime")
-//                 var ScheduleTime: Date?) : BaseEntity() {
-//    @Ignore
-//    constructor() : this(0, null)
-//
-//}
+class Event(@set:PropertyName("ScheduleTime")
+            @get:PropertyName("ScheduleTime")
+            var scheduleTime: Date,
+            @set:PropertyName("Name")
+            @get:PropertyName("Name")
+            var name: String,
+            @set:PropertyName("Location")
+            @get:PropertyName("Location")
+            var location: String) {
 
-class Event {
+    var eventId: String = ""
 
-    lateinit var scheduleTime: Date
-
-    lateinit var title: String
-
-    lateinit var location: String
-
-    lateinit var eventType: String
+    constructor() : this(Date(), "", "")
 }

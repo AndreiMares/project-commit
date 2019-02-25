@@ -74,8 +74,13 @@ class MemberDetailActivity : BaseActivity() {
 
         intent.extras?.let {
 
-            if (it.getBoolean(EDIT))
+            if (it.getBoolean(EDIT)){
+                //sets the title, method must be done to check if its a visualize or create page
+                snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_member_detail_update)
+
                 this.viewBinding.model?.loadMember(it.getBoolean(EDIT), it.getString(MEMBER_NAME, ""))
+            }
+
         }
     }
 

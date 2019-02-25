@@ -24,6 +24,9 @@ ext {
 
     //lifecycle
     lifecycle_version = '1.1.1'
+
+    //custom calendar
+    cust_calend = '1.0.1'
 }
 
 buildscript {

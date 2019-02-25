@@ -33,7 +33,8 @@
     <string name="activity_event_detail">Event detail</string>
 
     <!--MemberDetail activity strings-->
-    <string name="activity_member_detail_create">Create member</string>
+    <string name="activity_member_detail_create">Add member</string>
+    <string name="activity_member_detail_update">Update member</string>
     <string name="activity_member_detail">Member detail</string>
     <string name="activity_member_detail_name">Name</string>
     <string name="activity_member_detail_email">Email</string>
@@ -43,6 +44,10 @@
     <string name="fragment_member_item_subtitle">Work contact </string>
     <string name="dialog_edit">Edit</string>
     <string name="dialog_delete">Delete</string>
+
+    <!--CalendarFragment strings-->
+    <string name="calendar_dialog_edit">Add new event</string>
+    <string name="calendar_dialog_show">Show events</string>
 
     <!--Error strings-->
     <string name="ERROR_WEAK_PASSWORD">The password is invalid it must 6 characters at least</string>

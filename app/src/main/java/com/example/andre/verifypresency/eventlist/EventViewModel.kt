@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.main
+package com.example.andre.verifypresency.eventlist
 
 import android.arch.lifecycle.ViewModel
 import com.example.andre.verifypresency.source.remote.event.EventRepository

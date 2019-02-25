@@ -22,26 +22,26 @@ class EventRemoteDataSource {
 
     fun saveEvent(event: Event, callBack: EventDataSource.SaveEventCallback) {
 
-        val eventDetail = HashMap<String, Any>()
-
-        FirebaseAuth.getInstance().currentUser?.let { eventDetail.put("UserId", it.uid) }
-        event.title?.let { eventDetail.put("Title", it) }
-        event.location?.let { eventDetail.put("Location", it) }
-        event.eventType?.let { eventDetail.put("EvenType", it) }
-        event.scheduleTime?.let { eventDetail.put("ScheduleTime", it) }
-
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("Events").document().set(eventDetail)
-                .addOnCompleteListener { task ->
-                    if (task.isComplete && task.isSuccessful) {
-//                        this.sendVerificationEmail(callBack)
-                        callBack.onEventSaved("Event successfully saved!")
-                    } else {
-                        task.exception?.message?.let { callBack.onEventFailed(it) }
-
-                    }
-                }
+//        val eventDetail = HashMap<String, Any>()
+//
+//        FirebaseAuth.getInstance().currentUser?.let { eventDetail.put("UserId", it.uid) }
+//        event.title?.let { eventDetail.put("Title", it) }
+//        event.location?.let { eventDetail.put("Location", it) }
+//        event.eventType?.let { eventDetail.put("EvenType", it) }
+//        event.scheduleTime?.let { eventDetail.put("ScheduleTime", it) }
+//
+//        val db = FirebaseFirestore.getInstance()
+//
+//        db.collection("Events").document().set(eventDetail)
+//                .addOnCompleteListener { task ->
+//                    if (task.isComplete && task.isSuccessful) {
+////                        this.sendVerificationEmail(callBack)
+//                        callBack.onEventSaved("Event successfully saved!")
+//                    } else {
+//                        task.exception?.message?.let { callBack.onEventFailed(it) }
+//
+//                    }
+//                }
 
     }
 }

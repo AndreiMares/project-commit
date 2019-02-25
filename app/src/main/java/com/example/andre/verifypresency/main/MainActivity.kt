@@ -5,6 +5,8 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
+import com.example.andre.verifypresency.eventlist.EventListFragment
+import com.example.andre.verifypresency.eventlist.EventViewModel
 import com.example.andre.verifypresency.register.RegisterModelFactory
 import kotlinx.android.synthetic.main.layout_center_viewpager.*
 import kotlinx.android.synthetic.main.layout_top_tabs.*
@@ -26,7 +28,7 @@ class MainActivity : BaseActivity() {
     private fun setupViewPager(){
         val adapter = SectionPagerAdapter(supportFragmentManager)
         container.currentItem
-        adapter.addFragment(EventListFragment())
+        adapter.addFragment(CalendarFragment())
         adapter.addFragment(MemberListFragment())
 
         //initialized viewPager with an adapter

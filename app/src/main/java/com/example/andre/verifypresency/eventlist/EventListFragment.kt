@@ -1,4 +1,4 @@
-package com.example.andre.verifypresency.main
+package com.example.andre.verifypresency.eventlist
 
 import android.content.Intent
 import android.databinding.DataBindingUtil
@@ -31,10 +31,6 @@ class EventListFragment : Fragment() {
     private fun openEventActivity() {
         val intent = Intent(context, EventDetailActivity::class.java)
         startActivity(intent)
-    }
-
-    companion object {
-        fun newInstance() = EventListFragment
     }
 
 }

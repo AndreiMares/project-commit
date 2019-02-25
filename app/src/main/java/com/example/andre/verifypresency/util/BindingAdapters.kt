@@ -57,7 +57,7 @@ fun notifyItemDeleted(recyclerView: RecyclerView, position: Int) {
 
             is MemberListAdapter -> {
                 with(recyclerView.adapter as MemberListAdapter) {
-                    notifyItemRemoved(position)
+                    this.notifyItemRemoved(position)
                 }
             }
         }
