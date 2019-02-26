@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
+import com.example.andre.verifypresency.main.CalendarFragment.Companion.EVENT_DATE
+import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class EventDetailActivity : BaseActivity() {
@@ -12,15 +14,9 @@ class EventDetailActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_event_detail)
 
-        //sets the custom toolbar
-        setSupportActionBar(snippet_top_detailbar_tb_header)
+        this.configureToolbar()
 
-        //sets the arrow back button
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setDisplayShowHomeEnabled(true)
-
-        //sets the title, method must be done to check if its a visualize or create page
-        snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_event_detail_create)
+        this.findOrCreateFragment()
 
     }
 
@@ -36,4 +32,23 @@ class EventDetailActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+    private fun configureToolbar() {
+        //sets the custom toolbar
+        setSupportActionBar(snippet_top_detailbar_tb_header)
+
+        //sets the arrow back button
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.setDisplayShowHomeEnabled(true)
+
+        //sets the title, method must be done to check if its a visualize or create page
+        snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_event_detail_create)
+
+    }
+
+    private fun findOrCreateFragment() =
+            supportFragmentManager.findFragmentById(R.id.activity_event_detail_fl_fragment)
+                    ?: EventDetailFragment.newInstance(intent.getLongExtra(EVENT_DATE, -1)).also {
+                        replaceFragmentInActivity(it, R.id.activity_event_detail_fl_fragment)
+                    }
 }

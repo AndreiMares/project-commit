@@ -1,157 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:bind="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/tools">
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <!--<data>-->
+    <!-- Top toolbar-->
+    <include layout="@layout/snippet_top_detailbar"/>
 
-        <!--<import type="android.view.View" />-->
-        <!--<variable-->
-            <!--name="model"-->
-            <!--type="com.example.andre.verifypresency.eventdetail.EventDetailViewModel" />-->
-    <!--</data>-->
-
-    <RelativeLayout
+    <!-- Middle section-->
+    <FrameLayout
+        android:id="@+id/activity_event_detail_fl_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Top toolbar-->
-        <RelativeLayout
-            android:id="@+id/activity_event_rl_top"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    </FrameLayout>
 
-            <include
-                android:id = "@+id/header"
-                layout="@layout/snippet_top_detailbar"/>
-
-        </RelativeLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingStart="@dimen/activity_horizontal_padding"
-            android:paddingEnd="@dimen/activity_horizontal_padding"
-            android:layout_below="@+id/activity_event_rl_top"
-            android:layout_marginTop="@dimen/activity_vertical_margin">
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--bind:errorInput="@{model.registerForm.firstNameError}">-->
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:id="@+id/activity_event_et_name"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginTop="@dimen/activity_vertical_margin"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:enabled="@{model.enableView}"-->
-                    <!--android:hint="@string/activity_event_detail_name"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@={model.registerForm.registerField.firstName}"-->
-                    <!--android:textSize="@dimen/text_input"-->
-                    <!--bind:onFocus="@{model.onFocusFirstName}" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--bind:errorInput="@{model.registerForm.firstNameError}">-->
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:id="@+id/activity_event_et_location"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:enabled="@{model.enableView}"-->
-                    <!--android:hint="@string/activity_event_detail_location"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@={model.registerForm.registerField.firstName}"-->
-                    <!--android:textSize="@dimen/text_input"-->
-                    <!--bind:onFocus="@{model.onFocusFirstName}" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--bind:errorInput="@{model.registerForm.firstNameError}">-->
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:id="@+id/activity_event_et_eventType"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:enabled="@{model.enableView}"-->
-                    <!--android:hint="@string/activity_event_detail_eventType"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@={model.registerForm.registerField.firstName}"-->
-                    <!--android:textSize="@dimen/text_input"-->
-                    <!--bind:onFocus="@{model.onFocusFirstName}" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--bind:errorInput="@{model.registerForm.firstNameError}">-->
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:id="@+id/activity_event_et_schedule"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:enabled="@{model.enableView}"-->
-                    <!--android:hint="@string/activity_event_detail_schedule"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@={model.registerForm.registerField.firstName}"-->
-                    <!--android:textSize="@dimen/text_input"-->
-                    <!--bind:onFocus="@{model.onFocusFirstName}" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-            <!--<android.support.design.widget.TextInputLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--bind:errorInput="@{model.registerForm.firstNameError}">-->
-
-                <!--<android.support.design.widget.TextInputEditText-->
-                    <!--android:id="@+id/activity_event_et_members"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_marginBottom="@dimen/activity_vertical_margin"-->
-                    <!--android:enabled="@{model.enableView}"-->
-                    <!--android:hint="@string/activity_event_detail_members"-->
-                    <!--android:singleLine="true"-->
-                    <!--android:text="@={model.registerForm.registerField.firstName}"-->
-                    <!--android:textSize="@dimen/text_input"-->
-                    <!--bind:onFocus="@{model.onFocusFirstName}" />-->
-
-            <!--</android.support.design.widget.TextInputLayout>-->
-
-        </LinearLayout>
-
-        <com.github.clans.fab.FloatingActionButton
-            android:id="@+id/activity_event_detail_fab"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="@dimen/activity_vertical_margin"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:src="@drawable/ic_check_white_24dp"
-            fab:fab_label="Save"
-            fab:fab_size="normal"
-            fab:fab_colorNormal="@color/colorPrimaryLight"
-            fab:fab_colorPressed="@color/accent"
-            fab:fab_colorRipple="@color/colorPrimaryDark"
-            fab:paddingEnd="2dp"
-            fab:paddingStart="2dp"/>
-
-    </RelativeLayout>
-
-</layout>
+</LinearLayout>

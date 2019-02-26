@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentEventListBinding
 import com.example.andre.verifypresency.eventdetail.EventDetailActivity
+import com.example.andre.verifypresency.main.CalendarFragment.Companion.EVENT_DATE
 
 
 class EventListFragment : Fragment() {
@@ -31,6 +32,17 @@ class EventListFragment : Fragment() {
     private fun openEventActivity() {
         val intent = Intent(context, EventDetailActivity::class.java)
         startActivity(intent)
+    }
+
+
+    companion object {
+
+        fun newInstance(timeInMilisec: Long) = EventListFragment().apply {
+            arguments = Bundle().apply {
+                putLong(EVENT_DATE, timeInMilisec)
+            }
+        }
+
     }
 
 }

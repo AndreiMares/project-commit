@@ -28,11 +28,11 @@ class MemberDetailActivity : BaseActivity() {
 
         this.viewBinding = DataBindingUtil.setContentView<ActivityMemberDetailBinding>(this, R.layout.activity_member_detail)
 
-        this.memberViewDetailModel = this.obtainViewModel(MemberDetailViewModel::class.java)
+        this.memberViewDetailModel = ViewModelProviders.of(this, MemberDetailModelFactory.getInstance()).get(MemberDetailViewModel::class.java)
 
         this.viewBinding.model = this.memberViewDetailModel
 
-        this.configureViews()
+        this.configureViews(resources.getString(R.string.activity_member_detail_create))
 
     }
 
@@ -74,20 +74,16 @@ class MemberDetailActivity : BaseActivity() {
 
         intent.extras?.let {
 
-            if (it.getBoolean(EDIT)){
+            if (it.getBoolean(EDIT)) {
                 //sets the title, method must be done to check if its a visualize or create page
-                snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_member_detail_update)
+                this.configureViews(resources.getString(R.string.activity_member_detail_update))
 
                 this.viewBinding.model?.loadMember(it.getBoolean(EDIT), it.getString(MEMBER_NAME, ""))
             }
-
         }
     }
 
-    private fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
-            ViewModelProviders.of(this, MemberDetailModelFactory.getInstance()).get(viewModelClass)
-
-    private fun configureViews() {
+    private fun configureViews(resource: String) {
         //sets the custom toolbar
         setSupportActionBar(snippet_top_detailbar_tb_header)
 
@@ -96,6 +92,6 @@ class MemberDetailActivity : BaseActivity() {
         supportActionBar?.setDisplayShowHomeEnabled(true)
 
         //sets the title, method must be done to check if its a visualize or create page
-        snippet_top_detailbar_tv_title.text = resources.getString(R.string.activity_member_detail_create)
+        snippet_top_detailbar_tv_title.text = resource
     }
 }

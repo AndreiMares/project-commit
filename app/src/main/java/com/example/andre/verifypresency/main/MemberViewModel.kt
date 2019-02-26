@@ -25,7 +25,7 @@ class MemberViewModel(private val memberRepository: MemberRepository)
     private var selectedMember: Member? = null
     var itemPosition: ObservableField<Int> = ObservableField(-1)
 
-    fun prepareLoadingList(): Unit = this.loadProductList()
+    fun prepareLoadingList(): Unit = this.loadMemberList()
 
     fun cardViewClicked(member: Member) {
         this.selectedMember = member
@@ -67,7 +67,7 @@ class MemberViewModel(private val memberRepository: MemberRepository)
 
     }
 
-    private fun loadProductList() {
+    private fun loadMemberList() {
 
         this.onDataLoading.set(true)
 

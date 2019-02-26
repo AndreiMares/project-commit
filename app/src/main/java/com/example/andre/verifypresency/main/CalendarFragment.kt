@@ -17,10 +17,14 @@ import com.example.andre.verifypresency.eventdetail.EventDetailActivity
 import java.util.*
 import com.applandeo.materialcalendarview.EventDay
 import com.example.andre.verifypresency.R
+import com.example.andre.verifypresency.eventlist.EventListFragment
 
 
 class CalendarFragment : Fragment() {
 
+    companion object {
+        val EVENT_DATE = "EVENT_DATE"
+    }
 
     private lateinit var viewBinding: FragmentCalendarBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
@@ -90,7 +94,7 @@ class CalendarFragment : Fragment() {
         this.configureBottomNavView()
 
         val intent = Intent(context, EventDetailActivity::class.java)
-        intent.putExtra("Date", date)
+        intent.putExtra(EVENT_DATE, date.time)
         startActivity(intent)
 
     }
