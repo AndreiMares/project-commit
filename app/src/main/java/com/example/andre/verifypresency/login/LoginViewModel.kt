@@ -38,6 +38,9 @@ class LoginViewModel(private val mLoginRepository: LoginRepository)
                 AppModuleEnum.REGISTER -> {
                     navigation.value = AppModuleEnum.REGISTER
                 }
+                else -> {
+
+                }
             }
 
     /**

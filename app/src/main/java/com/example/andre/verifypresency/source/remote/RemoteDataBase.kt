@@ -3,6 +3,7 @@ package com.example.andre.verifypresency.source.remote
 import com.example.andre.verifypresency.login.remote.LoginRemoteDataSource
 import com.example.andre.verifypresency.main.remote.MemberRemoteDataSource
 import com.example.andre.verifypresency.register.remote.RegisterRemoteDataSource
+import com.example.andre.verifypresency.source.remote.event.EventRemoteDataSource
 
 class RemoteDataBase private constructor() {
 
@@ -13,6 +14,9 @@ class RemoteDataBase private constructor() {
         private set
 
     var memberRemoteDataSource: MemberRemoteDataSource = MemberRemoteDataSource()
+        private set
+
+    var eventRemoteDataSource: EventRemoteDataSource = EventRemoteDataSource()
         private set
 
     companion object {

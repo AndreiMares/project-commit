@@ -4,4 +4,6 @@ enum class AppModuleEnum {
 
     LOGIN,
     REGISTER,
+    EVENTLIST,
+    NEWEVENT,
 }
