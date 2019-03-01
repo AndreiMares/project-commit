@@ -15,10 +15,7 @@ import com.example.andre.verifypresency.AppModuleEnum
 import com.example.andre.verifypresency.databinding.FragmentCalendarBinding
 import com.example.andre.verifypresency.eventdetail.EventDetailActivity
 import java.util.*
-import com.applandeo.materialcalendarview.EventDay
 import com.example.andre.verifypresency.R
-import com.example.andre.verifypresency.eventlist.EventListFragment
-
 
 class CalendarFragment : Fragment() {
 
@@ -28,6 +25,7 @@ class CalendarFragment : Fragment() {
 
     private lateinit var viewBinding: FragmentCalendarBinding
     private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
+    private lateinit var selectedDate: Date
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
 
@@ -38,28 +36,13 @@ class CalendarFragment : Fragment() {
 
         this.bottomSheetBehavior = BottomSheetBehavior.from(this.viewBinding.snippetBottomBar)
 
-        this.viewBinding.calendarView.setOnDayClickListener {
+        this.viewBinding.calendarView.setFirstDayOfWeek(Calendar.SUNDAY)
+                .setOnDateClickListener {
+                    this.configureBottomNavView()
+                    this.selectedDate = it
+                }
 
-            this.viewBinding.calendarView.setDate(it.calendar)
-
-            this.configureBottomNavView()
-
-        }
-
-        //TODO to be deleted
-        var events = arrayListOf<EventDay>()
-
-        val calendar1 = Calendar.getInstance()
-        calendar1.add(Calendar.DAY_OF_WEEK, 3)
-        events.add(EventDay(calendar1, R.drawable.ic_message_black_24dp))
-
-        val calendar2 = Calendar.getInstance()
-        calendar2.add(Calendar.DAY_OF_WEEK, 2)
-        events.add(EventDay(calendar2, R.drawable.ic_message_black_24dp))
-
-
-        this.viewBinding.calendarView.setEvents(events)
-
+        this.viewBinding.calendarView.update(Calendar.getInstance(Locale.getDefault()))
 
         return this.viewBinding.root
 
@@ -76,7 +59,7 @@ class CalendarFragment : Fragment() {
                     when (it) {
 
                         AppModuleEnum.EVENTLIST -> navigateEventListActivity()
-                        AppModuleEnum.NEWEVENT -> navigateCreateEventActivity(viewBinding.calendarView.selectedDate.time)
+                        AppModuleEnum.NEWEVENT -> navigateCreateEventActivity(selectedDate)
 
                         else -> {
                         }

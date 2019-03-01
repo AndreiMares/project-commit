@@ -14,7 +14,7 @@ fun BottomNavigationViewEx.setupBottomNavigationView() {
     this.enableAnimation(false)
     this.enableItemShiftingMode(false)
     this.enableShiftingMode(false)
-    this.setTextVisibility(false)
+    this.setTextVisibility(true)
 
 }
 

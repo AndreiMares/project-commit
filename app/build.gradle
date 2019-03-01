@@ -85,6 +85,9 @@ dependencies {
 
     //Custom calendar
     implementation "com.applandeo:material-calendar-view:$rootProject.cust_calend"
+    implementation 'android.arch.navigation:navigation-fragment:1.0.0-rc01'
+
+    implementation 'com.github.BlackBoxVision:material-calendar-view:v1.5.8'
 
     //ButterKnife
 //    implementation 'com.jakewharton:butterknife:9.0.0-rc3'

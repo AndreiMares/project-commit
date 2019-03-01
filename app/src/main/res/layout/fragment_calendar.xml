@@ -20,15 +20,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.applandeo.materialcalendarview.CalendarView
-            android:id="@+id/calendarView"
+        <io.blackbox_vision.materialcalendarview.view.CalendarView
+            android:id="@+id/calendar_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:headerColor="@color/colorPrimary"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:calendarIsMultiSelectDayEnabled="false"
+            app:calendarIsOverflowDatesVisible="true"
+            app:calendarBackgroundColor="@color/transparent"
+            app:calendarCurrentDayTextColor="@color/black"
+            app:calendarTitleTextColor="@color/colorAccent"
+            app:calendarWeekendDays="saturday|sunday"
+            app:calendarSelectedDayTextColor="@color/brightYellow"
+            app:calendarDayOfWeekTextColor="@color/brightYellow"
+            app:calendarDayOfMonthTextColor="@color/amber_300"
+            app:calendarDisabledDayBackgroundColor="@color/transparent"
+            app:calendarDisabledDayTextColor="@android:color/darker_gray"
+            app:calendarSelectedDayBackgroundColor="@color/colorAccent"
+            app:calendarTitleBackgroundColor="@color/colorPrimary"
+            app:calendarWeekBackgroundColor="@color/colorPrimary"
+            app:calendarCurrentDayBackgroundColor="@color/brightYellow"
+            app:calendarWeekendTextColor="@color/red_900"
+            app:calendarButtonBackgroundColor="@color/colorAccent">
+
+        </io.blackbox_vision.materialcalendarview.view.CalendarView>
+
+    <!---->
+
+
+        <!--</CalendarView>-->
+        <!--<com.applandeo.materialcalendarview.CalendarView-->
+            <!--android:id="@+id/calendarView"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--app:headerColor="@color/colorPrimary"-->
+            <!--app:layout_constraintBottom_toBottomOf="parent"-->
+            <!--app:layout_constraintLeft_toLeftOf="parent"-->
+            <!--app:layout_constraintRight_toRightOf="parent"-->
+            <!--app:layout_constraintTop_toTopOf="parent" />-->
 
         <LinearLayout
             android:id="@+id/snippet_bottom_bar"
