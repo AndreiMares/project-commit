@@ -26,10 +26,14 @@ class FilterMemberListFragment : Fragment() {
 
         this.viewBinding.model = (activity as EventDetailActivity).obtainViewModel(EventDetailViewModel::class.java)
 
-        this.setAdapter()
-
         // Inflate the layout for this fragment
         return this.viewBinding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        this.setAdapter()
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -37,7 +41,9 @@ class FilterMemberListFragment : Fragment() {
 
         this.viewBinding.model?.apply {
             navigation.observe(this@FilterMemberListFragment, Observer {
-                NavHostFragment.findNavController(this@FilterMemberListFragment).navigate(R.id.eventDetailFragment)
+//                NavHostFragment.findNavController(this@FilterMemberListFragment).navigate(R.id.eventDetailFragment)
+
+                (activity as EventDetailActivity).onBackPressed()
             })
 
         }

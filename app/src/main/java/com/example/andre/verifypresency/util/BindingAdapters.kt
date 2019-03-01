@@ -6,6 +6,7 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.CheckBox
 import android.widget.EditText
+import com.example.andre.verifypresency.eventdetail.EventDetailListAdapter
 import com.example.andre.verifypresency.eventdetail.FilterMemberListAdapter
 import com.example.andre.verifypresency.main.MemberListAdapter
 import com.example.andre.verifypresency.main.form.Member
@@ -54,6 +55,10 @@ fun setMemberList(recyclerView: RecyclerView, list: List<Member>) {
         }
 
         is FilterMemberListAdapter -> with(recyclerView.adapter as FilterMemberListAdapter) {
+            loadList(list)
+        }
+
+        is EventDetailListAdapter -> with(recyclerView.adapter as EventDetailListAdapter) {
             loadList(list)
         }
     }

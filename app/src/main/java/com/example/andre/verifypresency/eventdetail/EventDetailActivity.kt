@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
+import androidx.navigation.findNavController
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
@@ -23,6 +24,7 @@ class EventDetailActivity : BaseActivity() {
         return when (item?.itemId) {
 
             android.R.id.home -> {
+
                 super.onBackPressed()
                 true
             }
@@ -30,6 +32,12 @@ class EventDetailActivity : BaseActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+//    override fun onBackPressed() {
+//        if (!findNavController(R.id.event_detail_host_fragment).popBackStack()) {
+//            super.onBackPressed()
+//        }
+//    }
 
     fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
             ViewModelProviders.of(this, EventDetailModelFactory.getInstance()).get(viewModelClass)

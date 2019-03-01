@@ -12,8 +12,7 @@
         tools:layout="@layout/fragment_event_detail" >
         <action
             android:id="@+id/add_members_action"
-            app:destination="@id/filterMemberListFragment"
-            app:launchSingleTop="true" />
+            app:destination="@id/filterMemberListFragment" />
     </fragment>
 
     <!--app:enterAnim="@anim/slide_in_right"-->

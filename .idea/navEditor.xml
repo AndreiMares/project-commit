@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
+                            <option name="x" value="11" />
+                            <option name="y" value="21" />
                           </Point>
                         </option>
                         <option name="myPositions">
@@ -37,15 +37,6 @@
                             <option name="x" value="349" />
                             <option name="y" value="20" />
                           </Point>
-                        </option>
-                        <option name="myPositions">
-                          <map>
-                            <entry key="action_filterMemberListFragment_to_eventDetailFragment">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

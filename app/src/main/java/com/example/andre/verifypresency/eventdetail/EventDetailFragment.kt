@@ -4,6 +4,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
+import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +12,6 @@ import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.navOptions
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.databinding.FragmentEventDetailBinding
-import com.example.andre.verifypresency.main.CalendarFragment.Companion.EVENT_DATE
 
 class EventDetailFragment : Fragment() {
 
@@ -24,11 +24,11 @@ class EventDetailFragment : Fragment() {
 
         this.viewBinding.model = (activity as EventDetailActivity).obtainViewModel(EventDetailViewModel::class.java)
 
-//        this.viewBinding.fragmentEventFab.setOnClickListener { this.openEventActivity() }
 
         return this.viewBinding.root
 
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,6 +45,8 @@ class EventDetailFragment : Fragment() {
         this.viewBinding.fragmentEventDetailBtn.setOnClickListener {
             findNavController(this).navigate(R.id.add_members_action, null, options)
         }
+
+        this.setAdapter()
     }
 
     override fun onResume() {
@@ -53,14 +55,27 @@ class EventDetailFragment : Fragment() {
         this.viewBinding.model?.prepareSelectedMembersList()
     }
 
-    companion object {
+    private fun setAdapter() {
+        val viewModel = this.viewBinding.model
 
-        fun newInstance(timeInMilisec: Long) = EventDetailFragment().apply {
-            arguments = Bundle().apply {
-                putLong(EVENT_DATE, timeInMilisec)
-            }
+        if (viewModel != null) {
+            val listAdapter = EventDetailListAdapter(ArrayList(0))
+            val viewManager = LinearLayoutManager(context)
+
+            this.viewBinding.fragmentRecycleView.adapter = listAdapter
+            this.viewBinding.fragmentRecycleView.layoutManager = viewManager
+
         }
-
-        val EVENT_DETAIL_FRAGMENT = "EVENT_DETAIL_FRAGMENT"
     }
+
+//    companion object {
+//
+//        fun newInstance(timeInMilisec: Long) = EventDetailFragment().apply {
+//            arguments = Bundle().apply {
+//                putLong(EVENT_DATE, timeInMilisec)
+//            }
+//        }
+//
+//        val EVENT_DETAIL_FRAGMENT = "EVENT_DETAIL_FRAGMENT"
+//    }
 }

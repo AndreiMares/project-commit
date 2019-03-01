@@ -20,7 +20,7 @@
         <LinearLayout
             android:id="@+id/fragment_event_detail_mid"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -57,21 +57,42 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:hint="@string/activity_event_detail_location"
                     android:singleLine="true"
-                    android:textSize="@dimen/text_input"
-                    />
+                    android:textSize="@dimen/text_input" />
 
             </android.support.design.widget.TextInputLayout>
-
-            <!--android:enabled="@{model.enableView}"-->
-            <!--android:text="@={model.registerForm.registerField.firstName}"-->
-            <!--bind:onFocus="@{model.onFocusFirstName}"-->
 
             <Button
                 android:id="@+id/fragment_event_detail_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/fragmentRecycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    bind:memberList="@{model.selectedMemberList}" />
+
+                <include
+                    layout="@layout/layout_empty_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:visibility="@{model.onEmpty ? View.VISIBLE: View.GONE}" />
+
+            </FrameLayout>
+
         </LinearLayout>
+
+
+        <include
+            layout="@layout/layout_progressbar"
+            android:visibility="@{model.onDataLoading ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fragment_event_detail_fab"
