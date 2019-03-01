@@ -1,11 +1,11 @@
 package com.example.andre.verifypresency.eventdetail
 
+import android.arch.lifecycle.ViewModel
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.view.MenuItem
 import com.example.andre.verifypresency.R
 import com.example.andre.verifypresency.BaseActivity
-import com.example.andre.verifypresency.main.CalendarFragment.Companion.EVENT_DATE
-import com.example.andre.verifypresency.util.replaceFragmentInActivity
 import kotlinx.android.synthetic.main.snippet_top_detailbar.*
 
 class EventDetailActivity : BaseActivity() {
@@ -15,8 +15,6 @@ class EventDetailActivity : BaseActivity() {
         setContentView(R.layout.activity_event_detail)
 
         this.configureToolbar()
-
-//        this.findOrCreateFragment()
 
     }
 
@@ -33,10 +31,12 @@ class EventDetailActivity : BaseActivity() {
         }
     }
 
+    fun <T : ViewModel> obtainViewModel(viewModelClass: Class<T>): T =
+            ViewModelProviders.of(this, EventDetailModelFactory.getInstance()).get(viewModelClass)
+
     private fun configureToolbar() {
         //sets the custom toolbar
         setSupportActionBar(snippet_top_detailbar_tb_header)
-
         //sets the arrow back button
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setDisplayShowHomeEnabled(true)

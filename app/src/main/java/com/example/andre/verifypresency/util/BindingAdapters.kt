@@ -4,7 +4,9 @@ import android.databinding.BindingAdapter
 import android.support.design.widget.TextInputLayout
 import android.support.v7.widget.RecyclerView
 import android.view.View
+import android.widget.CheckBox
 import android.widget.EditText
+import com.example.andre.verifypresency.eventdetail.FilterMemberListAdapter
 import com.example.andre.verifypresency.main.MemberListAdapter
 import com.example.andre.verifypresency.main.form.Member
 
@@ -44,10 +46,18 @@ fun EditText.bindFocusChange(onFocusChangeListener: View.OnFocusChangeListener?)
 }
 
 @BindingAdapter("bind:memberList")
-fun setMemberList(recyclerView: RecyclerView, list: List<Member>) =
-        with(recyclerView.adapter as MemberListAdapter) {
+fun setMemberList(recyclerView: RecyclerView, list: List<Member>) {
+    when (recyclerView.adapter) {
+
+        is MemberListAdapter -> with(recyclerView.adapter as MemberListAdapter) {
             loadList(list)
         }
+
+        is FilterMemberListAdapter -> with(recyclerView.adapter as FilterMemberListAdapter) {
+            loadList(list)
+        }
+    }
+}
 
 @BindingAdapter("bind:notifyItemDeleted")
 fun notifyItemDeleted(recyclerView: RecyclerView, position: Int) {
@@ -62,6 +72,29 @@ fun notifyItemDeleted(recyclerView: RecyclerView, position: Int) {
             }
         }
     }
+}
+
+@BindingAdapter("bind:selectAll")
+fun selectItems(view: View, items: List<Member>) {
+
+    val checkBox = view as CheckBox
+
+    checkBox.setOnClickListener {
+
+        when (checkBox.isChecked) {
+
+            true -> {
+                items.forEach { t -> t.selected.set(true) }
+            }
+
+            false -> {
+                items.forEach { t -> t.selected.set(false) }
+            }
+        }
+
+    }
+
+
 }
 
 

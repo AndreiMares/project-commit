@@ -1,12 +1,12 @@
 package com.example.andre.verifypresency.eventdetail
 
+import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.Navigation
 import androidx.navigation.fragment.NavHostFragment.findNavController
 import androidx.navigation.navOptions
 import com.example.andre.verifypresency.R
@@ -22,6 +22,7 @@ class EventDetailFragment : Fragment() {
         this.viewBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_event_detail, container,
                 false)
 
+        this.viewBinding.model = (activity as EventDetailActivity).obtainViewModel(EventDetailViewModel::class.java)
 
 //        this.viewBinding.fragmentEventFab.setOnClickListener { this.openEventActivity() }
 
@@ -46,6 +47,11 @@ class EventDetailFragment : Fragment() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+
+        this.viewBinding.model?.prepareSelectedMembersList()
+    }
 
     companion object {
 

@@ -9,12 +9,12 @@
         android:id="@+id/eventDetailFragment"
         android:name="com.example.andre.verifypresency.eventdetail.EventDetailFragment"
         android:label="fragment_event_detail"
-        tools:layout="@layout/fragment_event_detail" />
-
-    <action
-        android:id="@+id/add_members_action"
-        app:destination="@+id/filterMemberListFragment"
-        />
+        tools:layout="@layout/fragment_event_detail" >
+        <action
+            android:id="@+id/add_members_action"
+            app:destination="@id/filterMemberListFragment"
+            app:launchSingleTop="true" />
+    </fragment>
 
     <!--app:enterAnim="@anim/slide_in_right"-->
     <!--app:exitAnim="@anim/slide_out_left"-->
@@ -23,8 +23,10 @@
 
     <fragment
         android:id="@+id/filterMemberListFragment"
-        android:name="com.example.andre.verifypresency.filtermembers.FilterMemberListFragment"
+        android:name="com.example.andre.verifypresency.eventdetail.FilterMemberListFragment"
         android:label="fragment_filter_member_list"
         tools:layout="@layout/fragment_filter_member_list"
-        />
+        >
+
+    </fragment>
 </navigation>
