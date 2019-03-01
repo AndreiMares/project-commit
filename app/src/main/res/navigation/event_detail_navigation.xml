@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/event_detail_navigation"
+    app:startDestination="@id/eventDetailFragment">
+
+    <fragment
+        android:id="@+id/eventDetailFragment"
+        android:name="com.example.andre.verifypresency.eventdetail.EventDetailFragment"
+        android:label="fragment_event_detail"
+        tools:layout="@layout/fragment_event_detail" />
+
+    <action
+        android:id="@+id/add_members_action"
+        app:destination="@+id/filterMemberListFragment"
+        />
+
+    <!--app:enterAnim="@anim/slide_in_right"-->
+    <!--app:exitAnim="@anim/slide_out_left"-->
+    <!--app:popEnterAnim="@anim/slide_in_left"-->
+    <!--app:popExitAnim="@anim/slide_out_right"-->
+
+    <fragment
+        android:id="@+id/filterMemberListFragment"
+        android:name="com.example.andre.verifypresency.filtermembers.FilterMemberListFragment"
+        android:label="fragment_filter_member_list"
+        tools:layout="@layout/fragment_filter_member_list"
+        />
+</navigation>

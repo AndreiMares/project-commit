@@ -16,7 +16,7 @@ class EventDetailActivity : BaseActivity() {
 
         this.configureToolbar()
 
-        this.findOrCreateFragment()
+//        this.findOrCreateFragment()
 
     }
 
@@ -46,9 +46,9 @@ class EventDetailActivity : BaseActivity() {
 
     }
 
-    private fun findOrCreateFragment() =
-            supportFragmentManager.findFragmentById(R.id.activity_event_detail_fl_fragment)
-                    ?: EventDetailFragment.newInstance(intent.getLongExtra(EVENT_DATE, -1)).also {
-                        replaceFragmentInActivity(it, R.id.activity_event_detail_fl_fragment)
-                    }
+//    private fun findOrCreateFragment() =
+//            supportFragmentManager.findFragmentById(R.id.activity_event_detail_fl_fragment)
+//                    ?: EventDetailFragment.newInstance(intent.getLongExtra(EVENT_DATE, -1)).also {
+//                        replaceFragmentInActivity(it, R.id.activity_event_detail_fl_fragment)
+//                    }
 }

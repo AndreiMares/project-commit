@@ -1,19 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <!-- Top toolbar-->
     <include layout="@layout/snippet_top_detailbar"/>
 
     <!-- Middle section-->
-    <FrameLayout
-        android:id="@+id/activity_event_detail_fl_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-    </FrameLayout>
+    <fragment
+        android:id="@+id/event_detail_host_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        app:defaultNavHost="true"
+        app:navGraph = "@navigation/event_detail_navigation"/>
+    <!--<FrameLayout-->
+        <!--android:id="@+id/activity_event_detail_fl_fragment"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+
+    <!--</FrameLayout>-->
 
 </LinearLayout>
