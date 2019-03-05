@@ -1,5 +1,6 @@
 package com.example.andre.verifypresency.eventdetail
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.databinding.DataBindingUtil
 import android.os.Bundle
@@ -27,6 +28,18 @@ class EventDetailFragment : Fragment() {
 
         return this.viewBinding.root
 
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        this.viewBinding.model?.apply {
+            navigation.observe(this@EventDetailFragment, Observer {
+
+                (activity as EventDetailActivity).onBackPressed()
+            })
+
+        }
     }
 
 

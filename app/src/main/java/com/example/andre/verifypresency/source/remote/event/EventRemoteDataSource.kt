@@ -42,39 +42,53 @@ class EventRemoteDataSource {
 //
 //
 //        }
-        val list = arrayListOf<Member>()
-        event.memberList.forEach {
+//        val list = arrayListOf<Member>()
+//        event.memberList.forEach {
+//
+//            list.add(it)
+//        }
+//
+//        eventDetail.put("Members", list)
 
-            list.add(it)
-        }
 
-        eventDetail.put("Members", list)
-
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("Events")
+        val docReference = FirebaseFirestore.getInstance()
+                .collection("Events")
                 .document()
-                .set(eventDetail)
+
+
+        var id = docReference.id
+
+        docReference.set(eventDetail)
                 .addOnCompleteListener { task ->
                     when {
-                        task.isSuccessful -> callBack.onSuccess("")
+                        task.isSuccessful -> {
+
+                            val db = FirebaseFirestore.getInstance()
+                                    .collection("Events")
+                                    .document(id)
+                                    .collection("Members")
+
+                            event.memberList.forEach {
+
+                                val memberDetail = HashMap<String, Any>()
+
+                                FirebaseAuth.getInstance().currentUser?.let { memberDetail.put("UserId", it.uid) }
+                                it.name.let { memberDetail.put("Name", it) }
+                                it.email.let { memberDetail.put("Email", it) }
+                                it.phoneNumber.let { memberDetail.put("PhoneNumber", it) }
+                                it.active.let { memberDetail.put("Active", true) }
+
+                                db.add(memberDetail)
+                            }
+
+                            callBack.onSuccess("")
+                        }
                     }
                 }
                 .addOnFailureListener { exception ->
                     exception.message?.let { callBack.onError(it) }
                 }
 
-//
-//        db.collection("Events").document().set(eventDetail)
-//                .addOnCompleteListener { task ->
-//                    if (task.isComplete && task.isSuccessful) {
-////                        this.sendVerificationEmail(callBack)
-//                        callBack.onSuccess("Event successfully saved!")
-//                    } else {
-//                        task.exception?.message?.let { callBack.onError(it) }
-//
-//                    }
-//                }
 
     }
 }
