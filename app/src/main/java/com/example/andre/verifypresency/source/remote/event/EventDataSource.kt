@@ -20,15 +20,15 @@ interface EventDataSource {
         fun onDataNotAvailable()
     }
 
-    interface SaveEventCallback {
+    interface SaveCallback {
 
-        fun onEventSaved(message: String)
+        fun onSuccess(message: String)
 
-        fun onEventFailed(message: String)
+        fun onError(message: String)
     }
 
 
     fun getEvent(userId: String, callback: LoadEventCallback)
 
-    fun saveEvent(event: Event, callback: SaveEventCallback)
+    fun saveEvent(event: Event, callback: SaveCallback)
 }

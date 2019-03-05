@@ -39,7 +39,8 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:hint="@string/activity_event_detail_name"
                     android:singleLine="true"
-                    android:textSize="@dimen/text_input" />
+                    android:textSize="@dimen/text_input"
+                    android:text="@={model.event.name}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -57,7 +58,8 @@
                     android:layout_marginBottom="@dimen/activity_vertical_margin"
                     android:hint="@string/activity_event_detail_location"
                     android:singleLine="true"
-                    android:textSize="@dimen/text_input" />
+                    android:textSize="@dimen/text_input"
+                    android:text="@={model.event.location}"/>
 
             </android.support.design.widget.TextInputLayout>
 
@@ -74,7 +76,7 @@
                     android:id="@+id/fragmentRecycleView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    bind:memberList="@{model.selectedMemberList}" />
+                    bind:memberList="@{model.event.memberList}" />
 
                 <include
                     layout="@layout/layout_empty_list"
@@ -85,7 +87,6 @@
             </FrameLayout>
 
         </LinearLayout>
-
 
         <include
             layout="@layout/layout_progressbar"
@@ -109,7 +110,8 @@
             fab:fab_label="Save"
             fab:fab_size="normal"
             fab:paddingEnd="2dp"
-            fab:paddingStart="2dp" />
+            fab:paddingStart="2dp"
+            android:onClick="@{()-> model.saveEvent()}"/>
 
     </android.support.constraint.ConstraintLayout>
 

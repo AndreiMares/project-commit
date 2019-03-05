@@ -37,20 +37,13 @@ class EventRepository(
 
     }
 
-    fun saveEvent(event: Event, callback: EventDataSource.SaveEventCallback) {
+    fun saveEvent(event: Event, callback: EventDataSource.SaveCallback) =
+            this.eventRemoteDateSource.saveEvent(event, object : EventDataSource.SaveCallback {
+                override fun onSuccess(message: String) = callback.onSuccess(message)
 
-        this.eventRemoteDateSource.saveEvent(event, object : EventDataSource.SaveEventCallback {
-            override fun onEventSaved(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
+                override fun onError(message: String) = callback.onError(message)
 
-            override fun onEventFailed(message: String) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-            }
-
-        })
-
-    }
+            })
 
     companion object {
         @Volatile

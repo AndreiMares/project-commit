@@ -8,6 +8,8 @@ import com.example.andre.verifypresency.SingleLiveEvent
 import com.example.andre.verifypresency.main.form.Member
 import com.example.andre.verifypresency.main.remote.MemberDataSource
 import com.example.andre.verifypresency.main.remote.MemberRepository
+import com.example.andre.verifypresency.source.models.Event
+import com.example.andre.verifypresency.source.remote.event.EventDataSource
 import com.example.andre.verifypresency.source.remote.event.EventRepository
 
 class EventDetailViewModel(private val eventRepository: EventRepository,
@@ -15,8 +17,8 @@ class EventDetailViewModel(private val eventRepository: EventRepository,
     : ViewModel() {
 
     //observable views
+    val event = Event()
     val memberList: ObservableList<Member> = ObservableArrayList()
-    val selectedMemberList: ObservableList<Member> = ObservableArrayList()
 
     val onDataLoading = ObservableBoolean(false)
     val onEmpty = ObservableBoolean(false)
@@ -28,6 +30,29 @@ class EventDetailViewModel(private val eventRepository: EventRepository,
 
     fun prepareSelectedMembersList() = this.loadSelectedList()
 
+    fun saveEvent() {
+        this.onDataLoading.set(true)
+
+        this.eventRepository.saveEvent(this.event, object : EventDataSource.SaveCallback {
+            override fun onSuccess(message: String) {
+
+                onDataLoading.set(false)
+                onDataLoadingError.set(false)
+
+                navigation.call()
+
+
+            }
+
+            override fun onError(message: String) {
+                onDataLoading.set(false)
+                onDataLoadingError.set(true)
+
+            }
+
+        })
+    }
+
     fun filter() = bottomSheetBehaviorState.call()
 
     fun sendSelectedList() {
@@ -36,12 +61,12 @@ class EventDetailViewModel(private val eventRepository: EventRepository,
         val selectedMembers = arrayListOf<Member>()
         this.memberList.forEach {
 
-            if (it.selected.get() && !selectedMembers.contains(it))
+            if (it.selected.get() && !this.event.memberList.contains(it))
                 selectedMembers.add(it)
 
         }
 
-        with(this.selectedMemberList)
+        with(event.memberList)
         {
             addAll(selectedMembers)
             onEmpty.set(isEmpty())
@@ -67,6 +92,7 @@ class EventDetailViewModel(private val eventRepository: EventRepository,
                     addAll(repoList)
                     onEmpty.set(isEmpty())
                 }
+
             }
 
             override fun onError() {
@@ -79,7 +105,7 @@ class EventDetailViewModel(private val eventRepository: EventRepository,
     }
 
     private fun loadSelectedList() =
-            with(this.selectedMemberList) {
+            with(event.memberList) {
                 onEmpty.set(isEmpty())
             }
 }
